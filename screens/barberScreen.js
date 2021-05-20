@@ -18,8 +18,6 @@ const BarberScreen: FunctionComponent<IProps> = ({
   barberPageViewStores,
   navigation,
 }) => {
-  const Drawer = createDrawerNavigator();
-
   const singedOutHandler = async () => {
     try {
       await singedOut();
@@ -28,9 +26,6 @@ const BarberScreen: FunctionComponent<IProps> = ({
     } catch (error) {}
   };
   return (
-    // <Drawer.Navigator>
-    //   <Drawer.Screen name="Setting" component={SettingScreen} />
-    // </Drawer.Navigator>
     <View>
       <View style={styles.button}>
         <TouchableOpacity onPress={singedOutHandler}>

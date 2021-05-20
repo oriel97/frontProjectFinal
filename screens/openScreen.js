@@ -31,7 +31,7 @@ const OpenScreen: FunctionComponent<IProps> = ({
     if (Object.keys(returnObj).length === 0) {
       navigation.navigate('LoginWindow');
     } else {
-      navigation.navigate('BarberScreen');
+      navigation.navigate('DrawerNav');
     }
   }, 2000);
 

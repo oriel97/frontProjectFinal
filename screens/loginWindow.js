@@ -51,7 +51,7 @@ const LoginWindow: FunctionComponent<IProps> = ({
       const token = response.token;
       barberPageViewStores.setLogin(name, token.toString());
       await signedIn(token.toString(), name);
-      navigation.navigate('BarberScreen');
+      navigation.navigate('DrawerNav');
     } catch (error) {
       setIsLoading(false);
       setLoginProblem(true);

@@ -10,8 +10,8 @@ export const ROUTES = {
   },
 };
 export const HTTP = {
-  login: 'http://10.100.102.45:5000/login',
-  createNewUser: 'http://10.100.102.45:5000/createUser',
+  login: 'http://192.168.1.14:5000/login',
+  createNewUser: 'http://192.168.1.14:5000/createUser',
   post: 'POST',
   get: 'GET',
   put: 'PUT',

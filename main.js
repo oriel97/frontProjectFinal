@@ -9,6 +9,7 @@ import {createStackNavigator} from '@react-navigation/stack';
 import BarberScreen from './screens/barberScreen';
 import OpenScreen from './screens/openScreen';
 import {Colors} from './utils/color';
+import DrawerNav from './routs/drawerNav';
 
 const Stack = createStackNavigator();
 
@@ -32,18 +33,10 @@ export default function Main() {
           options={{headerTransparent: true, headerTitle: ''}}
         />
         <Stack.Screen
-          name="BarberScreen"
-          component={BarberScreen}
+          name="DrawerNav"
+          component={DrawerNav}
           options={{
-            headerTitle: 'Choose your barber!',
-            headerTitleStyle: {
-              fontWeight: 'bold',
-              left: 40,
-            },
-            headerStyle: {
-              backgroundColor: Colors.middleBlue,
-            },
-            headerTintColor: '#fff',
+            headerShown: false,
           }}
         />
       </Stack.Navigator>

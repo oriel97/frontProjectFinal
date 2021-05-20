@@ -5,14 +5,20 @@ import React from 'react';
 const initialData = {
   userName: '',
   userId: '',
+  userEmail: '',
+  userCity: '',
 };
 
 class BarberPageViewStores implements IBarberPageViewStore {
   userName = initialData.userName;
   userId = initialData.userId;
+  userEmail = initialData.userEmail;
+  userCity = initialData.userCity;
 
   constructor(stores: any) {
     makeObservable(this, {
+      userEmail: observable,
+      userCity: observable,
       userName: observable,
       userId: observable,
       setUserId: action.bound,
@@ -27,8 +33,8 @@ class BarberPageViewStores implements IBarberPageViewStore {
     this.userName = userName;
   }
   setLogin(userName: string, userId: string) {
-    this.setUserId(userId);
-    this.setUserName(userName);
+    this.userId = userId;
+    this.userName = userName;
   }
 }
 export default BarberPageViewStores;
