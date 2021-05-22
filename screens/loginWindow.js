@@ -15,7 +15,6 @@ import {IBarberPageViewStore} from '../Interfaces/view-store.types';
 import Api from '../api/apiRequests';
 import {NavigationActions as navigation} from 'react-navigation';
 import {signedIn} from '../api/phoneStorage';
-import getUserInfo from 'api/apiRequests';
 
 interface IProps {
   barberPageViewStores?: IBarberPageViewStore;
@@ -50,7 +49,7 @@ const LoginWindow: FunctionComponent<IProps> = ({
       setIsLoading(true);
       const response = await Api.Login(name, password);
       const token = response.token;
-      const userInfo = await getUserInfo();
+      const userInfo = await Api.getUserInfo();
       await signedIn(token.toString(), name);
       barberPageViewStores.setLogin(
         name,
