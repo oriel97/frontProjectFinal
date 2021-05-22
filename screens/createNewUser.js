@@ -15,7 +15,7 @@ import Input from '../components/input';
 import DatePicker from 'react-native-date-picker';
 import Card from '../components/card';
 import ChooseList from '../components/choose-list';
-import Api from '../api/apiLogin';
+import Api from '../api/apiRequests';
 
 interface IProps {
   navigation: any;

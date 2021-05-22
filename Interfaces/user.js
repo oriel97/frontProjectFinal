@@ -5,3 +5,10 @@ interface User {
   dateOfBirth: string;
   email: string;
 }
+
+interface userInfo {
+  userName: string;
+  location: string;
+  email: string;
+  gender: string;
+}

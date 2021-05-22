@@ -7,6 +7,7 @@ const initialData = {
   userId: '',
   userEmail: '',
   userCity: '',
+  userGender: '',
 };
 
 class BarberPageViewStores implements IBarberPageViewStore {
@@ -14,9 +15,11 @@ class BarberPageViewStores implements IBarberPageViewStore {
   userId = initialData.userId;
   userEmail = initialData.userEmail;
   userCity = initialData.userCity;
+  userGender = initialData.userGender;
 
   constructor(stores: any) {
     makeObservable(this, {
+      userGender: observable,
       userEmail: observable,
       userCity: observable,
       userName: observable,
@@ -26,15 +29,28 @@ class BarberPageViewStores implements IBarberPageViewStore {
       setLogin: action.bound,
     });
   }
+
   setUserId(userId: string) {
     this.userId = userId;
   }
+
   setUserName(userName: string) {
     this.userName = userName;
   }
-  setLogin(userName: string, userId: string) {
+
+  setLogin(
+    userName: string,
+    userId: string,
+    userGender: string,
+    userEmail: string,
+    userCity: string,
+  ) {
     this.userId = userId;
     this.userName = userName;
+    this.userGender = userGender;
+    this.userEmail = userEmail;
+    this.userCity = userCity;
   }
 }
+
 export default BarberPageViewStores;

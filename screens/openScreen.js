@@ -6,11 +6,13 @@ import {Colors} from '../utils/color';
 import {IBarberPageViewStore} from '../Interfaces/view-store.types';
 import {initFromLocalStorage} from '../api/phoneStorage';
 import {inject, observer} from 'mobx-react';
+import getUserInfo from 'api/apiRequests';
 
 interface IProps {
   barberPageViewStores?: IBarberPageViewStore;
   navigation: any;
 }
+
 const OpenScreen: FunctionComponent<IProps> = ({
   barberPageViewStores,
   navigation,
@@ -20,9 +22,18 @@ const OpenScreen: FunctionComponent<IProps> = ({
     try {
       returnObj = await initFromLocalStorage().then(value => value);
       if (Object.keys(returnObj).length > 0) {
-        barberPageViewStores.setLogin(returnObj.userName, returnObj.userId);
+        const userInfo = await getUserInfo();
+        barberPageViewStores.setLogin(
+          returnObj.userName,
+          returnObj.userId,
+          userInfo.gender,
+          userInfo.email,
+          userInfo.city,
+        );
       }
-    } catch (error) {}
+    } catch (error) {
+      returnObj = {};
+    }
     return returnObj;
   };
 
