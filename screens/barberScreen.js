@@ -14,26 +14,12 @@ interface IProps {
   barberPageViewStores?: IBarberPageViewStore;
   navigation: any;
 }
+
 const BarberScreen: FunctionComponent<IProps> = ({
   barberPageViewStores,
   navigation,
 }) => {
-  const singedOutHandler = async () => {
-    try {
-      await singedOut();
-      barberPageViewStores.setLogin('', '');
-      navigation.navigate('LoginWindow');
-    } catch (error) {}
-  };
-  return (
-    <View>
-      <View style={styles.button}>
-        <TouchableOpacity onPress={singedOutHandler}>
-          <Text style={{color: Colors.white}}>signed out</Text>
-        </TouchableOpacity>
-      </View>
-    </View>
-  );
+  return <View></View>;
 };
 const styles = StyleSheet.create({
   button: {
