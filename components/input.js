@@ -10,6 +10,7 @@ interface Iprops {
   onChangeText: any;
   value: any;
 }
+
 const Input: FunctionComponent<Iprops> = ({
   isPassword,
   stylesProp,

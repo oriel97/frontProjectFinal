@@ -9,6 +9,7 @@ import {singedOut} from '../api/phoneStorage';
 import {createDrawerNavigator} from '@react-navigation/drawer';
 import {NavigationContainer} from '@react-navigation/native';
 import SettingScreen from './settingScreen';
+import Header from '../components/header';
 
 interface IProps {
   barberPageViewStores?: IBarberPageViewStore;
@@ -19,7 +20,11 @@ const BarberScreen: FunctionComponent<IProps> = ({
   barberPageViewStores,
   navigation,
 }) => {
-  return <View></View>;
+  return (
+    <View style={{backgroundColor: Colors.lightGrey}}>
+      <Header headerName={'Barbers Menu'} />
+    </View>
+  );
 };
 const styles = StyleSheet.create({
   button: {
