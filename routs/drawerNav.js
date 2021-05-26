@@ -6,9 +6,11 @@ import DrawContent from '../components/drawConrtent';
 import BarberScreen from '../screens/barberScreen';
 import SettingScreen from '../screens/settingScreen';
 import AboutScreen from '../screens/aboutScreen';
+
 interface IProps {
   navigation: any;
 }
+
 const DrawerNav: FunctionComponent<IProps> = ({navigation}) => {
   const Drawer = createDrawerNavigator();
 

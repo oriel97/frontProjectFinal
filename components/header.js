@@ -5,12 +5,16 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 
 interface IProps {
   headerName: string;
+  openDrawerFunc: any;
 }
-const Header: FunctionComponent<IProps> = ({headerName}) => {
+const Header: FunctionComponent<IProps> = ({headerName, openDrawerFunc}) => {
+  const onPressHandler = () => {
+    openDrawerFunc();
+  };
   return (
     <View style={styles.backgound}>
       <Text style={styles.headerText}>{headerName}</Text>
-      <TouchableOpacity style={styles.icon}>
+      <TouchableOpacity onPress={onPressHandler} style={styles.icon}>
         <Icon name="bars" color={Colors.black} size={36} />
       </TouchableOpacity>
     </View>
