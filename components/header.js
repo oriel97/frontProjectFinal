@@ -12,7 +12,7 @@ const Header: FunctionComponent<IProps> = ({headerName, openDrawerFunc}) => {
     openDrawerFunc();
   };
   return (
-    <View style={styles.backgound}>
+    <View style={styles.background}>
       <Text style={styles.headerText}>{headerName}</Text>
       <TouchableOpacity onPress={onPressHandler} style={styles.icon}>
         <Icon name="bars" color={Colors.black} size={36} />
@@ -22,7 +22,7 @@ const Header: FunctionComponent<IProps> = ({headerName, openDrawerFunc}) => {
 };
 
 const styles = StyleSheet.create({
-  backgound: {
+  background: {
     backgroundColor: Colors.white,
     height: 75,
   },

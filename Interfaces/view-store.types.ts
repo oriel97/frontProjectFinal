@@ -9,4 +9,6 @@ export interface IBarberPageViewStore {
   userEmail: string;
   userCity: string;
   userGender: string;
+  barberList: any;
+  setBarberList: any;
 }

@@ -1,4 +1,4 @@
-interface User {
+export interface User {
   userName: string;
   password: string;
   location: string;
@@ -6,9 +6,21 @@ interface User {
   email: string;
 }
 
-interface userInfo {
+export interface userInfo {
   userName: string;
   location: string;
   email: string;
   gender: string;
+}
+export interface IBarber {
+  barberName: string;
+  location: string;
+  grade: number;
+  followers: number;
+  picture: string;
+  summary: {
+    time: string,
+    sentence: string,
+    headline: string,
+  };
 }

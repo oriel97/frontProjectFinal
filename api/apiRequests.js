@@ -1,5 +1,6 @@
 import React from 'react';
 import {HTTP} from '../utils/utils';
+import {barberList} from '../mocks/barberMock';
 
 export default class Api extends React.Component {
   static functionWithTimeOut(
@@ -67,6 +68,10 @@ export default class Api extends React.Component {
       city: 'Netanya',
       gender: 'Male',
     };
+  }
+
+  static async getBarbersList() {
+    return barberList;
   }
 
   /**

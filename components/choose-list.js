@@ -16,6 +16,7 @@ interface Iprops {
   pressOnCity: any;
   disableScroll: any;
 }
+
 const ChooseList: FunctionComponent<Iprops> = ({
   cityName,
   pressOnCity,

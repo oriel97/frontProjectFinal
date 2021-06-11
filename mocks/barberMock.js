@@ -1,7 +1,29 @@
 export const barberList = [
   {
-    userEmail: 'oriel97@gmail.com',
-    userCity: 'Netanya',
+    barberName: 'Tomer sultinian',
+    location: 'Netanya',
+    grade: 3,
+    followers: 300,
+    picture: 2,
+    summary: {
+      time: '2021-05-11',
+      sentence: 'hello my name is Naoumie Cohen and im not a ' + 'queen !',
+      headline: 'summary',
+    },
+  },
+  {
+    barberName: 'oriel Asraf',
+    location: 'Netanya',
+    grade: 4,
+    followers: 200,
+    picture: 2,
+    summary: {
+      time: '2021-05-11',
+      sentence: ' i do barber',
+      headline: 'headline',
+    },
+  },
+  {
     barberName: 'Tomer sultinian',
     location: 'Netanya',
     grade: 5,
@@ -14,7 +36,55 @@ export const barberList = [
     },
   },
   {
-    barberName: 'oriel Asraf',
+    barberName: 'Tomer sultinian',
+    location: 'Netanya',
+    grade: 5,
+    followers: 100,
+    picture: 2,
+    summary: {
+      time: '2021-05-11',
+      sentence: ' i do barber',
+      headline: 'headline',
+    },
+  },
+  {
+    barberName: 'Tomer sultinian',
+    location: 'Netanya',
+    grade: 5,
+    followers: 100,
+    picture: 2,
+    summary: {
+      time: '2021-05-11',
+      sentence: ' i do barber',
+      headline: 'headline',
+    },
+  },
+  {
+    barberName: 'Tomer sultinian',
+    location: 'Netanya',
+    grade: 5,
+    followers: 100,
+    picture: 2,
+    summary: {
+      time: '2021-05-11',
+      sentence: ' i do barber',
+      headline: 'headline',
+    },
+  },
+  {
+    barberName: 'Tomer sultinian',
+    location: 'Netanya',
+    grade: 5,
+    followers: 100,
+    picture: 2,
+    summary: {
+      time: '2021-05-11',
+      sentence: ' i do barber',
+      headline: 'headline',
+    },
+  },
+  {
+    barberName: 'Tomer sultinian',
     location: 'Netanya',
     grade: 5,
     followers: 100,
