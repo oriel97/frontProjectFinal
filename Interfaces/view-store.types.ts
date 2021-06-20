@@ -10,5 +10,5 @@ export interface IBarberPageViewStore {
   userCity: string;
   userGender: string;
   barberList: any;
-  setBarberList: any;
+  setList: any;
 }

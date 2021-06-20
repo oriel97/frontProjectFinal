@@ -1,6 +1,6 @@
 export const barberList = [
   {
-    barberName: 'Tomer sultinian',
+    barberName: 'A sultinian',
     location: 'Netanya',
     grade: 3,
     followers: 300,
@@ -12,7 +12,7 @@ export const barberList = [
     },
   },
   {
-    barberName: 'oriel Asraf',
+    barberName: 'B Asraf',
     location: 'Netanya',
     grade: 4,
     followers: 200,
@@ -24,7 +24,43 @@ export const barberList = [
     },
   },
   {
-    barberName: 'Tomer sultinian',
+    barberName: 'C sultinian',
+    location: 'Netanya',
+    grade: 5,
+    followers: 100,
+    picture: 2,
+    summary: {
+      time: '2021-05-11',
+      sentence: ' i do barber',
+      headline: 'headline',
+    },
+  },
+  {
+    barberName: 'T sultinian',
+    location: 'Netanya',
+    grade: 5,
+    followers: 100,
+    picture: 2,
+    summary: {
+      time: '2021-05-11',
+      sentence: ' i do barber',
+      headline: 'headline',
+    },
+  },
+  {
+    barberName: 'E sultinian',
+    location: 'Netanya',
+    grade: 5,
+    followers: 100,
+    picture: 2,
+    summary: {
+      time: '2021-05-11',
+      sentence: ' i do barber',
+      headline: 'headline',
+    },
+  },
+  {
+    barberName: 'W sultinian',
     location: 'Netanya',
     grade: 5,
     followers: 100,
@@ -39,7 +75,19 @@ export const barberList = [
     barberName: 'Tomer sultinian',
     location: 'Netanya',
     grade: 5,
-    followers: 100,
+    followers: 200,
+    picture: 2,
+    summary: {
+      time: '2021-05-11',
+      sentence: ' i do barber',
+      headline: 'headline',
+    },
+  },
+  {
+    barberName: 'k sultinian',
+    location: 'Netanya',
+    grade: 5,
+    followers: 600,
     picture: 2,
     summary: {
       time: '2021-05-11',
@@ -51,7 +99,7 @@ export const barberList = [
     barberName: 'Tomer sultinian',
     location: 'Netanya',
     grade: 5,
-    followers: 100,
+    followers: 20,
     picture: 2,
     summary: {
       time: '2021-05-11',
@@ -63,55 +111,7 @@ export const barberList = [
     barberName: 'Tomer sultinian',
     location: 'Netanya',
     grade: 5,
-    followers: 100,
-    picture: 2,
-    summary: {
-      time: '2021-05-11',
-      sentence: ' i do barber',
-      headline: 'headline',
-    },
-  },
-  {
-    barberName: 'Tomer sultinian',
-    location: 'Netanya',
-    grade: 5,
-    followers: 100,
-    picture: 2,
-    summary: {
-      time: '2021-05-11',
-      sentence: ' i do barber',
-      headline: 'headline',
-    },
-  },
-  {
-    barberName: 'Tomer sultinian',
-    location: 'Netanya',
-    grade: 5,
-    followers: 100,
-    picture: 2,
-    summary: {
-      time: '2021-05-11',
-      sentence: ' i do barber',
-      headline: 'headline',
-    },
-  },
-  {
-    barberName: 'Tomer sultinian',
-    location: 'Netanya',
-    grade: 5,
-    followers: 100,
-    picture: 2,
-    summary: {
-      time: '2021-05-11',
-      sentence: ' i do barber',
-      headline: 'headline',
-    },
-  },
-  {
-    barberName: 'Tomer sultinian',
-    location: 'Netanya',
-    grade: 5,
-    followers: 100,
+    followers: 200,
     picture: 2,
     summary: {
       time: '2021-05-11',

@@ -27,6 +27,7 @@ const DrawContent: FunctionComponent<IProps> = ({
       setLoading(true);
       await singedOut();
       barberPageViewStores.setLogin('', '');
+      barberPageViewStores.setList([]);
       setLoading(false);
       navigation.navigate('LoginWindow');
     } catch (error) {}

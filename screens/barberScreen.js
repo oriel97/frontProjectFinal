@@ -5,7 +5,6 @@ import {
   View,
   StyleSheet,
   Text,
-  Button,
   TouchableOpacity,
   FlatList,
   ActivityIndicator,
@@ -15,8 +14,9 @@ import {IBarberPageViewStore} from '../Interfaces/view-store.types';
 import {Colors} from '../utils/color';
 import Header from '../components/header';
 import Icon from 'react-native-vector-icons/FontAwesome5';
-import Card from '../components/card';
 import Barber from '../components/barber';
+import OptionsModal from '../components/barberScreenComponents/optionsModal';
+import Api from '../api/apiRequests';
 
 interface IProps {
   barberPageViewStores?: IBarberPageViewStore;
@@ -27,25 +27,33 @@ const BarberScreen: FunctionComponent<IProps> = ({
   barberPageViewStores,
   navigation,
 }) => {
-  const [isLoading, setIsLoading] = useState(false);
+  const [openOption, setOpenOption] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   const [thereIsBarbers, setThereIsBarbers] = useState(false);
-  const [barbers, setBarbers] = useState([]);
+
   const openDrawer = () => {
     navigation.openDrawer();
   };
+  const sortOption = () => {
+    if (barberPageViewStores.barberList.length > 0) {
+      setOpenOption(!openOption);
+    }
+  };
 
   useEffect(() => {
+    navigation.closeDrawer();
     const starter = async () => {
-      setIsLoading(true);
-      await barberPageViewStores.setBarberList();
-      setBarbers(barberPageViewStores.barberList);
-      if (barbers.length > 0) {
+      const list = await Api.getBarbersList();
+      barberPageViewStores.setList(list);
+      if (barberPageViewStores.barberList.length > 0) {
         setThereIsBarbers(true);
       }
       setIsLoading(false);
     };
-    starter();
-  }, [barbers, barberPageViewStores]);
+    starter().catch(e => {
+      console.log(e);
+    });
+  }, [navigation, barberPageViewStores]);
 
   return (
     <View>
@@ -60,7 +68,7 @@ const BarberScreen: FunctionComponent<IProps> = ({
       {thereIsBarbers ? (
         <View style={{height: 500, marginTop: 30}}>
           <FlatList
-            data={barbers}
+            data={barberPageViewStores.barberList}
             keyExtractor={(item, index) => index}
             renderItem={({item}) => (
               <View>
@@ -70,12 +78,17 @@ const BarberScreen: FunctionComponent<IProps> = ({
           />
         </View>
       ) : (
-        <View style={{alignItems: 'center', marginTop: 200}}>
-          <Text style={{fontWeight: 'bold', fontSize: 40}}>
-            There is no barbers!
-          </Text>
+        <View>
+          {!isLoading && (
+            <View style={{alignItems: 'center', marginTop: 200}}>
+              <Text style={{fontWeight: 'bold', fontSize: 40}}>
+                There is no barbers!
+              </Text>
+            </View>
+          )}
         </View>
       )}
+      <OptionsModal sortOption={sortOption} openOption={openOption} />
 
       <View style={styles.navBar}>
         <View style={styles.bell}>
@@ -89,7 +102,7 @@ const BarberScreen: FunctionComponent<IProps> = ({
           </TouchableOpacity>
         </View>
         <View style={styles.sort}>
-          <TouchableOpacity>
+          <TouchableOpacity onPress={sortOption}>
             <Icon name="sort-amount-up" color={Colors.black} size={40} />
           </TouchableOpacity>
         </View>
@@ -124,7 +137,7 @@ const styles = StyleSheet.create({
   },
   loading: {
     justifyContent: 'center',
-    top: 100,
+    top: 220,
   },
 });
 export default inject('barberPageViewStores')(observer(BarberScreen));

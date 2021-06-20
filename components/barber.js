@@ -1,16 +1,7 @@
-import React, {FunctionComponent, useState} from 'react';
-import {
-  View,
-  StyleSheet,
-  FlatList,
-  Text,
-  TouchableOpacity,
-  SafeAreaView,
-} from 'react-native';
+import React, {FunctionComponent} from 'react';
+import {View, StyleSheet, Text} from 'react-native';
 import {Avatar} from 'react-native-elements';
-import {citiesName} from '../utils/cities';
 import Card from './card';
-import {Colors} from '../utils/color';
 import {IBarberPageViewStore} from '../Interfaces/view-store.types';
 import {IBarber} from '../Interfaces/user';
 

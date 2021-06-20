@@ -32,15 +32,11 @@ class BarberPageViewStores implements IBarberPageViewStore {
       setUserId: action.bound,
       setUserName: action.bound,
       setLogin: action.bound,
+      setList: action.bound,
     });
   }
-
-  async setBarberList() {
-    try {
-      if (this.barberList.length === 0) {
-        this.barberList = await Api.getBarbersList();
-      }
-    } catch (e) {}
+  setList(list: any) {
+    this.barberList = list;
   }
 
   setUserId(userId: string) {

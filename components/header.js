@@ -7,6 +7,7 @@ interface IProps {
   headerName: string;
   openDrawerFunc: any;
 }
+
 const Header: FunctionComponent<IProps> = ({headerName, openDrawerFunc}) => {
   const onPressHandler = () => {
     openDrawerFunc();

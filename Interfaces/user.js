@@ -12,6 +12,7 @@ export interface userInfo {
   email: string;
   gender: string;
 }
+
 export interface IBarber {
   barberName: string;
   location: string;
