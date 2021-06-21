@@ -41,6 +41,7 @@ const BarberScreen: FunctionComponent<IProps> = ({
   };
 
   useEffect(() => {
+    console.log('Ssss');
     navigation.closeDrawer();
     const starter = async () => {
       const list = await Api.getBarbersList();

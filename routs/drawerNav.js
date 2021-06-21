@@ -9,14 +9,17 @@ import AboutScreen from '../screens/aboutScreen';
 
 interface IProps {
   navigation: any;
+  route: any;
 }
 
-const DrawerNav: FunctionComponent<IProps> = ({navigation}) => {
+const DrawerNav: FunctionComponent<IProps> = ({navigation, route}) => {
   const Drawer = createDrawerNavigator();
 
   return (
     <Drawer.Navigator
-      drawerContent={() => <DrawContent navigation={navigation} />}>
+      drawerContent={() => (
+        <DrawContent navigation={navigation} route={route} />
+      )}>
       <Drawer.Screen name="BarberScreen" component={BarberScreen} />
       <Drawer.Screen name="SettingScreen" component={SettingScreen} />
       <Drawer.Screen name="AboutScreen" component={AboutScreen} />

@@ -15,11 +15,13 @@ import {singedOut} from '../api/phoneStorage';
 interface IProps {
   navigation: any;
   barberPageViewStores: IBarberPageViewStore;
+  route: any;
 }
 
 const DrawContent: FunctionComponent<IProps> = ({
   navigation,
   barberPageViewStores,
+  route,
 }) => {
   const [loading, setLoading] = useState(false);
   const singedOutHandler = async () => {
@@ -31,6 +33,13 @@ const DrawContent: FunctionComponent<IProps> = ({
       setLoading(false);
       navigation.navigate('LoginWindow');
     } catch (error) {}
+  };
+
+  const goToAboutPage = () => {
+    navigation.navigate('AboutScreen');
+  };
+  const goToBarberPage = () => {
+    navigation.navigate('BarberScreen');
   };
 
   return (
@@ -56,7 +65,7 @@ const DrawContent: FunctionComponent<IProps> = ({
             style={styles.bold}
           />
         </TouchableOpacity>
-        <TouchableOpacity style={styles.touch}>
+        <TouchableOpacity onPress={goToBarberPage} style={styles.touch}>
           <View style={styles.directionRow}>
             <Icon
               name="scissors"
@@ -73,7 +82,7 @@ const DrawContent: FunctionComponent<IProps> = ({
             style={styles.bold}
           />
         </TouchableOpacity>
-        <TouchableOpacity style={styles.touch}>
+        <TouchableOpacity onPress={goToAboutPage} style={styles.touch}>
           <View style={styles.directionRow}>
             <Icon
               name="info"
