@@ -67,12 +67,12 @@ const BarberScreen: FunctionComponent<IProps> = ({
         />
       )}
       {thereIsBarbers ? (
-        <View style={{height: 500, marginTop: 30}}>
+        <View style={{height: 500}}>
           <FlatList
             data={barberPageViewStores.barberList}
             keyExtractor={(item, index) => index}
-            renderItem={({item}) => (
-              <View>
+            renderItem={({item, index}) => (
+              <View style={index === 0 && {marginTop: 30}}>
                 <Barber barber={item} />
               </View>
             )}
