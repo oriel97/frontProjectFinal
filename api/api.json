@@ -23,9 +23,10 @@
       "model": {
         "barberName": "Tomer sultinian", // string
         "location": "Netanya", // string
-        "grade": 5 // 1 -5 number
-        "followers": 100 // number
+        "grade": 5, // 1 -5 number
+        "followers": 100, // number
         "picture": 2 // svg
+        "favorite": true,
         "summary": {
           "time": "2021-05-11" // current time
           "sentence": " i do barber" // string

@@ -5,6 +5,7 @@ export const barberList = [
     grade: 3,
     followers: 300,
     picture: 2,
+    favorite: false,
     summary: {
       time: '2021-05-11',
       sentence: 'hello my name is Naoumie Cohen and im not a ' + 'queen !',
@@ -17,6 +18,7 @@ export const barberList = [
     grade: 4,
     followers: 200,
     picture: 2,
+    favorite: true,
     summary: {
       time: '2021-05-11',
       sentence: ' i do barber',
@@ -29,6 +31,7 @@ export const barberList = [
     grade: 5,
     followers: 100,
     picture: 2,
+    favorite: true,
     summary: {
       time: '2021-05-11',
       sentence: ' i do barber',
@@ -41,6 +44,7 @@ export const barberList = [
     grade: 5,
     followers: 100,
     picture: 2,
+    favorite: false,
     summary: {
       time: '2021-05-11',
       sentence: ' i do barber',
@@ -53,6 +57,7 @@ export const barberList = [
     grade: 5,
     followers: 100,
     picture: 2,
+    favorite: true,
     summary: {
       time: '2021-05-11',
       sentence: ' i do barber',
@@ -65,6 +70,7 @@ export const barberList = [
     grade: 5,
     followers: 100,
     picture: 2,
+    favorite: true,
     summary: {
       time: '2021-05-11',
       sentence: ' i do barber',
@@ -77,6 +83,7 @@ export const barberList = [
     grade: 5,
     followers: 200,
     picture: 2,
+    favorite: true,
     summary: {
       time: '2021-05-11',
       sentence: ' i do barber',
@@ -89,6 +96,7 @@ export const barberList = [
     grade: 5,
     followers: 600,
     picture: 2,
+    favorite: false,
     summary: {
       time: '2021-05-11',
       sentence: ' i do barber',
@@ -101,6 +109,7 @@ export const barberList = [
     grade: 5,
     followers: 20,
     picture: 2,
+    favorite: false,
     summary: {
       time: '2021-05-11',
       sentence: ' i do barber',
@@ -113,6 +122,7 @@ export const barberList = [
     grade: 5,
     followers: 200,
     picture: 2,
+    favorite: false,
     summary: {
       time: '2021-05-11',
       sentence: ' i do barber',

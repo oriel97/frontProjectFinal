@@ -19,6 +19,7 @@ export interface IBarber {
   grade: number;
   followers: number;
   picture: string;
+  favorite: boolean;
   summary: {
     time: string,
     sentence: string,

@@ -15,13 +15,11 @@ import {singedOut} from '../api/phoneStorage';
 interface IProps {
   navigation: any;
   barberPageViewStores: IBarberPageViewStore;
-  route: any;
 }
 
 const DrawContent: FunctionComponent<IProps> = ({
   navigation,
   barberPageViewStores,
-  route,
 }) => {
   const [loading, setLoading] = useState(false);
   const singedOutHandler = async () => {
@@ -41,6 +39,9 @@ const DrawContent: FunctionComponent<IProps> = ({
   const goToBarberPage = () => {
     navigation.navigate('BarberScreen');
   };
+  const goToMoviesPage = () => {
+    navigation.navigate('VideoScreen');
+  };
 
   return (
     <View>
@@ -48,15 +49,17 @@ const DrawContent: FunctionComponent<IProps> = ({
       <Text style={styles.email}>{barberPageViewStores.userEmail}</Text>
       <Text style={styles.city}>{barberPageViewStores.userCity}</Text>
       <View style={{paddingLeft: 20}}>
-        <TouchableOpacity style={[styles.touch, {marginTop: 0}]}>
+        <TouchableOpacity
+          onPress={goToMoviesPage}
+          style={[styles.touch, {marginTop: 0}]}>
           <View style={styles.directionRow}>
             <Icon
-              name="cog"
+              name="video-camera"
               color={Colors.black}
               size={24}
               style={{paddingTop: 2}}
             />
-            <Text style={[styles.button, {paddingLeft: 10}]}>SETTING</Text>
+            <Text style={[styles.button, {paddingLeft: 10}]}>VIDEOS</Text>
           </View>
           <Icon
             name="angle-right"

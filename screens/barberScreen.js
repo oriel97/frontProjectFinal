@@ -1,15 +1,14 @@
-import React, {useState, useEffect} from 'react';
+import React, {FunctionComponent, useEffect, useState} from 'react';
 import {inject, observer} from 'mobx-react';
 
 import {
-  View,
+  ActivityIndicator,
+  FlatList,
   StyleSheet,
   Text,
   TouchableOpacity,
-  FlatList,
-  ActivityIndicator,
+  View,
 } from 'react-native';
-import {FunctionComponent} from 'react';
 import {IBarberPageViewStore} from '../Interfaces/view-store.types';
 import {Colors} from '../utils/color';
 import Header from '../components/header';
@@ -41,20 +40,32 @@ const BarberScreen: FunctionComponent<IProps> = ({
   };
 
   useEffect(() => {
-    console.log('Ssss');
-    navigation.closeDrawer();
-    const starter = async () => {
-      const list = await Api.getBarbersList();
-      barberPageViewStores.setList(list);
-      if (barberPageViewStores.barberList.length > 0) {
-        setThereIsBarbers(true);
-      }
-      setIsLoading(false);
-    };
-    starter().catch(e => {
-      console.log(e);
+    return navigation.addListener('focus', () => {
+      navigation.closeDrawer();
+      const starter = async () => {
+        const list = await Api.getBarbersList();
+        barberPageViewStores.setList(list);
+        if (barberPageViewStores.barberList.length > 0) {
+          setThereIsBarbers(true);
+        }
+        setIsLoading(false);
+      };
+      starter().catch(e => {
+        console.log(e);
+      });
     });
   }, [navigation, barberPageViewStores]);
+
+  const pressOnFavorite = () => {
+    const retList = [];
+    let list = barberPageViewStores.barberList;
+    for (let i = 0; i < list.length; i++) {
+      if (list[i].favorite === true) {
+        retList.push(list[i]);
+      }
+    }
+    barberPageViewStores.setList(retList);
+  };
 
   return (
     <View>
@@ -98,7 +109,7 @@ const BarberScreen: FunctionComponent<IProps> = ({
           </TouchableOpacity>
         </View>
         <View style={styles.favorite}>
-          <TouchableOpacity>
+          <TouchableOpacity onPress={pressOnFavorite}>
             <Icon name="thumbs-up" color={Colors.black} size={40} />
           </TouchableOpacity>
         </View>
