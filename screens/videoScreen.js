@@ -12,25 +12,54 @@ import Header from '../components/header';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import {Colors} from '../utils/color';
 
+import {inject, observer} from 'mobx-react';
+import VideoFullScreen from '../components/videoFullScreen';
+import {IVideosViewStore, Videos} from '../utils/videoUtils';
+
 interface IProps {
-  barberPageViewStores?: IBarberPageViewStore;
+  videoViewStore: IVideosViewStore;
   navigation: any;
 }
 
-const VideoScreen: FunctionComponent<IProps> = ({navigation}) => {
+const VideoScreen: FunctionComponent<IProps> = ({
+  navigation,
+  videoViewStore,
+}) => {
   const openDrawer = () => {
     navigation.openDrawer();
   };
   const onPressOnBackArrow = () => {
     navigation.goBack();
   };
+  const introductionPress = () => {
+    videoViewStore.setOpenVideoPlayer();
+    videoViewStore.setFullScreenMode();
+    videoViewStore?.setTimeOfTheMovie(0);
+    videoViewStore?.setVideoObject(Videos[0]);
+    videoViewStore?.setMovieOnPlay(true);
+  };
+  const chooseBarberPress = () => {
+    videoViewStore.setOpenVideoPlayer();
+    videoViewStore.setFullScreenMode();
+    videoViewStore?.setTimeOfTheMovie(0);
+    videoViewStore?.setVideoObject(Videos[1]);
+    videoViewStore?.setMovieOnPlay(true);
+  };
+  const makeAppointmentPress = () => {
+    videoViewStore.setOpenVideoPlayer();
+    videoViewStore.setFullScreenMode();
+    videoViewStore?.setTimeOfTheMovie(0);
+    videoViewStore?.setVideoObject(Videos[2]);
+    videoViewStore?.setMovieOnPlay(true);
+  };
+
   return (
-    <SafeAreaView>
+    <View style={{width: '100%', height: '100%'}}>
       <Header headerName={'Video page'} openDrawerFunc={openDrawer} />
       <TouchableOpacity onPress={onPressOnBackArrow} style={styles.backIcon}>
         <Icon name="chevron-left" color={Colors.black} size={36} />
       </TouchableOpacity>
-      <TouchableOpacity style={styles.cardStyle}>
+      <TouchableOpacity onPress={introductionPress} style={styles.cardStyle}>
         <View style={{flexDirection: 'row'}}>
           <View style={styles.iconPart}>
             <Icon name="video" color={Colors.white} size={64} />
@@ -40,7 +69,7 @@ const VideoScreen: FunctionComponent<IProps> = ({navigation}) => {
           </View>
         </View>
       </TouchableOpacity>
-      <TouchableOpacity style={styles.cardStyle}>
+      <TouchableOpacity onPress={chooseBarberPress} style={styles.cardStyle}>
         <View style={{flexDirection: 'row'}}>
           <View style={styles.iconPart}>
             <Icon name="video" color={Colors.white} size={64} />
@@ -50,7 +79,7 @@ const VideoScreen: FunctionComponent<IProps> = ({navigation}) => {
           </View>
         </View>
       </TouchableOpacity>
-      <TouchableOpacity style={styles.cardStyle}>
+      <TouchableOpacity onPress={makeAppointmentPress} style={styles.cardStyle}>
         <View style={{flexDirection: 'row'}}>
           <View style={styles.iconPart}>
             <Icon name="video" color={Colors.white} size={64} />
@@ -60,7 +89,8 @@ const VideoScreen: FunctionComponent<IProps> = ({navigation}) => {
           </View>
         </View>
       </TouchableOpacity>
-    </SafeAreaView>
+      {videoViewStore?.openVideoPlayer && <VideoFullScreen />}
+    </View>
   );
 };
 const styles = StyleSheet.create({
@@ -95,4 +125,4 @@ const styles = StyleSheet.create({
     elevation: 5,
   },
 });
-export default VideoScreen;
+export default inject('videoViewStore')(observer(VideoScreen));
