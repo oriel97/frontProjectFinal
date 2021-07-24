@@ -12,10 +12,11 @@ import {
 import {IBarberPageViewStore} from '../Interfaces/view-store.types';
 import {Colors} from '../utils/color';
 import Header from '../components/header';
-import Icon from 'react-native-vector-icons/FontAwesome5';
 import Barber from '../components/barber';
 import OptionsModal from '../components/barberScreenComponents/optionsModal';
 import Api from '../api/apiRequests';
+import BarberOptionsScreen from './barberOptionsScreen';
+import Icon from 'react-native-vector-icons/FontAwesome5';
 
 interface IProps {
   barberPageViewStores?: IBarberPageViewStore;
@@ -67,6 +68,12 @@ const BarberScreen: FunctionComponent<IProps> = ({
     barberPageViewStores.setList(retList);
   };
 
+  const onBarberPress = item => {
+    barberPageViewStores.setBarberId(item.id);
+    barberPageViewStores.setBarberName(item.barberName);
+    navigation.navigate('BarberOptionsScreen');
+  };
+
   return (
     <View>
       <Header headerName={'Barbers Menu'} openDrawerFunc={openDrawer} />
@@ -84,7 +91,9 @@ const BarberScreen: FunctionComponent<IProps> = ({
             keyExtractor={(item, index) => index}
             renderItem={({item, index}) => (
               <View style={index === 0 && {marginTop: 30}}>
-                <Barber barber={item} />
+                <TouchableOpacity onPress={() => onBarberPress(item)}>
+                  <Barber barber={item} />
+                </TouchableOpacity>
               </View>
             )}
           />

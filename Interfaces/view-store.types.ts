@@ -3,6 +3,8 @@ import {action, observable} from 'mobx';
 export interface IBarberPageViewStore {
   userId: string;
   userName: string;
+  barberId: string;
+  barberName: string;
   setUserId: any;
   setUserName: any;
   setLogin: any;
@@ -11,4 +13,6 @@ export interface IBarberPageViewStore {
   userGender: string;
   barberList: any;
   setList: any;
+  setBarberId: any;
+  setBarberName: any;
 }

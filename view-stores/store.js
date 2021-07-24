@@ -1,8 +1,6 @@
 import {IBarberPageViewStore} from '../Interfaces/view-store.types';
-import {action, computed, makeObservable, observable} from 'mobx';
+import {action, makeObservable, observable} from 'mobx';
 import React from 'react';
-import Api from '../api/apiRequests';
-import {barberList} from '../mocks/barberMock';
 
 const initialData = {
   userName: '',
@@ -11,6 +9,8 @@ const initialData = {
   userCity: '',
   userGender: '',
   barberList: [],
+  barberId: 0,
+  barberName: '',
 };
 
 class BarberPageViewStores implements IBarberPageViewStore {
@@ -20,6 +20,8 @@ class BarberPageViewStores implements IBarberPageViewStore {
   userCity = initialData.userCity;
   userGender = initialData.userGender;
   barberList = initialData.barberList;
+  barberId = initialData.barberId;
+  barberName = initialData.barberName;
 
   constructor(stores: any) {
     makeObservable(this, {
@@ -28,12 +30,23 @@ class BarberPageViewStores implements IBarberPageViewStore {
       userCity: observable,
       userName: observable,
       barberList: observable,
+      barberId: observable,
       userId: observable,
+      barberName: observable,
       setUserId: action.bound,
       setUserName: action.bound,
       setLogin: action.bound,
       setList: action.bound,
+      setBarberId: action.bound,
+      setBarberName: action.bound,
     });
+  }
+  setBarberName(name: string) {
+    this.barberName = name;
+  }
+
+  setBarberId(id: number) {
+    this.barberId = id;
   }
   setList(list: any) {
     this.barberList = list;
