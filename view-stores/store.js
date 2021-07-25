@@ -11,6 +11,7 @@ const initialData = {
   barberList: [],
   barberId: 0,
   barberName: '',
+  barberLocation: {},
 };
 
 class BarberPageViewStores implements IBarberPageViewStore {
@@ -22,6 +23,7 @@ class BarberPageViewStores implements IBarberPageViewStore {
   barberList = initialData.barberList;
   barberId = initialData.barberId;
   barberName = initialData.barberName;
+  barberLocation = initialData.barberLocation;
 
   constructor(stores: any) {
     makeObservable(this, {
@@ -30,6 +32,7 @@ class BarberPageViewStores implements IBarberPageViewStore {
       userCity: observable,
       userName: observable,
       barberList: observable,
+      barberLocation: observable,
       barberId: observable,
       userId: observable,
       barberName: observable,
@@ -39,8 +42,13 @@ class BarberPageViewStores implements IBarberPageViewStore {
       setList: action.bound,
       setBarberId: action.bound,
       setBarberName: action.bound,
+      setBarberLocation: action.bound,
     });
   }
+  setBarberLocation(location: any) {
+    this.barberLocation = location;
+  }
+
   setBarberName(name: string) {
     this.barberName = name;
   }

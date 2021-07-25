@@ -2,6 +2,10 @@ export const barberList = [
   {
     barberName: 'A sultinian',
     location: 'Netanya',
+    exactLocation: {
+      lat: 31.892127148023768,
+      lng: 35.00956178964859,
+    },
     grade: 3,
     followers: 300,
     picture: 2,
@@ -16,6 +20,10 @@ export const barberList = [
   {
     barberName: 'B Asraf',
     location: 'Netanya',
+    exactLocation: {
+      lat: 31.892127148023768,
+      lng: 35.00956178964859,
+    },
     grade: 4,
     followers: 200,
     picture: 2,
@@ -30,6 +38,10 @@ export const barberList = [
   {
     barberName: 'C sultinian',
     location: 'Netanya',
+    exactLocation: {
+      lat: 31.892127148023768,
+      lng: 35.00956178964859,
+    },
     grade: 5,
     followers: 100,
     picture: 2,
@@ -44,6 +56,10 @@ export const barberList = [
   {
     barberName: 'T sultinian',
     location: 'Netanya',
+    exactLocation: {
+      lat: 31.892127148023768,
+      lng: 35.00956178964859,
+    },
     grade: 5,
     followers: 100,
     picture: 2,
@@ -58,6 +74,10 @@ export const barberList = [
   {
     barberName: 'E sultinian',
     location: 'Netanya',
+    exactLocation: {
+      lat: 31.892127148023768,
+      lng: 35.00956178964859,
+    },
     grade: 5,
     followers: 100,
     picture: 2,
@@ -73,6 +93,10 @@ export const barberList = [
   {
     barberName: 'W sultinian',
     location: 'Netanya',
+    exactLocation: {
+      lat: 31.892127148023768,
+      lng: 35.00956178964859,
+    },
     grade: 5,
     followers: 100,
     picture: 2,
@@ -88,6 +112,7 @@ export const barberList = [
   {
     barberName: 'Tomer sultinian',
     location: 'Netanya',
+    exactLocation: 'nahal amud 13, modeiin',
     grade: 5,
     followers: 200,
     picture: 2,
@@ -103,6 +128,10 @@ export const barberList = [
   {
     barberName: 'k sultinian',
     location: 'Netanya',
+    exactLocation: {
+      lat: 31.892127148023768,
+      lng: 35.00956178964859,
+    },
     grade: 5,
     followers: 600,
     picture: 2,
@@ -118,6 +147,10 @@ export const barberList = [
   {
     barberName: 'Tomer sultinian',
     location: 'Netanya',
+    exactLocation: {
+      lat: 31.892127148023768,
+      lng: 35.00956178964859,
+    },
     grade: 5,
     followers: 20,
     picture: 2,
@@ -133,6 +166,10 @@ export const barberList = [
   {
     barberName: 'Tomer sultinian',
     location: 'Netanya',
+    exactLocation: {
+      lat: 31.892127148023768,
+      lng: 35.00956178964859,
+    },
     grade: 5,
     followers: 200,
     picture: 2,

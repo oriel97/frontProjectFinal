@@ -5,6 +5,7 @@ import {
   Text,
   SafeAreaView,
   TouchableOpacity,
+  Linking,
 } from 'react-native';
 import {FunctionComponent} from 'react';
 import {IBarberPageViewStore} from '../Interfaces/view-store.types';
@@ -29,6 +30,15 @@ const BarberOptionsScreen: FunctionComponent<IProps> = ({
   const onPressOnBackArrow = () => {
     navigation.goBack();
   };
+
+  const onPressWaze = () => {
+    const scheme = 'geo:0,0?q=';
+    const latLng = `${barberPageViewStores.barberLocation.lat},${barberPageViewStores.barberLocation.lng}`;
+    const label = 'Custom Label';
+    const url = `${scheme}${latLng}(${label})`;
+    Linking.openURL(url);
+  };
+
   return (
     <View>
       <Header
@@ -64,9 +74,10 @@ const BarberOptionsScreen: FunctionComponent<IProps> = ({
             <Text style={styles.textStyle}>Make appointment</Text>
           </TouchableOpacity>
           <TouchableOpacity
+            onPress={onPressWaze}
             style={[styles.cardStyle, {backgroundColor: Colors.lightNavy}]}>
             <View style={styles.inCardStyle}>
-              <Icon name="search-location" color={Colors.black} size={80} />
+              <Icon name="waze" color={Colors.black} size={80} />
             </View>
             <Text style={[styles.textStyle, {marginTop: 20}]}>Location</Text>
           </TouchableOpacity>

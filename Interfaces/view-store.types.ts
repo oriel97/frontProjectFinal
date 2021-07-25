@@ -5,6 +5,7 @@ export interface IBarberPageViewStore {
   userName: string;
   barberId: string;
   barberName: string;
+  barberLocation: string;
   setUserId: any;
   setUserName: any;
   setLogin: any;
@@ -15,4 +16,5 @@ export interface IBarberPageViewStore {
   setList: any;
   setBarberId: any;
   setBarberName: any;
+  setBarberLocation: any;
 }

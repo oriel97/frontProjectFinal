@@ -17,6 +17,7 @@ import OptionsModal from '../components/barberScreenComponents/optionsModal';
 import Api from '../api/apiRequests';
 import BarberOptionsScreen from './barberOptionsScreen';
 import Icon from 'react-native-vector-icons/FontAwesome5';
+import type {IBarber} from '../Interfaces/user';
 
 interface IProps {
   barberPageViewStores?: IBarberPageViewStore;
@@ -68,9 +69,10 @@ const BarberScreen: FunctionComponent<IProps> = ({
     barberPageViewStores.setList(retList);
   };
 
-  const onBarberPress = item => {
+  const onBarberPress = (item: IBarber) => {
     barberPageViewStores.setBarberId(item.id);
     barberPageViewStores.setBarberName(item.barberName);
+    barberPageViewStores.setBarberLocation(item.location);
     navigation.navigate('BarberOptionsScreen');
   };
 

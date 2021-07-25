@@ -1,5 +1,6 @@
 import LoginWindow from '../screens/loginWindow';
 import CreateNewUser from '../screens/createNewUser';
+import {isValidNumber} from 'react-native-gesture-handler/lib/typescript/web/utils';
 
 export const ROUTES = {
   LoginWindow: {
@@ -22,3 +23,22 @@ export const HTTP = {
   serverProblemMessage: 'problem with the server',
   connectProblemMessage: 'cannot connect to the server',
 };
+
+export interface IBarber {
+  barberName: string;
+  location: string;
+  exactLocation: {
+    lat: number,
+    lng: number,
+  };
+  grade: number;
+  followers: number;
+  picture: number;
+  favorite: boolean;
+  id: number;
+  summary: {
+    time: string,
+    sentence: string,
+    headline: string,
+  };
+}
