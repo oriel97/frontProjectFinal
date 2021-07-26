@@ -36,10 +36,16 @@ const BarberScreen: FunctionComponent<IProps> = ({
     navigation.openDrawer();
   };
   const sortOption = () => {
-    if (barberPageViewStores.barberList.length > 0) {
+    if (barberPageViewStores?.barberList?.length > 0) {
       setOpenOption(!openOption);
     }
   };
+
+  setTimeout(function () {
+    if (isLoading === true) {
+      setIsLoading(false);
+    }
+  }, 7000);
 
   useEffect(() => {
     return navigation.addListener('focus', () => {
@@ -47,7 +53,7 @@ const BarberScreen: FunctionComponent<IProps> = ({
       const starter = async () => {
         const list = await Api.getBarbersList();
         barberPageViewStores.setList(list);
-        if (barberPageViewStores.barberList.length > 0) {
+        if (barberPageViewStores?.barberList?.length > 0) {
           setThereIsBarbers(true);
         }
         setIsLoading(false);
@@ -61,7 +67,7 @@ const BarberScreen: FunctionComponent<IProps> = ({
   const pressOnFavorite = () => {
     const retList = [];
     let list = barberPageViewStores.barberList;
-    for (let i = 0; i < list.length; i++) {
+    for (let i = 0; i < list?.length; i++) {
       if (list[i].favorite === true) {
         retList.push(list[i]);
       }
@@ -72,7 +78,7 @@ const BarberScreen: FunctionComponent<IProps> = ({
   const onBarberPress = (item: IBarber) => {
     barberPageViewStores.setBarberId(item.id);
     barberPageViewStores.setBarberName(item.barberName);
-    barberPageViewStores.setBarberLocation(item.location);
+    barberPageViewStores.setBarberLocation(item.exactLocation);
     navigation.navigate('BarberOptionsScreen');
   };
 

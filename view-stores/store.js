@@ -1,6 +1,7 @@
 import {IBarberPageViewStore} from '../Interfaces/view-store.types';
 import {action, makeObservable, observable} from 'mobx';
 import React from 'react';
+import type {IAboutBarber} from '../utils/utils';
 
 const initialData = {
   userName: '',
@@ -12,6 +13,7 @@ const initialData = {
   barberId: 0,
   barberName: '',
   barberLocation: {},
+  barberInfo: {},
 };
 
 class BarberPageViewStores implements IBarberPageViewStore {
@@ -24,6 +26,7 @@ class BarberPageViewStores implements IBarberPageViewStore {
   barberId = initialData.barberId;
   barberName = initialData.barberName;
   barberLocation = initialData.barberLocation;
+  barberInfo = initialData.barberInfo;
 
   constructor(stores: any) {
     makeObservable(this, {
@@ -36,6 +39,7 @@ class BarberPageViewStores implements IBarberPageViewStore {
       barberId: observable,
       userId: observable,
       barberName: observable,
+      barberInfo: observable,
       setUserId: action.bound,
       setUserName: action.bound,
       setLogin: action.bound,
@@ -43,7 +47,11 @@ class BarberPageViewStores implements IBarberPageViewStore {
       setBarberId: action.bound,
       setBarberName: action.bound,
       setBarberLocation: action.bound,
+      setBarberInfo: action.bound,
     });
+  }
+  setBarberInfo(barberInfo: IAboutBarber) {
+    this.barberInfo = barberInfo;
   }
   setBarberLocation(location: any) {
     this.barberLocation = location;

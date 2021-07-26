@@ -32,11 +32,16 @@ const BarberOptionsScreen: FunctionComponent<IProps> = ({
   };
 
   const onPressWaze = () => {
-    const scheme = 'geo:0,0?q=';
-    const latLng = `${barberPageViewStores.barberLocation.lat},${barberPageViewStores.barberLocation.lng}`;
-    const label = 'Custom Label';
-    const url = `${scheme}${latLng}(${label})`;
-    Linking.openURL(url);
+    Linking.openURL(
+      'https://www.waze.com/ul?ll=' +
+        barberPageViewStores.barberLocation.lat +
+        '%2C' +
+        barberPageViewStores.barberLocation.lng +
+        '&navigate=yes&zoom=17',
+    );
+  };
+  const onPressOnAboutBarberScreen = () => {
+    navigation.navigate('AboutBarberScreen');
   };
 
   return (
@@ -58,6 +63,7 @@ const BarberOptionsScreen: FunctionComponent<IProps> = ({
             <Text style={styles.textStyle}>Barber Images</Text>
           </TouchableOpacity>
           <TouchableOpacity
+            onPress={onPressOnAboutBarberScreen}
             style={[styles.cardStyle, {backgroundColor: Colors.lightYellow}]}>
             <View style={styles.inCardStyle}>
               <Icon name="info" color={Colors.black} size={80} />

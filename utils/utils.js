@@ -42,3 +42,14 @@ export interface IBarber {
     headline: string,
   };
 }
+
+export interface IAboutBarber {
+  phoneNumber: string;
+  openHour: any;
+  closeHour: any;
+  summary: {
+    sentence: string,
+    headline: string,
+  };
+  image: string;
+}

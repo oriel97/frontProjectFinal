@@ -1,4 +1,4 @@
-import {action, observable} from 'mobx';
+import type {IAboutBarber} from '../utils/utils';
 
 export interface IBarberPageViewStore {
   userId: string;
@@ -6,6 +6,7 @@ export interface IBarberPageViewStore {
   barberId: string;
   barberName: string;
   barberLocation: string;
+  barberInfo: IAboutBarber;
   setUserId: any;
   setUserName: any;
   setLogin: any;
@@ -17,4 +18,5 @@ export interface IBarberPageViewStore {
   setBarberId: any;
   setBarberName: any;
   setBarberLocation: any;
+  setBarberInfo: any;
 }
