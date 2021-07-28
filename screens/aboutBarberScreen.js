@@ -40,15 +40,17 @@ const AboutBarberScreen: FunctionComponent<IProps> = ({
   const [isOpenOpenHours, setIsOpenOpenHours] = useState(false);
 
   useEffect(() => {
-    const starter = async () => {
-      const barberInfo = await Api.getBarberInformation(
-        barberPageViewStores.barberId,
-      );
-      barberPageViewStores.setBarberInfo(barberInfo);
-      setIsLoading(false);
-    };
-    starter().catch(e => {
-      console.log(e);
+    return navigation.addListener('focus', () => {
+      const starter = async () => {
+        const barberInfo = await Api.getBarberInformation(
+          barberPageViewStores.barberId,
+        );
+        barberPageViewStores.setBarberInfo(barberInfo);
+        setIsLoading(false);
+      };
+      starter().catch(e => {
+        console.log(e);
+      });
     });
   }, [navigation, barberPageViewStores]);
 
@@ -71,9 +73,7 @@ const AboutBarberScreen: FunctionComponent<IProps> = ({
     }
   };
   const onPressLocation = () => {
-    console.log(barberPageViewStores.barberInfo);
     if (barberPageViewStores?.barberInfo?.location) {
-      console.log('ssss');
       setIsOpenLocation(!isOpenLocation);
     }
   };
