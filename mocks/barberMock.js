@@ -206,10 +206,11 @@ export const BarbersInformation = {
       null,
     ],
     summary: {
-      sentence: ' i do barber',
-      headline: 'headline',
+      sentence:
+        'already available online and where to find it, but for someone like me who came from doing mainly web development, it would have been nice to have one place to go to see everything and to have been able to find it with a quick google search.',
+      headline: 'Oriel barber shop',
     },
-    image: 'bytes',
+    location: 'Nahal amud 13,Modeiin',
   },
   2: {
     phoneNumber: '0544942796',
@@ -235,7 +236,7 @@ export const BarbersInformation = {
       sentence: ' i do barber',
       headline: 'headline',
     },
-    image: 'bytes',
+    location: 'Nahal amud 13,Modeiin',
   },
   3: {
     phoneNumber: '0544942796',
@@ -261,7 +262,7 @@ export const BarbersInformation = {
       sentence: ' i do barber',
       headline: 'headline',
     },
-    image: 'bytes',
+    location: 'Nahal amud 13,Modeiin',
   },
   4: {
     phoneNumber: '0544942796',
@@ -287,7 +288,7 @@ export const BarbersInformation = {
       sentence: ' i do barber',
       headline: 'headline',
     },
-    image: 'bytes',
+    location: 'Nahal amud 13,Modeiin',
   },
   5: {
     phoneNumber: '0544942796',
@@ -313,7 +314,7 @@ export const BarbersInformation = {
       sentence: ' i do barber',
       headline: 'headline',
     },
-    image: 'bytes',
+    location: 'Nahal amud 13,Modeiin',
   },
   6: {
     phoneNumber: '0544942796',
@@ -339,7 +340,7 @@ export const BarbersInformation = {
       sentence: ' i do barber',
       headline: 'headline',
     },
-    image: 'bytes',
+    location: 'Nahal amud 13,Modeiin',
   },
   7: {
     phoneNumber: '0544942796',
@@ -365,7 +366,7 @@ export const BarbersInformation = {
       sentence: ' i do barber',
       headline: 'headline',
     },
-    image: 'bytes',
+    location: 'Nahal amud 13,Modeiin',
   },
   8: {
     phoneNumber: '0544942796',
@@ -391,7 +392,7 @@ export const BarbersInformation = {
       sentence: ' i do barber',
       headline: 'headline',
     },
-    image: 'bytes',
+    location: 'Nahal amud 13,Modeiin',
   },
   9: {
     phoneNumber: '0544942796',
@@ -417,7 +418,7 @@ export const BarbersInformation = {
       sentence: ' i do barber',
       headline: 'headline',
     },
-    image: 'bytes',
+    location: 'Nahal amud 13,Modeiin',
   },
   10: {
     phoneNumber: '0544942796',
@@ -443,6 +444,6 @@ export const BarbersInformation = {
       sentence: ' i do barber',
       headline: 'headline',
     },
-    image: 'bytes',
+    location: 'Nahal amud 13,Modeiin',
   },
 };

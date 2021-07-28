@@ -51,5 +51,5 @@ export interface IAboutBarber {
     sentence: string,
     headline: string,
   };
-  image: string;
+  location: string;
 }
