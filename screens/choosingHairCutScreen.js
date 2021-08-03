@@ -27,11 +27,19 @@ const ChoosingHairCutScreen: FunctionComponent<IProps> = ({
   navigation,
   appointmentViewStore,
 }) => {
+  const [selectedGender, setSelectedGender] = useState('Pick gender');
+  const [selectedSingle, setSelectedSingle] = useState([]);
+  const [selectedHairStyle, setSelectedHairStyle] = useState([]);
+
   useEffect(() => {
     return navigation.addListener('focus', () => {
       appointmentViewStore.setSelectedHairStyleList([]);
+      setSelectedHairStyle([]);
+      setSelectedSingle([]);
+      setSelectedGender('Pick gender');
+      appointmentViewStore.setPrice(0);
+      appointmentViewStore.setAmountOfTime(0);
       const starter = async () => {
-        console.log(barberPageViewStores.barberId);
         const hairStyleMaleAndFemaleList = await Api.getBarberHairStyleList(
           barberPageViewStores.barberId,
         );
@@ -57,19 +65,18 @@ const ChoosingHairCutScreen: FunctionComponent<IProps> = ({
     {id: 1, name: 'male'},
     {id: 2, name: 'female'},
   ];
-  const [selectedGender, setSelectedGender] = useState('Pick gender');
-  const [selectedHairStyle, setSelectedHairStyle] = useState([]);
 
   const onSelectedGender = selectedItem => {
-    setSelectedGender(selectedItem);
+    setSelectedSingle(selectedItem);
     setSelectedHairStyle([]);
+    appointmentViewStore.setPrice(0);
+    appointmentViewStore.setAmountOfTime(0);
     appointmentViewStore.setSelectedHairStyleList([]);
   };
   const onSelectedHairStyle = selectedItems => {
     setSelectedHairStyle(selectedItems);
     let list = [];
     for (let i = 0; i < selectedItems?.length; i++) {
-      console.log(i);
       if (selectedGender === 'male') {
         list.push(appointmentViewStore.maleHairStyleList[selectedItems[i] - 1]);
       } else {
@@ -79,53 +86,60 @@ const ChoosingHairCutScreen: FunctionComponent<IProps> = ({
       }
     }
     appointmentViewStore.setSelectedHairStyleList(list);
-    console.log(appointmentViewStore.selectedHairStyleList);
   };
 
   const calculateTime = () => {
-    let time = 0;
+    let time1 = 0;
     for (
       let i = 0;
       i < appointmentViewStore.selectedHairStyleList.length;
       i++
     ) {
-      time = time + appointmentViewStore.selectedHairStyleList[i].time;
+      time1 = time1 + appointmentViewStore.selectedHairStyleList[i].time;
     }
-    let hours = parseInt(time / 60);
-    let minuets = time % 60;
+
+    let hours = parseInt(time1 / 60);
+    let minuets = time1 % 60;
     if (minuets < 10) {
       minuets = '0' + minuets;
     }
-    if (time === 0) {
+    if (time1 === 0) {
       return null;
     }
+    appointmentViewStore.setAmountOfTime(time1);
     return (
       ' ' + '0' + hours + ':' + minuets + '                (hours:minuets)'
     );
   };
 
   const calculatePrice = () => {
-    let price = 0;
+    let price1 = 0;
     for (
       let i = 0;
       i < appointmentViewStore.selectedHairStyleList.length;
       i++
     ) {
-      price = price + appointmentViewStore.selectedHairStyleList[i].price;
+      price1 = price1 + appointmentViewStore.selectedHairStyleList[i].price;
     }
 
-    if (price === 0) {
+    if (price1 === 0) {
       return null;
     }
-    return ' ' + price + ' shekel';
+    appointmentViewStore.setPrice(price1);
+
+    return ' ' + price1 + ' shekel';
   };
 
+  const onPressOnMakeTheAppointmentButton = () => {
+    if (appointmentViewStore.price !== 0 && appointmentViewStore !== 0) {
+      console.log('price' + appointmentViewStore.price);
+      console.log('time' + appointmentViewStore.amountOfTime);
+      navigation.navigate('ChooseAppointmentScreen');
+    }
+  };
   return (
     <View style={{height: '100%'}}>
-      <Header
-        headerName={'About ' + barberPageViewStores.barberName}
-        openDrawerFunc={openDrawer}
-      />
+      <Header headerName={'Appointment screen'} openDrawerFunc={openDrawer} />
       <TouchableOpacity onPress={onPressOnBackArrow} style={styles.backIcon}>
         <Icon name="chevron-left" color={Colors.black} size={36} />
       </TouchableOpacity>
@@ -141,7 +155,6 @@ const ChoosingHairCutScreen: FunctionComponent<IProps> = ({
                 {map(
                   appointmentViewStore.selectedHairStyleList,
                   (item: IHairStyle, index) => {
-                    console.log(index);
                     return index !==
                       appointmentViewStore.selectedHairStyleList.length - 1
                       ? item.name + ', '
@@ -172,7 +185,7 @@ const ChoosingHairCutScreen: FunctionComponent<IProps> = ({
               onSelectedGender(items);
               setSelectedGender(gender[items[0] - 1].name);
             }}
-            selectedItems={selectedGender}
+            selectedItems={selectedSingle}
             selectText={selectedGender}
             styleTextDropdown={styles.multiSelectText}
             styleTextDropdownSelected={styles.multiSelectText}
@@ -221,7 +234,9 @@ const ChoosingHairCutScreen: FunctionComponent<IProps> = ({
         </View>
 
         <View style={styles.buttonContainer}>
-          <TouchableOpacity style={styles.button}>
+          <TouchableOpacity
+            onPress={onPressOnMakeTheAppointmentButton}
+            style={styles.button}>
             <Text style={styles.buttonText}>Make the appointment</Text>
           </TouchableOpacity>
         </View>

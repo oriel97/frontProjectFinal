@@ -1,6 +1,8 @@
 import React from 'react';
 import {HTTP} from '../utils/utils';
 import {
+  BarberHairAppointmentPossibleDates,
+  BarberHairAppointmentPossibleHoursForSpecificDate,
   BarberHairCutTypes,
   barberList,
   BarbersInformation,
@@ -81,9 +83,18 @@ export default class Api extends React.Component {
   static async getBarberInformation(BarberId: number) {
     return BarbersInformation[BarberId];
   }
-
   static async getBarberHairStyleList(BarberId: number) {
     return BarberHairCutTypes[BarberId];
+  }
+  static async getMaxAndMinDates(BarberId: number) {
+    return BarberHairAppointmentPossibleDates[BarberId];
+  }
+
+  static async getAppointmentTimeAccordingToDate(
+    BarberId: number,
+    date: string,
+  ) {
+    return BarberHairAppointmentPossibleHoursForSpecificDate[BarberId];
   }
   /**
    * try to Create new user

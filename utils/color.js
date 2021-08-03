@@ -9,4 +9,7 @@ export const Colors = {
   lightPurple: '#D8BFD8',
   lightYellow: '#FFFACD',
   darkBlue: '#00008b',
+  green: '#228b22',
+  red: '#dc143c',
+  limeGreen: '#32cd32',
 };

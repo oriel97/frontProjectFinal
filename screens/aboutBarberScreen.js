@@ -133,7 +133,7 @@ const AboutBarberScreen: FunctionComponent<IProps> = ({
           <TouchableOpacity onPress={onPressSummary} style={styles.backIcon}>
             <Icon
               name={isOpenSummary ? 'minus-circle' : 'plus-circle'}
-              color={Colors.black}
+              color={!isOpenSummary ? Colors.green : Colors.red}
               size={36}
             />
           </TouchableOpacity>
@@ -151,7 +151,7 @@ const AboutBarberScreen: FunctionComponent<IProps> = ({
           <TouchableOpacity onPress={onPressPhone} style={styles.backIcon}>
             <Icon
               name={isOpenPhone ? 'minus-circle' : 'plus-circle'}
-              color={Colors.black}
+              color={!isOpenPhone ? Colors.green : Colors.red}
               size={36}
             />
           </TouchableOpacity>
@@ -170,7 +170,7 @@ const AboutBarberScreen: FunctionComponent<IProps> = ({
           <TouchableOpacity onPress={onPressLocation} style={styles.backIcon}>
             <Icon
               name={isOpenLocation ? 'minus-circle' : 'plus-circle'}
-              color={Colors.black}
+              color={!isOpenLocation ? Colors.green : Colors.red}
               size={36}
             />
           </TouchableOpacity>
@@ -192,7 +192,7 @@ const AboutBarberScreen: FunctionComponent<IProps> = ({
           <TouchableOpacity onPress={onPressOpenHours} style={styles.backIcon}>
             <Icon
               name={isOpenOpenHours ? 'minus-circle' : 'plus-circle'}
-              color={Colors.black}
+              color={!isOpenOpenHours ? Colors.green : Colors.red}
               size={36}
             />
           </TouchableOpacity>
@@ -242,12 +242,6 @@ const AboutBarberScreen: FunctionComponent<IProps> = ({
               </ScrollView>
             </View>
           </View>
-          //Monday
-          //Tuesday
-          //Wednesday
-          //Thursday
-          //Friday
-          //Saturday
         )}
         <View style={[styles.line, {marginBottom: 20}]} />
       </View>
@@ -265,6 +259,7 @@ const styles = StyleSheet.create({
     marginHorizontal: 40,
   },
   plusHeadline: {
+    color: Colors.darkBlue,
     marginVertical: 20,
     marginLeft: 40,
     fontWeight: 'bold',
@@ -272,6 +267,7 @@ const styles = StyleSheet.create({
     fontStyle: 'italic',
   },
   headline: {
+    color: Colors.darkBlue,
     marginLeft: 40,
     fontWeight: 'bold',
     fontSize: 50,

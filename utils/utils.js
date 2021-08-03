@@ -62,11 +62,37 @@ export interface IHairStyle {
   time: number;
 }
 
+export interface IAppointment {
+  date: IDate;
+  time: string;
+  type: string[];
+  price: number;
+  amountOfTime: number;
+}
+export interface IDate {
+  day: number;
+  month: number;
+  year: number;
+}
+
 export interface IAppointmentViewStore {
   maleHairStyleList: IHairStyle[];
   femaleHairStyleList: IHairStyle[];
   selectedHairStyleList: IHairStyle[];
+  amountOfTime: number;
+  price: number;
+  date: IDate;
+  minDate: IDate;
+  maxDate: IDate;
+  appointment: IAppointment;
+  timeList: string[];
+  setAmountOfTime: any;
   setMaleHairStyleList: any;
   setFemaleHairStyleList: any;
   setSelectedHairStyleList: any;
+  setPrice: any;
+  setDate: any;
+  setMaxAndMinDate: any;
+  setAppointment: any;
+  setTimeList: any;
 }
