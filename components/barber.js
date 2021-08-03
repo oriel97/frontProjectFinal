@@ -4,22 +4,27 @@ import {Avatar} from 'react-native-elements';
 import Card from './card';
 import {IBarberPageViewStore} from '../Interfaces/view-store.types';
 import {IBarber} from '../Interfaces/user';
+import {
+  fromImageToString,
+  fromStringToImage,
+  imageBase64,
+} from '../utils/imageUtils';
 
 interface IProps {
   barber: IBarber;
   barberPageViewStores?: IBarberPageViewStore;
 }
 
+const toImage = () => {
+  return fromStringToImage();
+};
+
 const Barber: FunctionComponent<IProps> = ({barber, barberPageViewStores}) => {
   return (
     <View style={styles.barberCardGeneral}>
       <Card style={styles.barberCardSize}>
         <View>
-          <Avatar
-            rounded
-            source={require('../avatarPicture.jpg')}
-            size="xlarge"
-          />
+          <Avatar rounded source={{uri: imageBase64}} size="xlarge" />
           <View style={styles.barberName}>
             <Text style={styles.barberNameText}>{barber.barberName}</Text>
           </View>

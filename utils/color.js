@@ -8,4 +8,5 @@ export const Colors = {
   lightNavy: '#ADD8E6',
   lightPurple: '#D8BFD8',
   lightYellow: '#FFFACD',
+  darkBlue: '#00008b',
 };

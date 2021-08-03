@@ -16,6 +16,7 @@ import {inject, observer} from 'mobx-react';
 import Api from '../api/apiRequests';
 
 import {IAboutBarber} from '../utils/utils';
+import {clear} from 'react-native/Libraries/LogBox/Data/LogBoxData';
 
 interface IProps {
   barberPageViewStores?: IBarberPageViewStore;
@@ -33,7 +34,6 @@ const AboutBarberScreen: FunctionComponent<IProps> = ({
     navigation.goBack();
   };
 
-  const [isLoading, setIsLoading] = useState(true);
   const [isOpenSummary, setIsOpenSummary] = useState(false);
   const [isOpenPhone, setIsOpenPhone] = useState(false);
   const [isOpenLocation, setIsOpenLocation] = useState(false);
@@ -46,11 +46,14 @@ const AboutBarberScreen: FunctionComponent<IProps> = ({
           barberPageViewStores.barberId,
         );
         barberPageViewStores.setBarberInfo(barberInfo);
-        setIsLoading(false);
       };
       starter().catch(e => {
         console.log(e);
       });
+      setIsOpenSummary(false);
+      setIsOpenPhone(false);
+      setIsOpenLocation(false);
+      setIsOpenOpenHours(false);
     });
   }, [navigation, barberPageViewStores]);
 

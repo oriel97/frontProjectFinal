@@ -118,7 +118,6 @@ const BarberScreen: FunctionComponent<IProps> = ({
         </View>
       )}
       <OptionsModal sortOption={sortOption} openOption={openOption} />
-
       <View style={styles.navBar}>
         <View style={styles.bell}>
           <TouchableOpacity>

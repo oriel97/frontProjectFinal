@@ -30,7 +30,9 @@ const BarberOptionsScreen: FunctionComponent<IProps> = ({
   const onPressOnBackArrow = () => {
     navigation.goBack();
   };
-
+  const onPressMakeAppointment = () => {
+    navigation.navigate('ChoosingHairCutScreen');
+  };
   const onPressWaze = () => {
     Linking.openURL(
       'https://www.waze.com/ul?ll=' +
@@ -73,6 +75,7 @@ const BarberOptionsScreen: FunctionComponent<IProps> = ({
         </View>
         <View style={{flexDirection: 'row', marginTop: 20}}>
           <TouchableOpacity
+            onPress={onPressMakeAppointment}
             style={[styles.cardStyle, {backgroundColor: Colors.lightGreen}]}>
             <View style={styles.inCardStyle}>
               <Icon name="calendar-day" color={Colors.black} size={80} />

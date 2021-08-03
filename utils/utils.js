@@ -1,6 +1,7 @@
 import LoginWindow from '../screens/loginWindow';
 import CreateNewUser from '../screens/createNewUser';
 import {isValidNumber} from 'react-native-gesture-handler/lib/typescript/web/utils';
+import {action, observable} from 'mobx';
 
 export const ROUTES = {
   LoginWindow: {
@@ -52,4 +53,20 @@ export interface IAboutBarber {
     headline: string,
   };
   location: string;
+}
+
+export interface IHairStyle {
+  name: string;
+  id: number;
+  price: number;
+  time: number;
+}
+
+export interface IAppointmentViewStore {
+  maleHairStyleList: IHairStyle[];
+  femaleHairStyleList: IHairStyle[];
+  selectedHairStyleList: IHairStyle[];
+  setMaleHairStyleList: any;
+  setFemaleHairStyleList: any;
+  setSelectedHairStyleList: any;
 }
