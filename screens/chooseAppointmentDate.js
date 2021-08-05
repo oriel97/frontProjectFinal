@@ -16,6 +16,8 @@ import {Colors} from '../utils/color';
 import map from 'lodash/map';
 import Api from '../api/apiRequests';
 import type {IAppointmentViewStore, IHairStyle} from '../utils/utils';
+import {IDate} from '../utils/utils';
+import Card from '../components/card';
 
 interface IProps {
   barberPageViewStores?: IBarberPageViewStore;
@@ -31,16 +33,30 @@ const ChooseAppointmentScreen: FunctionComponent<IProps> = ({
     navigation.goBack();
   };
 
-  const [date, setDate] = useState(new Date(1598051730000));
-  const [show, setShow] = useState(false);
-  const [minDate, setMinDate] = useState();
-  const [maxDate, setMaxDate] = useState();
+  const [date, setDate] = useState(new Date(2021, 7, 1));
+  const [show, setShow] = useState(true);
+  const [timeList, setTimeList] = useState([]);
+  const [chosenTime, setChosenTime] = useState('');
+  const [madeAppointment, setMadeAppointment] = useState(false);
 
-  const onChange = (event, selectedDate) => {
-    const currentDate = selectedDate || date;
-    setDate(currentDate);
-    console.log(date);
-    setShow(false);
+  const onChange = async (event, selectedDate: Date) => {
+    if (selectedDate) {
+      setDate(selectedDate);
+      console.log(selectedDate);
+      setShow(false);
+      try {
+        const tempList = await Api.getAppointmentTimeAccordingToDate(
+          barberPageViewStores.barberId,
+          selectedDate,
+          appointmentViewStore.amountOfTime,
+        )
+          .then()
+          .catch(e => {});
+        if (tempList !== null) {
+          setTimeList(tempList);
+        }
+      } catch (e) {}
+    }
   };
   useEffect(() => {
     const starter = async () => {
@@ -48,29 +64,70 @@ const ChooseAppointmentScreen: FunctionComponent<IProps> = ({
         barberPageViewStores.barberId,
       );
       appointmentViewStore.setMaxAndMinDate(minAndMaxDateObj);
-      setMaxDate(
-        new Date(
-          minAndMaxDateObj.maxDate.year,
-          minAndMaxDateObj.maxDate.month,
-          minAndMaxDateObj.maxDate.day,
-        ),
-      );
-      setMinDate(
-        new Date(
-          minAndMaxDateObj.minDate.year,
-          minAndMaxDateObj.minDate.month,
-          minAndMaxDateObj.minDate.day,
-        ),
-      );
     };
     starter().catch(e => {
       console.log(e);
     });
   });
 
-  const makeTheAppointment = () => {};
+  const makeTheAppointment = () => {
+    if (!!date && chosenTime !== '') {
+      appointmentViewStore.setAppointment({
+        date: date,
+        time: chosenTime,
+        type: appointmentViewStore.typeOfHairAppointment.type,
+        price: appointmentViewStore.price,
+        amountOfTime: appointmentViewStore.amountOfTime,
+        gender: appointmentViewStore.typeOfHairAppointment.gender,
+      });
+      setMadeAppointment(true);
+    }
+  };
+  const onPressFinishMakingAppointment = () => {
+    setMadeAppointment(false);
+  };
 
-  const TimesList = () => {};
+  const onChosenDate = (time: string) => {
+    setChosenTime(time);
+  };
+  const listOfAllTimes = (time: string) => {
+    return (
+      <TouchableOpacity
+        onPress={() => {
+          onChosenDate(time);
+        }}
+        style={[
+          styles.time,
+          chosenTime === time
+            ? {backgroundColor: Colors.red}
+            : {backgroundColor: Colors.lightGreen},
+        ]}>
+        <Text style={{fontWeight: 'bold', fontSize: 16}}>
+          {date?.getDate() +
+            '-' +
+            date?.getMonth() +
+            '-' +
+            date?.getFullYear() +
+            '   ' +
+            time}
+        </Text>
+      </TouchableOpacity>
+    );
+  };
+
+  const appointmentTypeToString = () => {
+    let arr = appointmentViewStore?.appointment?.type;
+
+    let str = '';
+    for (let i = 0; i < arr?.length; i++) {
+      str = str + arr[i].name;
+      if (i + 1 < arr.length) {
+        str = str + ', ';
+      }
+    }
+    console.log(str);
+    return str;
+  };
 
   return (
     <View style={{height: '100%'}}>
@@ -88,7 +145,7 @@ const ChooseAppointmentScreen: FunctionComponent<IProps> = ({
         </Text>
       </View>
       <ScrollView>
-        <View style={{justifyContent: 'center', alignItems: 'center'}} />
+        {!show && timeList?.length > 0 && map(timeList, listOfAllTimes)}
       </ScrollView>
       <View style={styles.buttons}>
         <TouchableOpacity
@@ -103,8 +160,6 @@ const ChooseAppointmentScreen: FunctionComponent<IProps> = ({
           style={styles.buttonContainer}
           onPress={() => {
             setShow(!show);
-            console.log(appointmentViewStore.maxDate);
-            console.log(appointmentViewStore.minDate);
           }}>
           <View style={styles.buttonInside}>
             <Text style={styles.buttonText}>Choose other day</Text>
@@ -118,15 +173,131 @@ const ChooseAppointmentScreen: FunctionComponent<IProps> = ({
             mode={'date'}
             display="default"
             onChange={onChange}
-            minimumDate={new Date(minDate.year, minDate.month, minDate.day)}
-            maximumDate={new Date(maxDate.year, maxDate.month, maxDate.day)}
+            minimumDate={new Date(2021, 7, 1)}
+            maximumDate={new Date(2021, 7, 31)}
           />
         )}
       </View>
+      {madeAppointment && <View style={styles.disabled} />}
+      {!!barberPageViewStores.barberName &&
+        !!appointmentViewStore?.appointment?.type &&
+        !!appointmentViewStore?.appointment?.type &&
+        madeAppointment && (
+          <View style={styles.finalBackground}>
+            <View style={styles.card}>
+              <Text style={styles.great}>{'Great!'}</Text>
+              <Text style={styles.secondHeader}>
+                {'your appointment that you scheduled is for:'}
+              </Text>
+              <Text style={styles.detailsText}>
+                {barberPageViewStores.barberName +
+                  ' on ' +
+                  date?.getDate() +
+                  '-' +
+                  date?.getMonth() +
+                  '-' +
+                  date?.getFullYear() +
+                  ' at ' +
+                  appointmentViewStore.appointment.time +
+                  ' for:\n' +
+                  appointmentTypeToString()}
+              </Text>
+              <View style={styles.icon}>
+                <Icon
+                  name={'check-circle'}
+                  color={Colors.lightGreen}
+                  size={100}
+                />
+              </View>
+              <TouchableOpacity
+                onPress={onPressFinishMakingAppointment}
+                style={styles.backButton}>
+                <Text style={styles.backText}>Go to appointment page</Text>
+              </TouchableOpacity>
+            </View>
+          </View>
+        )}
     </View>
   );
 };
 const styles = StyleSheet.create({
+  finalBackground: {
+    position: 'absolute',
+    top: 0,
+    right: 0,
+    bottom: 0,
+    left: 0,
+    justifyContent: 'center',
+    alignItems: 'center',
+    zIndex: 100000,
+  },
+  great: {
+    textAlign: 'center',
+    fontSize: 40,
+    fontWeight: 'bold',
+    fontStyle: 'italic',
+    color: Colors.darkBlue,
+  },
+  secondHeader: {
+    textAlign: 'center',
+    fontSize: 20,
+    fontWeight: 'bold',
+    fontStyle: 'italic',
+    color: Colors.darkBlue,
+  },
+  detailsText: {
+    textAlign: 'center',
+    fontSize: 20,
+    fontWeight: 'bold',
+    fontStyle: 'italic',
+    color: Colors.red,
+  },
+  card: {
+    position: 'absolute',
+    width: 300,
+    height: 450,
+    shadowColor: 'black',
+    shadowOffset: {width: 0, height: 2},
+    shadowRadius: 6,
+    shadowOpacity: 0.26,
+    elevation: 8,
+    backgroundColor: 'white',
+    padding: 20,
+    borderRadius: 10,
+    zIndex: 10000,
+  },
+  icon: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginTop: 10,
+    marginBottom: 30,
+  },
+  backButton: {
+    backgroundColor: Colors.lightBlue,
+    width: 250,
+    height: 60,
+    marginHorizontal: 8,
+    borderRadius: 7,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  backText: {
+    textAlign: 'center',
+    fontSize: 20,
+    fontWeight: 'bold',
+    color: Colors.white,
+  },
+  time: {
+    width: 350,
+    height: 50,
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: 12,
+
+    zIndex: 2,
+    marginHorizontal: 30,
+    marginVertical: 15,
+  },
   headLineText: {
     fontWeight: 'bold',
     textAlign: 'center',
@@ -152,6 +323,18 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   buttonText: {fontWeight: 'bold', textAlign: 'center', fontSize: 20},
+  disabled: {
+    position: 'absolute',
+    top: 0,
+    right: 0,
+    left: 0,
+    bottom: 0,
+    zIndex: 999,
+    width: '100%',
+    height: '100%',
+    backgroundColor: 'black',
+    opacity: 0.4,
+  },
 });
 export default inject(
   'barberPageViewStores',

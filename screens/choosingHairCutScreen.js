@@ -132,8 +132,10 @@ const ChoosingHairCutScreen: FunctionComponent<IProps> = ({
 
   const onPressOnMakeTheAppointmentButton = () => {
     if (appointmentViewStore.price !== 0 && appointmentViewStore !== 0) {
-      console.log('price' + appointmentViewStore.price);
-      console.log('time' + appointmentViewStore.amountOfTime);
+      appointmentViewStore.setTypeOfHairAppointment({
+        type: appointmentViewStore.selectedHairStyleList,
+        selectedGender,
+      });
       navigation.navigate('ChooseAppointmentScreen');
     }
   };

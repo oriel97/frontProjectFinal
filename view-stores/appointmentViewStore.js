@@ -1,5 +1,5 @@
 import {action, makeObservable, observable} from 'mobx';
-import type {IAppointmentViewStore, IHairStyle} from '../utils/utils';
+import type {IAppointmentViewStore, IHairStyle, ITypes} from '../utils/utils';
 import {IAppointment, IDate} from '../utils/utils';
 
 const initialData = {
@@ -13,6 +13,7 @@ const initialData = {
   maxDate: {},
   appointment: {},
   timeList: [],
+  typeOfHairAppointment: {},
 };
 
 class AppointmentViewStore implements IAppointmentViewStore {
@@ -26,6 +27,7 @@ class AppointmentViewStore implements IAppointmentViewStore {
   maxDate = initialData.maxDate;
   appointment = initialData.appointment;
   timeList = initialData.timeList;
+  typeOfHairAppointment = initialData.typeOfHairAppointment;
   constructor() {
     makeObservable(this, {
       maleHairStyleList: observable,
@@ -38,6 +40,7 @@ class AppointmentViewStore implements IAppointmentViewStore {
       maxDate: observable,
       appointment: observable,
       timeList: observable,
+      typeOfHairAppointment: observable,
       setMaleHairStyleList: action.bound,
       setFemaleHairStyleList: action.bound,
       setSelectedHairStyleList: action.bound,
@@ -47,7 +50,11 @@ class AppointmentViewStore implements IAppointmentViewStore {
       setMaxAndMinDate: action.bound,
       setAppointment: action.bound,
       setTimeList: action.bound,
+      setTypeOfHairAppointment: action.bound,
     });
+  }
+  setTypeOfHairAppointment(hairAppointmentType: ITypes) {
+    this.typeOfHairAppointment = hairAppointmentType;
   }
   setDate(date: IDate) {
     this.date = date;

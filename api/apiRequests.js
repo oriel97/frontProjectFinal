@@ -93,6 +93,7 @@ export default class Api extends React.Component {
   static async getAppointmentTimeAccordingToDate(
     BarberId: number,
     date: string,
+    amountOdTime: number,
   ) {
     return BarberHairAppointmentPossibleHoursForSpecificDate[BarberId];
   }
