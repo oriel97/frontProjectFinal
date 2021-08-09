@@ -14,6 +14,8 @@ const initialData = {
   appointment: {},
   timeList: [],
   typeOfHairAppointment: {},
+  pastAppointmentList: [],
+  futureAppointmentList: [],
 };
 
 class AppointmentViewStore implements IAppointmentViewStore {
@@ -28,6 +30,8 @@ class AppointmentViewStore implements IAppointmentViewStore {
   appointment = initialData.appointment;
   timeList = initialData.timeList;
   typeOfHairAppointment = initialData.typeOfHairAppointment;
+  pastAppointmentList = initialData.pastAppointmentList;
+  futureAppointmentList = initialData.futureAppointmentList;
   constructor() {
     makeObservable(this, {
       maleHairStyleList: observable,
@@ -41,6 +45,9 @@ class AppointmentViewStore implements IAppointmentViewStore {
       appointment: observable,
       timeList: observable,
       typeOfHairAppointment: observable,
+      pastAppointmentList: observable,
+      futureAppointmentList: observable,
+      setAppointmentList: action.bound,
       setMaleHairStyleList: action.bound,
       setFemaleHairStyleList: action.bound,
       setSelectedHairStyleList: action.bound,
@@ -53,6 +60,13 @@ class AppointmentViewStore implements IAppointmentViewStore {
       setTypeOfHairAppointment: action.bound,
     });
   }
+
+  setAppointmentList(list: IAppointment[]) {
+    console.log(list);
+    this.pastAppointmentList = list.past;
+    this.futureAppointmentList = list.future;
+  }
+
   setTypeOfHairAppointment(hairAppointmentType: ITypes) {
     this.typeOfHairAppointment = hairAppointmentType;
   }

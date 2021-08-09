@@ -1,3 +1,5 @@
+import {IDate} from '../utils/utils';
+
 export const barberList = [
   {
     barberName: 'A sultinian',
@@ -764,5 +766,81 @@ export const BarberHairAppointmentPossibleHoursForSpecificDate = {
     '14:30-15:00',
     '17:00-17:30',
     '17:30-18:00',
+  ],
+};
+export const Appointments = {
+  past: [
+    {
+      date: {day: 1, month: 8, year: 2021},
+      time: '9:30-10:00',
+      type: ['fan', 'ddd', 'dddddddd'],
+      price: 70,
+      amountOfTime: 30,
+      gender: 'female',
+      barberName: 'A sultinian',
+      barberId: 1,
+    },
+    {
+      date: {day: 8, month: 8, year: 2021},
+      time: '9:30-10:00',
+      type: ['fan'],
+      price: 70,
+      amountOfTime: 30,
+      gender: 'female',
+      barberName: 'A sultinian',
+      barberId: 1,
+    },
+    {
+      date: {day: 15, month: 8, year: 2021},
+      time: '9:30-10:00',
+      type: ['fan'],
+      price: 70,
+      amountOfTime: 30,
+      gender: 'female',
+      barberName: 'A sultinian',
+      barberId: 1,
+    },
+    {
+      date: {day: 22, month: 8, year: 2021},
+      time: '9:30-10:00',
+      type: ['fan'],
+      price: 70,
+      amountOfTime: 30,
+      gender: 'female',
+      barberName: 'A sultinian',
+      barberId: 1,
+    },
+    {
+      date: {day: 29, month: 8, year: 2021},
+      time: '9:30-10:00',
+      type: ['fan'],
+      price: 70,
+      amountOfTime: 30,
+      gender: 'female',
+      barberName: 'A sultinian',
+      barberId: 1,
+    },
+  ],
+  future: [
+    {
+      date: {day: 1, month: 9, year: 2021},
+      time: '9:30-10:00',
+      type: ['fan', 'ddd', 'ddddd'],
+      price: 70,
+      amountOfTime: 30,
+      gender: 'female',
+      barberName: 'A sultinian',
+      barberId: 1,
+    },
+    {
+      date: {day: 22, month: 9, year: 2021},
+      time: '9:30-10:00',
+      type: ['fan'],
+      price: 70,
+      amountOfTime: 30,
+      gender: 'female',
+      barberName: 'A sultinian',
+      barberId: 1,
+    },
   ],
 };

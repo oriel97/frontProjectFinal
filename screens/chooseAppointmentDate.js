@@ -1,8 +1,8 @@
-import React, {FunctionComponent, useEffect, useRef, useState} from 'react';
+import React, {FunctionComponent, useEffect, useState} from 'react';
 import {inject, observer} from 'mobx-react';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import {
-  Button,
+  ActivityIndicator,
   ScrollView,
   StyleSheet,
   Text,
@@ -15,9 +15,7 @@ import Icon from 'react-native-vector-icons/FontAwesome5';
 import {Colors} from '../utils/color';
 import map from 'lodash/map';
 import Api from '../api/apiRequests';
-import type {IAppointmentViewStore, IHairStyle} from '../utils/utils';
-import {IDate} from '../utils/utils';
-import Card from '../components/card';
+import type {IAppointmentViewStore} from '../utils/utils';
 
 interface IProps {
   barberPageViewStores?: IBarberPageViewStore;
@@ -38,11 +36,11 @@ const ChooseAppointmentScreen: FunctionComponent<IProps> = ({
   const [timeList, setTimeList] = useState([]);
   const [chosenTime, setChosenTime] = useState('');
   const [madeAppointment, setMadeAppointment] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const onChange = async (event, selectedDate: Date) => {
     if (selectedDate) {
       setDate(selectedDate);
-      console.log(selectedDate);
       setShow(false);
       try {
         const tempList = await Api.getAppointmentTimeAccordingToDate(
@@ -58,19 +56,8 @@ const ChooseAppointmentScreen: FunctionComponent<IProps> = ({
       } catch (e) {}
     }
   };
-  useEffect(() => {
-    const starter = async () => {
-      const minAndMaxDateObj = await Api.getMaxAndMinDates(
-        barberPageViewStores.barberId,
-      );
-      appointmentViewStore.setMaxAndMinDate(minAndMaxDateObj);
-    };
-    starter().catch(e => {
-      console.log(e);
-    });
-  });
 
-  const makeTheAppointment = () => {
+  const makeTheAppointment = async () => {
     if (!!date && chosenTime !== '') {
       appointmentViewStore.setAppointment({
         date: date,
@@ -79,12 +66,20 @@ const ChooseAppointmentScreen: FunctionComponent<IProps> = ({
         price: appointmentViewStore.price,
         amountOfTime: appointmentViewStore.amountOfTime,
         gender: appointmentViewStore.typeOfHairAppointment.gender,
+        barberName: barberPageViewStores.barberName,
+        barberId: barberPageViewStores.barberId,
       });
       setMadeAppointment(true);
+      setLoading(true);
+      await Api.createAppointment(
+        barberPageViewStores.barberId,
+        appointmentViewStore.appointment,
+      );
+      setLoading(false);
     }
   };
   const onPressFinishMakingAppointment = () => {
-    setMadeAppointment(false);
+    navigation.navigate('AppointmentScreen');
   };
 
   const onChosenDate = (time: string) => {
@@ -128,6 +123,19 @@ const ChooseAppointmentScreen: FunctionComponent<IProps> = ({
     console.log(str);
     return str;
   };
+
+  useEffect(() => {
+    return navigation.addListener('focus', () => {
+      const starter = () => {};
+      setDate(new Date(2021, 7, 1));
+      setShow(true);
+      setTimeList([]);
+      setChosenTime('');
+      setMadeAppointment(false);
+      setLoading(false);
+      starter();
+    });
+  });
 
   return (
     <View style={{height: '100%'}}>
@@ -203,11 +211,19 @@ const ChooseAppointmentScreen: FunctionComponent<IProps> = ({
                   appointmentTypeToString()}
               </Text>
               <View style={styles.icon}>
-                <Icon
-                  name={'check-circle'}
-                  color={Colors.lightGreen}
-                  size={100}
-                />
+                {!loading ? (
+                  <Icon
+                    name={'check-circle'}
+                    color={Colors.lightGreen}
+                    size={100}
+                  />
+                ) : (
+                  <ActivityIndicator
+                    color={Colors.black}
+                    size={'large'}
+                    style={{justifyContent: 'center'}}
+                  />
+                )}
               </View>
               <TouchableOpacity
                 onPress={onPressFinishMakingAppointment}

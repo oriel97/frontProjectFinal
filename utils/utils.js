@@ -69,6 +69,8 @@ export interface IAppointment {
   price: number;
   amountOfTime: number;
   gender: string;
+  barberName: string;
+  barberId: number;
 }
 export interface IDate {
   day: number;
@@ -91,6 +93,8 @@ export interface IAppointmentViewStore {
   minDate: IDate;
   maxDate: IDate;
   appointment: IAppointment;
+  futureAppointmentList: IAppointment[];
+  pastAppointmentList: IAppointment[];
   typeOfHairAppointment: ITypes;
   timeList: string[];
   setAmountOfTime: any;
@@ -103,4 +107,5 @@ export interface IAppointmentViewStore {
   setAppointment: any;
   setTimeList: any;
   setTypeOfHairAppointment: any;
+  setAppointmentList: any;
 }

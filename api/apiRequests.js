@@ -1,12 +1,18 @@
 import React from 'react';
 import {HTTP} from '../utils/utils';
 import {
+  Appointments,
   BarberHairAppointmentPossibleDates,
   BarberHairAppointmentPossibleHoursForSpecificDate,
   BarberHairCutTypes,
   barberList,
   BarbersInformation,
 } from '../mocks/barberMock';
+import type {IAppointment} from '../utils/utils';
+
+function sleep(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
 
 export default class Api extends React.Component {
   static functionWithTimeOut(
@@ -88,6 +94,15 @@ export default class Api extends React.Component {
   }
   static async getMaxAndMinDates(BarberId: number) {
     return BarberHairAppointmentPossibleDates[BarberId];
+  }
+
+  static async getScheduleAppointment(customerId: number) {
+    return Appointments;
+  }
+
+  static async createAppointment(BarberId: number, appointment: IAppointment) {
+    await sleep(3000);
+    console.log('made!');
   }
 
   static async getAppointmentTimeAccordingToDate(

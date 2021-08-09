@@ -36,6 +36,9 @@ const DrawContent: FunctionComponent<IProps> = ({
   const goToAboutPage = () => {
     navigation.navigate('AboutScreen');
   };
+  const goToAppointmentPage = () => {
+    navigation.navigate('AppointmentScreen');
+  };
   const goToBarberPage = () => {
     navigation.navigate('BarberScreen');
   };
@@ -77,6 +80,23 @@ const DrawContent: FunctionComponent<IProps> = ({
               style={{paddingTop: 2}}
             />
             <Text style={[styles.button, {paddingLeft: 10}]}>BARBERS</Text>
+          </View>
+          <Icon
+            name="angle-right"
+            color={Colors.black}
+            size={24}
+            style={styles.bold}
+          />
+        </TouchableOpacity>
+        <TouchableOpacity onPress={goToAppointmentPage} style={styles.touch}>
+          <View style={styles.directionRow}>
+            <Icon
+              name="calendar"
+              color={Colors.black}
+              size={24}
+              style={{paddingTop: 2}}
+            />
+            <Text style={[styles.button, {paddingLeft: 10}]}>APPOINTMENT</Text>
           </View>
           <Icon
             name="angle-right"
