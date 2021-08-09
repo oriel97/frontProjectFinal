@@ -63,6 +63,7 @@ export interface IHairStyle {
 }
 
 export interface IAppointment {
+  appointmentId?: number;
   date: IDate;
   time: string;
   type: string[];

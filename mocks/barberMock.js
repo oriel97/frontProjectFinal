@@ -771,6 +771,7 @@ export const BarberHairAppointmentPossibleHoursForSpecificDate = {
 export const Appointments = {
   past: [
     {
+      appointmentId: 1,
       date: {day: 1, month: 8, year: 2021},
       time: '9:30-10:00',
       type: ['fan', 'ddd', 'dddddddd'],
@@ -781,6 +782,7 @@ export const Appointments = {
       barberId: 1,
     },
     {
+      appointmentId: 2,
       date: {day: 8, month: 8, year: 2021},
       time: '9:30-10:00',
       type: ['fan'],
@@ -791,6 +793,7 @@ export const Appointments = {
       barberId: 1,
     },
     {
+      appointmentId: 3,
       date: {day: 15, month: 8, year: 2021},
       time: '9:30-10:00',
       type: ['fan'],
@@ -801,6 +804,7 @@ export const Appointments = {
       barberId: 1,
     },
     {
+      appointmentId: 4,
       date: {day: 22, month: 8, year: 2021},
       time: '9:30-10:00',
       type: ['fan'],
@@ -811,6 +815,7 @@ export const Appointments = {
       barberId: 1,
     },
     {
+      appointmentId: 5,
       date: {day: 29, month: 8, year: 2021},
       time: '9:30-10:00',
       type: ['fan'],
@@ -823,6 +828,7 @@ export const Appointments = {
   ],
   future: [
     {
+      appointmentId: 6,
       date: {day: 1, month: 9, year: 2021},
       time: '9:30-10:00',
       type: ['fan', 'ddd', 'ddddd'],
@@ -833,6 +839,7 @@ export const Appointments = {
       barberId: 1,
     },
     {
+      appointmentId: 7,
       date: {day: 22, month: 9, year: 2021},
       time: '9:30-10:00',
       type: ['fan'],

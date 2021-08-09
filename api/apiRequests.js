@@ -105,6 +105,11 @@ export default class Api extends React.Component {
     console.log('made!');
   }
 
+  static async deleteAppointment(appointmentId: number) {
+    await sleep(3000);
+    console.log('made!');
+  }
+
   static async getAppointmentTimeAccordingToDate(
     BarberId: number,
     date: string,

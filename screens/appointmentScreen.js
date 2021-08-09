@@ -5,16 +5,22 @@ import {
   Text,
   TouchableOpacity,
   ScrollView,
+  ActivityIndicator,
+  BackHandler,
 } from 'react-native';
 import {FunctionComponent} from 'react';
-import {IBarberPageViewStore} from '../Interfaces/view-store.types';
-import Header from '../components/header';
-import Icon from 'react-native-vector-icons/FontAwesome5';
-import {Colors} from '../utils/color';
-import {inject, observer} from 'mobx-react';
-import Api from '../api/apiRequests';
+
 import type {IAppointment, IAppointmentViewStore, IDate} from '../utils/utils';
+import {IBarberPageViewStore} from '../Interfaces/view-store.types';
+
+import Header from '../components/header';
+import Api from '../api/apiRequests';
+import {Colors} from '../utils/color';
+
+import Icon from 'react-native-vector-icons/FontAwesome5';
+import {inject, observer} from 'mobx-react';
 import map from 'lodash/map';
+import filter from 'lodash/filter';
 
 interface IProps {
   barberPageViewStores?: IBarberPageViewStore;
@@ -30,21 +36,44 @@ const AppointmentScreen: FunctionComponent<IProps> = ({
   const [haveAppointments, setHaveAppointments] = useState(true);
   const [openAppointmentCard, setOpenAppointmentCard] = useState('');
   const [appointment: IAppointment, setAppointment] = useState();
+  const [loading, setLoading] = useState(false);
+
   const openDrawer = () => {
+    setOpenAppointmentCard(false);
+    setHaveAppointments(true);
+    setAppointment();
+    setLoading(false);
     navigation.openDrawer();
   };
   const onPressOnBackArrow = () => {
+    setOpenAppointmentCard(false);
+    setHaveAppointments(true);
+    setAppointment();
+    setLoading(false);
     navigation.navigate('BarberScreen');
   };
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  const backAction = () => {
+    setOpenAppointmentCard(false);
+    setHaveAppointments(true);
+    setAppointment();
+    setLoading(false);
+    navigation.navigate('BarberScreen');
+    return true;
+  };
+  useEffect(() => {
+    BackHandler.addEventListener('hardwareBackPress', backAction);
+    return () =>
+      BackHandler.removeEventListener('hardwareBackPress', backAction);
+  }, [backAction]);
 
   useEffect(() => {
     return navigation.addListener('focus', () => {
       const starter = async () => {
         try {
           const lists = await Api.getScheduleAppointment();
-          console.log(lists);
           appointmentViewStore.setAppointmentList(lists);
-          if (lists.past.length === 0 && lists.future.length === 0) {
+          if (lists?.past?.length === 0 && lists?.future?.length === 0) {
             setHaveAppointments(false);
           }
         } catch (e) {}
@@ -69,9 +98,10 @@ const AppointmentScreen: FunctionComponent<IProps> = ({
     setAppointment(appointment1);
   };
 
-  const linePast = (appointment1: IAppointment) => {
+  const linePast = (appointment1: IAppointment, index: number) => {
     return (
       <View
+        key={index}
         style={{
           flexDirection: 'row',
           justifyContent: 'space-between',
@@ -91,9 +121,10 @@ const AppointmentScreen: FunctionComponent<IProps> = ({
     );
   };
 
-  const lineFuture = (appointment1: IAppointment) => {
+  const lineFuture = (appointment1: IAppointment, index: number) => {
     return (
       <View
+        key={index}
         style={{
           flexDirection: 'row',
           justifyContent: 'space-between',
@@ -117,7 +148,21 @@ const AppointmentScreen: FunctionComponent<IProps> = ({
     setOpenAppointmentCard(false);
   };
 
-  const deleteAppointment = () => {};
+  const deleteAppointment = async () => {
+    setLoading(true);
+    await Api.deleteAppointment(appointment.appointmentId);
+    let futureList = appointmentViewStore.futureAppointmentList;
+    console.log(appointment);
+    futureList = filter(futureList, appointment1 => {
+      return appointment1.appointmentId !== appointment.appointmentId;
+    });
+    appointmentViewStore.setAppointmentList({
+      past: appointmentViewStore.pastAppointmentList,
+      future: futureList,
+    });
+    setLoading(false);
+    setOpenAppointmentCard(false);
+  };
 
   return (
     <View>
@@ -170,15 +215,7 @@ const AppointmentScreen: FunctionComponent<IProps> = ({
           </View>
         ) : (
           <View>
-            <Text
-              style={{
-                textAlign: 'center',
-                fontWeight: 'bold',
-                fontSize: 30,
-                color: Colors.darkBlue,
-                marginHorizontal: 20,
-                top: 150,
-              }}>
+            <Text style={styles.noAppointments}>
               {'There is no appointments that have been scheduled!'}
             </Text>
           </View>
@@ -234,7 +271,7 @@ const AppointmentScreen: FunctionComponent<IProps> = ({
                 <ScrollView horizontal={true}>
                   {map(appointment?.type, (type, index) => {
                     return (
-                      <View>
+                      <View key={index}>
                         {index === appointment.type.length - 1 ? (
                           <Text style={styles.cardText}>{type}</Text>
                         ) : (
@@ -258,10 +295,18 @@ const AppointmentScreen: FunctionComponent<IProps> = ({
                 </Text>
               </View>
               <View>
-                {openAppointmentCard === 'future' && (
+                {openAppointmentCard === 'future' && !loading ? (
                   <TouchableOpacity onPress={deleteAppointment}>
                     <Text style={styles.deleteText}>Delete</Text>
                   </TouchableOpacity>
+                ) : (
+                  openAppointmentCard === 'future' && (
+                    <ActivityIndicator
+                      color={Colors.black}
+                      size={'large'}
+                      style={styles.loading}
+                    />
+                  )
                 )}
               </View>
             </View>
@@ -272,6 +317,15 @@ const AppointmentScreen: FunctionComponent<IProps> = ({
   );
 };
 const styles = StyleSheet.create({
+  noAppointments: {
+    textAlign: 'center',
+    fontWeight: 'bold',
+    fontSize: 30,
+    color: Colors.darkBlue,
+    marginHorizontal: 20,
+    top: 150,
+  },
+  loading: {justifyContent: 'center', marginTop: 20},
   deleteText: {
     textAlign: 'center',
     color: Colors.red,
