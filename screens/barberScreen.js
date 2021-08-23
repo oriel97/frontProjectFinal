@@ -15,7 +15,6 @@ import Header from '../components/header';
 import Barber from '../components/barber';
 import OptionsModal from '../components/barberScreenComponents/optionsModal';
 import Api from '../api/apiRequests';
-import BarberOptionsScreen from './barberOptionsScreen';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import type {IBarber} from '../Interfaces/user';
 
