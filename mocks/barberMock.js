@@ -851,3 +851,11 @@ export const Appointments = {
     },
   ],
 };
+export const barberImages = {
+  images: [
+    {
+      image: '',
+      description: '',
+    },
+  ],
+};

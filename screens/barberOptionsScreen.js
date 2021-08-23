@@ -1,18 +1,10 @@
 import React from 'react';
-import {
-  View,
-  StyleSheet,
-  Text,
-  SafeAreaView,
-  TouchableOpacity,
-  Linking,
-} from 'react-native';
+import {View, StyleSheet, Text, TouchableOpacity, Linking} from 'react-native';
 import {FunctionComponent} from 'react';
 import {IBarberPageViewStore} from '../Interfaces/view-store.types';
 import Header from '../components/header';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import {Colors} from '../utils/color';
-import {fonts} from 'react-native-elements/dist/config';
 import {inject, observer} from 'mobx-react';
 
 interface IProps {
@@ -46,6 +38,10 @@ const BarberOptionsScreen: FunctionComponent<IProps> = ({
     navigation.navigate('AboutBarberScreen');
   };
 
+  const openImagePage = () => {
+    navigation.navigate('BarberImageScreen');
+  };
+
   return (
     <View>
       <Header
@@ -58,6 +54,7 @@ const BarberOptionsScreen: FunctionComponent<IProps> = ({
       <View style={styles.background}>
         <View style={{flexDirection: 'row', marginTop: 30}}>
           <TouchableOpacity
+            onPress={openImagePage}
             style={[styles.cardStyle, {backgroundColor: Colors.lightPurple}]}>
             <View style={styles.inCardStyle}>
               <Icon name="camera" color={Colors.black} size={80} />
