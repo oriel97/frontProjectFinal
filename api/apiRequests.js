@@ -87,6 +87,8 @@ export default class Api extends React.Component {
     return barberList;
   }
 
+  static async makeFollowOrUnfollow(follow: boolean) {}
+
   static async getBarberInformation(BarberId: number) {
     return BarbersInformation[BarberId];
   }
