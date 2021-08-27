@@ -78,6 +78,7 @@ const BarberScreen: FunctionComponent<IProps> = ({
     barberPageViewStores.setBarberId(item.id);
     barberPageViewStores.setBarberName(item.barberName);
     barberPageViewStores.setBarberLocation(item.exactLocation);
+    barberPageViewStores.setBarber(item);
     navigation.navigate('BarberOptionsScreen');
   };
 

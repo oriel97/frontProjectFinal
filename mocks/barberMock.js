@@ -1,4 +1,5 @@
 import {IDate} from '../utils/utils';
+import {imageBase64} from '../utils/imageUtils';
 // public user id
 export const barberList = [
   {
@@ -851,11 +852,70 @@ export const Appointments = {
     },
   ],
 };
-export const barberImages = {
-  images: [
-    {
-      image: '',
-      description: '',
-    },
-  ],
-};
+export const barberImages = [
+  {
+    image: imageBase64,
+    description:
+      'thisfdqfewwef wqef qwef qwe fwq ef qwe f ewewqewfewgr eytj yu sdv a dae wfe e c',
+  },
+  {
+    image: imageBase64,
+    description:
+      'thisfdqfewwef wqef qwef qwe fwq ef qwe f ewewqewfewgr eytj yu sdv a dae wfe e c',
+  },
+  {
+    image: imageBase64,
+    description:
+      'thisfdqfewwef wqef qwef qwe fwq ef qwe f ewewqewfewgr eytj yu sdv a dae wfe e c',
+  },
+  {
+    image: imageBase64,
+    description:
+      'thisfdqfewwef wqef qwef qwe fwq ef qwe f ewewqewfewgr eytj yu sdv a dae wfe e c',
+  },
+  {
+    image: imageBase64,
+    description:
+      'thisfdqfewwef wqef qwef qwe fwq ef qwe f ewewqewfewgr eytj yu sdv a dae wfe e c',
+  },
+  {
+    image: imageBase64,
+    description:
+      'thisfdqfewwef wqef qwef qwe fwq ef qwe f ewewqewfewgr eytj yu sdv a dae wfe e c',
+  },
+  {
+    image: imageBase64,
+    description:
+      'thisfdqfewwef wqef qwef qwe fwq ef qwe f ewewqewfewgr eytj yu sdv a dae wfe e c',
+  },
+  {
+    image: imageBase64,
+    description:
+      'thisfdqfewwef wqef qwef qwe fwq ef qwe f ewewqewfewgr eytj yu sdv a dae wfe e c',
+  },
+  {
+    image: imageBase64,
+    description:
+      'thisfdqfewwef wqef qwef qwe fwq ef qwe f ewewqewfewgr eytj yu sdv a dae wfe e c',
+  },
+  {
+    image: imageBase64,
+    description:
+      'thisfdqfewwef wqef qwef qwe fwq ef qwe f ewewqewfewgr eytj yu sdv a dae wfe e c',
+  },
+  {
+    image: imageBase64,
+    description:
+      'thisfdqfewwef wqef qwef qwe fwq ef qwe f ewewqewfewgr eytj yu sdv a dae wfe e c',
+  },
+  {
+    image: imageBase64,
+    description:
+      'thisfdqfewwef wqef qwef qwe fwq ef qwe f ewewqewfewgr eytj yu sdv a dae wfe e c',
+  },
+  {
+    image: imageBase64,
+    description:
+      'thisfdqfewwef wqef qwef qwe fwq ef qwe f ewewqewfewgr eytj yu sdv a dae wfe e c',
+  },
+];

@@ -1,7 +1,8 @@
 import {IBarberPageViewStore} from '../Interfaces/view-store.types';
 import {action, makeObservable, observable} from 'mobx';
 import React from 'react';
-import type {IAboutBarber} from '../utils/utils';
+import type {IAboutBarber, IImage} from '../utils/utils';
+import type {IBarber} from '../Interfaces/user';
 
 const initialData = {
   userName: '',
@@ -14,6 +15,8 @@ const initialData = {
   barberName: '',
   barberLocation: {},
   barberInfo: {},
+  barber: {},
+  barberImageList: [],
 };
 
 class BarberPageViewStores implements IBarberPageViewStore {
@@ -27,6 +30,8 @@ class BarberPageViewStores implements IBarberPageViewStore {
   barberName = initialData.barberName;
   barberLocation = initialData.barberLocation;
   barberInfo = initialData.barberInfo;
+  barber = initialData.barber;
+  barberImageList = initialData.barberImageList;
 
   constructor(stores: any) {
     makeObservable(this, {
@@ -36,6 +41,7 @@ class BarberPageViewStores implements IBarberPageViewStore {
       userName: observable,
       barberList: observable,
       barberLocation: observable,
+      barberImageList: observable,
       barberId: observable,
       userId: observable,
       barberName: observable,
@@ -48,7 +54,16 @@ class BarberPageViewStores implements IBarberPageViewStore {
       setBarberName: action.bound,
       setBarberLocation: action.bound,
       setBarberInfo: action.bound,
+      setBarber: action.bound,
+      setBarberImageList: action.bound,
     });
+  }
+
+  setBarber(barber: IBarber) {
+    this.barber = barber;
+  }
+  setBarberImageList(barberImageList: IImage[]) {
+    this.barberImageList = barberImageList;
   }
   setBarberInfo(barberInfo: IAboutBarber) {
     this.barberInfo = barberInfo;

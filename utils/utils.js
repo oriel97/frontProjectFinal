@@ -1,7 +1,6 @@
 import LoginWindow from '../screens/loginWindow';
 import CreateNewUser from '../screens/createNewUser';
-import {isValidNumber} from 'react-native-gesture-handler/lib/typescript/web/utils';
-import {action, observable} from 'mobx';
+import {Image} from 'react-native';
 
 export const ROUTES = {
   LoginWindow: {
@@ -109,4 +108,9 @@ export interface IAppointmentViewStore {
   setTimeList: any;
   setTypeOfHairAppointment: any;
   setAppointmentList: any;
+}
+
+export interface IImage {
+  image: Image;
+  description: string;
 }

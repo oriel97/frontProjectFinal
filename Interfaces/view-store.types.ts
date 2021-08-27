@@ -1,4 +1,6 @@
 import type {IAboutBarber} from '../utils/utils';
+import type {IBarber} from '../Interfaces/user';
+import type {IImage} from '../utils/utils';
 
 export interface IBarberPageViewStore {
   userId: string;
@@ -19,4 +21,8 @@ export interface IBarberPageViewStore {
   setBarberName: any;
   setBarberLocation: any;
   setBarberInfo: any;
+  barber: IBarber;
+  setBarber: any;
+  setBarberImageList: any;
+  barberImageList: IImage[];
 }
