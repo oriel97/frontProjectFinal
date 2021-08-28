@@ -919,4 +919,70 @@ export const barberImages = [
       'thisfdqfewwef wqef qwef qwe fwq ef qwe f ewewqewfewgr eytj yu sdv a dae wfe e c',
   },
 ];
-export const userImages = [];
+export const userImages = [
+  {
+    image: imageBase64,
+    description:
+      'thisfdqfewwef wqef qwef qwe fwq ef qwe f ewewqewfewgr eytj yu sdv a dae wfe e c',
+  },
+  {
+    image: imageBase64,
+    description:
+      'thisfdqfewwef wqef qwef qwe fwq ef qwe f ewewqewfewgr eytj yu sdv a dae wfe e c',
+  },
+  {
+    image: imageBase64,
+    description:
+      'thisfdqfewwef wqef qwef qwe fwq ef qwe f ewewqewfewgr eytj yu sdv a dae wfe e c',
+  },
+  {
+    image: imageBase64,
+    description:
+      'thisfdqfewwef wqef qwef qwe fwq ef qwe f ewewqewfewgr eytj yu sdv a dae wfe e c',
+  },
+  {
+    image: imageBase64,
+    description:
+      'thisfdqfewwef wqef qwef qwe fwq ef qwe f ewewqewfewgr eytj yu sdv a dae wfe e c',
+  },
+  {
+    image: imageBase64,
+    description:
+      'thisfdqfewwef wqef qwef qwe fwq ef qwe f ewewqewfewgr eytj yu sdv a dae wfe e c',
+  },
+  {
+    image: imageBase64,
+    description:
+      'thisfdqfewwef wqef qwef qwe fwq ef qwe f ewewqewfewgr eytj yu sdv a dae wfe e c',
+  },
+  {
+    image: imageBase64,
+    description:
+      'thisfdqfewwef wqef qwef qwe fwq ef qwe f ewewqewfewgr eytj yu sdv a dae wfe e c',
+  },
+  {
+    image: imageBase64,
+    description:
+      'thisfdqfewwef wqef qwef qwe fwq ef qwe f ewewqewfewgr eytj yu sdv a dae wfe e c',
+  },
+  {
+    image: imageBase64,
+    description:
+      'thisfdqfewwef wqef qwef qwe fwq ef qwe f ewewqewfewgr eytj yu sdv a dae wfe e c',
+  },
+  {
+    image: imageBase64,
+    description:
+      'thisfdqfewwef wqef qwef qwe fwq ef qwe f ewewqewfewgr eytj yu sdv a dae wfe e c',
+  },
+  {
+    image: imageBase64,
+    description:
+      'thisfdqfewwef wqef qwef qwe fwq ef qwe f ewewqewfewgr eytj yu sdv a dae wfe e c',
+  },
+  {
+    image: imageBase64,
+    description:
+      'thisfdqfewwef wqef qwef qwe fwq ef qwe f ewewqewfewgr eytj yu sdv a dae wfe e c',
+  },
+];

@@ -47,8 +47,6 @@ const UserImageScreen: FunctionComponent<IProps> = ({
         skipBackup: true,
         path: 'images',
         mediaType: 'photo',
-        maxHeight: 300,
-        maxWidth: 400,
       },
       includeBase64: true,
     };
@@ -72,8 +70,6 @@ const UserImageScreen: FunctionComponent<IProps> = ({
         skipBackup: true,
         path: 'images',
         mediaType: 'photo',
-        maxHeight: 300,
-        maxWidth: 400,
       },
       includeBase64: true,
     };
@@ -96,6 +92,7 @@ const UserImageScreen: FunctionComponent<IProps> = ({
   const onPressAddImage = () => {
     setAddDescription(false);
     userStore.addImageToImageList({image: image, description: description});
+    Api.addUserImage(userStore.userId);
   };
 
   useEffect(() => {
@@ -171,7 +168,7 @@ const UserImageScreen: FunctionComponent<IProps> = ({
         <View style={styles.finalBackground}>
           <View style={[styles.card, {height: 350}]}>
             <Icon
-              onPress={() => setDescription(false)}
+              onPress={() => setAddDescription(false)}
               name={'times'}
               size={20}
             />
@@ -180,7 +177,7 @@ const UserImageScreen: FunctionComponent<IProps> = ({
               stylesProp={{width: '100%'}}
               isPassword={false}
               placeHolder={'description...'}
-              onChangeText={val => setDescription(val)}
+              onChangeText={setDescription}
               value={description}
             />
             <TouchableOpacity

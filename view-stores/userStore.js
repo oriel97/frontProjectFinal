@@ -35,7 +35,7 @@ class UserStore implements IUserStore {
     });
   }
   addImageToImageList(image: IImage) {
-    this.userImages.push(image);
+    this.userImages.unshift(image);
   }
   setUserImages(userImages: IImage[]) {
     this.userImages = userImages;

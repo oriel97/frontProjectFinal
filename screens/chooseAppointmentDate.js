@@ -85,9 +85,10 @@ const ChooseAppointmentScreen: FunctionComponent<IProps> = ({
   const onChosenDate = (time: string) => {
     setChosenTime(time);
   };
-  const listOfAllTimes = (time: string) => {
+  const listOfAllTimes = (time: string, index: number) => {
     return (
       <TouchableOpacity
+        key={index}
         onPress={() => {
           onChosenDate(time);
         }}
@@ -123,9 +124,15 @@ const ChooseAppointmentScreen: FunctionComponent<IProps> = ({
     console.log(str);
     return str;
   };
+  Date.prototype.addDays = function (days) {
+    let date = new Date(this.valueOf());
+    date.setDate(date.getDate() + days);
+    return date;
+  };
 
   useEffect(() => {
     return navigation.addListener('focus', () => {
+      console.log(new Date().getDate() + 14);
       const starter = () => {};
       setDate(new Date(2021, 7, 1));
       setShow(true);
@@ -168,6 +175,7 @@ const ChooseAppointmentScreen: FunctionComponent<IProps> = ({
           style={styles.buttonContainer}
           onPress={() => {
             setShow(!show);
+            setChosenTime('');
           }}>
           <View style={styles.buttonInside}>
             <Text style={styles.buttonText}>Choose other day</Text>
@@ -181,8 +189,8 @@ const ChooseAppointmentScreen: FunctionComponent<IProps> = ({
             mode={'date'}
             display="default"
             onChange={onChange}
-            minimumDate={new Date(2021, 7, 1)}
-            maximumDate={new Date(2021, 7, 31)}
+            minimumDate={new Date()}
+            maximumDate={new Date().addDays(14)}
           />
         )}
       </View>
