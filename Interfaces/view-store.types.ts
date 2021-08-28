@@ -1,20 +1,13 @@
 import type {IAboutBarber} from '../utils/utils';
 import type {IBarber} from '../Interfaces/user';
 import type {IImage} from '../utils/utils';
+import {action, observable} from 'mobx';
 
 export interface IBarberPageViewStore {
-  userId: string;
-  userName: string;
   barberId: string;
   barberName: string;
   barberLocation: string;
   barberInfo: IAboutBarber;
-  setUserId: any;
-  setUserName: any;
-  setLogin: any;
-  userEmail: string;
-  userCity: string;
-  userGender: string;
   barberList: any;
   setList: any;
   setBarberId: any;
@@ -25,4 +18,15 @@ export interface IBarberPageViewStore {
   setBarber: any;
   setBarberImageList: any;
   barberImageList: IImage[];
+}
+export interface IUserStore {
+  userGender: string;
+  userEmail: string;
+  userCity: string;
+  userName: string;
+  userId: string;
+  userImages: [];
+  setUserId: any;
+  setUserName: any;
+  setLogin: any;
 }

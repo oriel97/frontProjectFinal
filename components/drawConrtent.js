@@ -11,22 +11,25 @@ import {Colors} from '../utils/color';
 import {inject, observer} from 'mobx-react';
 import {IBarberPageViewStore} from '../Interfaces/view-store.types';
 import {singedOut} from '../api/phoneStorage';
+import {IUserStore} from '../Interfaces/view-store.types';
 
 interface IProps {
   navigation: any;
   barberPageViewStores: IBarberPageViewStore;
+  userStore: IUserStore;
 }
 
 const DrawContent: FunctionComponent<IProps> = ({
   navigation,
   barberPageViewStores,
+  userStore,
 }) => {
   const [loading, setLoading] = useState(false);
   const singedOutHandler = async () => {
     try {
       setLoading(true);
       await singedOut();
-      barberPageViewStores.setLogin('', '');
+      userStore.setLogin('', '');
       barberPageViewStores.setList([]);
       setLoading(false);
       navigation.navigate('LoginWindow');
@@ -48,9 +51,9 @@ const DrawContent: FunctionComponent<IProps> = ({
 
   return (
     <View>
-      <Text style={styles.userName}>{barberPageViewStores.userName}</Text>
-      <Text style={styles.email}>{barberPageViewStores.userEmail}</Text>
-      <Text style={styles.city}>{barberPageViewStores.userCity}</Text>
+      <Text style={styles.userName}>{userStore.userName}</Text>
+      <Text style={styles.email}>{userStore.userEmail}</Text>
+      <Text style={styles.city}>{userStore.userCity}</Text>
       <View style={{paddingLeft: 20}}>
         <TouchableOpacity
           onPress={goToMoviesPage}
@@ -151,7 +154,10 @@ const DrawContent: FunctionComponent<IProps> = ({
     </View>
   );
 };
-export default inject('barberPageViewStores')(observer(DrawContent));
+export default inject(
+  'barberPageViewStores',
+  'userStore',
+)(observer(DrawContent));
 
 const styles = StyleSheet.create({
   directionRow: {

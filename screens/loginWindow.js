@@ -15,15 +15,18 @@ import {IBarberPageViewStore} from '../Interfaces/view-store.types';
 import Api from '../api/apiRequests';
 import {NavigationActions as navigation} from 'react-navigation';
 import {signedIn} from '../api/phoneStorage';
+import {IUserStore} from '../Interfaces/view-store.types';
 
 interface IProps {
   barberPageViewStores?: IBarberPageViewStore;
   navigation: any;
+  userStore: IUserStore;
 }
 
 const LoginWindow: FunctionComponent<IProps> = ({
   barberPageViewStores,
   navigation,
+  userStore,
 }) => {
   const navigateToCreateNewUserPage = () => {
     navigation.navigate('CreateNewUser');
@@ -51,7 +54,7 @@ const LoginWindow: FunctionComponent<IProps> = ({
       const token = response.token;
       const userInfo = await Api.getUserInfo();
       await signedIn(token.toString(), name);
-      barberPageViewStores.setLogin(
+      userStore.setLogin(
         name,
         token.toString(),
         userInfo.gender,
@@ -146,4 +149,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
 });
-export default inject('barberPageViewStores')(observer(LoginWindow));
+export default inject(
+  'barberPageViewStores',
+  'userStore',
+)(observer(LoginWindow));
