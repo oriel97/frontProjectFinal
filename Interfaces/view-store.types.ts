@@ -1,7 +1,6 @@
 import type {IAboutBarber} from '../utils/utils';
 import type {IBarber} from '../Interfaces/user';
 import type {IImage} from '../utils/utils';
-import {action, observable} from 'mobx';
 
 export interface IBarberPageViewStore {
   barberId: string;
@@ -25,8 +24,10 @@ export interface IUserStore {
   userCity: string;
   userName: string;
   userId: string;
-  userImages: [];
+  userImages: IImage[];
   setUserId: any;
   setUserName: any;
   setLogin: any;
+  setUserImages: any;
+  addImageToImageList: any;
 }

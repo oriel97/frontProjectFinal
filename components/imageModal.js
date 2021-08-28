@@ -11,10 +11,11 @@ import {Avatar} from 'react-native-elements';
 
 interface IProps {
   image: base64;
-  avatar: base64;
+  avatar?: base64;
   barberName: string;
   description: string;
   navigation: any;
+  topName?: string;
 }
 
 const ImageModal: FunctionComponent<IProps> = ({
@@ -23,6 +24,7 @@ const ImageModal: FunctionComponent<IProps> = ({
   barberName,
   description,
   navigation,
+  topName,
 }) => {
   const [readMore, setReadMore] = useState(description.length > 40);
   const onPressForMore = () => {
@@ -40,8 +42,10 @@ const ImageModal: FunctionComponent<IProps> = ({
   return (
     <View>
       <View style={styles.avatarAndName}>
-        <Avatar rounded source={{uri: avatar}} size="small" />
-        <Text style={styles.nameText}>{barberName || ''}</Text>
+        {!!avatar && <Avatar rounded source={{uri: avatar}} size="small" />}
+        <Text style={styles.nameText}>
+          {!!topName ? topName : barberName || ''}
+        </Text>
       </View>
       <Image source={{uri: image}} style={styles.image} />
       <View style={styles.nameAndDescription}>

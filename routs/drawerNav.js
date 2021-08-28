@@ -11,6 +11,7 @@ import ChoosingHairCutScreen from '../screens/choosingHairCutScreen';
 import ChooseAppointmentScreen from '../screens/chooseAppointmentDate';
 import AppointmentScreen from '../screens/appointmentScreen';
 import BarberImageScreen from '../screens/barberImageScreen';
+import UserImageScreen from '../screens/userImageScreen';
 
 interface IProps {
   navigation: any;
@@ -31,6 +32,7 @@ const DrawerNav: FunctionComponent<IProps> = ({navigation, route}) => {
       <Drawer.Screen name="AboutBarberScreen" component={AboutBarberScreen} />
       <Drawer.Screen name="AppointmentScreen" component={AppointmentScreen} />
       <Drawer.Screen name="BarberImageScreen" component={BarberImageScreen} />
+      <Drawer.Screen name="UserImageScreen" component={UserImageScreen} />
       <Drawer.Screen
         name="ChooseAppointmentScreen"
         component={ChooseAppointmentScreen}

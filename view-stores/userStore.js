@@ -1,5 +1,7 @@
 import {IVideosViewStore} from 'typescript/view-store.types';
 import {action, makeObservable, observable} from 'mobx';
+import type {IImage} from '../utils/utils';
+import {IUserStore} from '../Interfaces/view-store.types';
 
 const initialData = {
   userName: '',
@@ -10,7 +12,7 @@ const initialData = {
   userImages: [],
 };
 
-class UserStore {
+class UserStore implements IUserStore {
   userName = initialData.userName;
   userId = initialData.userId;
   userEmail = initialData.userEmail;
@@ -28,7 +30,15 @@ class UserStore {
       setUserId: action.bound,
       setUserName: action.bound,
       setLogin: action.bound,
+      setUserImages: action.bound,
+      addImageToImageList: action.bound,
     });
+  }
+  addImageToImageList(image: IImage) {
+    this.userImages.push(image);
+  }
+  setUserImages(userImages: IImage[]) {
+    this.userImages = userImages;
   }
   setUserId(userId: string) {
     this.userId = userId;

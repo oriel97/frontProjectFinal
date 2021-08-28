@@ -8,6 +8,7 @@ import {
   barberImages,
   barberList,
   BarbersInformation,
+  userImages,
 } from '../mocks/barberMock';
 import type {IAppointment} from '../utils/utils';
 
@@ -96,6 +97,11 @@ export default class Api extends React.Component {
   static async getBarberImages(BarberId: number) {
     return barberImages;
   }
+  static async getUserImages(userId: number) {
+    return userImages;
+  }
+  static async addUserImage(userId: number) {}
+
   static async getBarberHairStyleList(BarberId: number) {
     return BarberHairCutTypes[BarberId];
   }

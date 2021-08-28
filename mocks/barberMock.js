@@ -919,3 +919,4 @@ export const barberImages = [
       'thisfdqfewwef wqef qwef qwe fwq ef qwe f ewewqewfewgr eytj yu sdv a dae wfe e c',
   },
 ];
+export const userImages = [];

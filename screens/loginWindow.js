@@ -20,7 +20,7 @@ import {IUserStore} from '../Interfaces/view-store.types';
 interface IProps {
   barberPageViewStores?: IBarberPageViewStore;
   navigation: any;
-  userStore: IUserStore;
+  userStore?: IUserStore;
 }
 
 const LoginWindow: FunctionComponent<IProps> = ({

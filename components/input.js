@@ -5,7 +5,7 @@ import {Colors} from '../utils/color';
 
 interface Iprops {
   isPassword: boolean;
-  stylesProp: any;
+  stylesProp?: any;
   placeHolder: string;
   onChangeText: any;
   value: any;

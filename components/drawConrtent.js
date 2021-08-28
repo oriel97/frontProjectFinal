@@ -15,8 +15,8 @@ import {IUserStore} from '../Interfaces/view-store.types';
 
 interface IProps {
   navigation: any;
-  barberPageViewStores: IBarberPageViewStore;
-  userStore: IUserStore;
+  barberPageViewStores?: IBarberPageViewStore;
+  userStore?: IUserStore;
 }
 
 const DrawContent: FunctionComponent<IProps> = ({
@@ -47,6 +47,10 @@ const DrawContent: FunctionComponent<IProps> = ({
   };
   const goToMoviesPage = () => {
     navigation.navigate('VideoScreen');
+  };
+
+  const goToUserImagePage = () => {
+    navigation.navigate('UserImageScreen');
   };
 
   return (
@@ -125,6 +129,23 @@ const DrawContent: FunctionComponent<IProps> = ({
             style={styles.bold}
           />
         </TouchableOpacity>
+        <TouchableOpacity onPress={goToUserImagePage} style={styles.touch}>
+          <View style={styles.directionRow}>
+            <Icon
+              name="camera"
+              color={Colors.black}
+              size={24}
+              style={styles.icon}
+            />
+            <Text style={[styles.button, {paddingLeft: 10}]}>IMAGES</Text>
+          </View>
+          <Icon
+            name="angle-right"
+            color={Colors.black}
+            size={24}
+            style={styles.bold}
+          />
+        </TouchableOpacity>
         <View style={styles.line} />
         {loading && (
           <ActivityIndicator
@@ -167,7 +188,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     marginRight: 10,
-    marginTop: 40,
+    marginTop: 30,
   },
   line: {
     backgroundColor: Colors.lightGrey,
