@@ -21,6 +21,87 @@
     {
       "name": "barberModel",
       "model": {
+        "exactLocation": {
+          "lat": 31.892127148023768,
+          "lng": 35.00956178964859
+        },
+        "barberName": "Tomer sultinian",
+        "location": "Netanya",
+        "grade": 5,
+        "followers": 100,
+        "picture": "base64",
+        "favorite": true,
+        "summary": {
+          "time": "2021-05-11" ,
+          "sentence": " i do barber" ,
+          "headline": "headline"
+        }
+    }
+    },
+    {
+      "name": "userInfo",
+      "model": {
+        "name": "oriel",
+        "email": "oriel97@gmail.com",
+        "city": "Netanya",
+        "gender": "Male"
+      }
+    },
+    {
+      "name": "followOrUnfollow",
+      "model": {
+        "follow": true
+      }
+    },
+    {
+      "name": "barberInformationModel",
+      "model": {
+        "phoneNumber": '0544942796',
+        "openHour": [
+          ['9:00', '13:00'],
+          ['9:00'],
+          ['9:00', '14:00'],
+          ['9:00'],
+          ['9:00'],
+          ['9:00'],
+          null,
+        ],
+        "closeHour": [
+          ['12:30', '18:00'],
+          ['18:00'],
+          ['13:00', '18:00'],
+          ['18:00'],
+          ['18:00'],
+          ['14:00'],
+          null,
+        ],
+        "summary": {
+          "sentence":
+          'already available online and where to find it, but for someone like me who came from doing mainly web development, it would have been nice to have one place to go to see everything and to have been able to find it with a quick google search.',
+          "headline": 'Oriel barber shop',
+        },
+        "location": 'Nahal amud 13,Modeiin'
+      }
+    }
+    {
+      "name": "barberImagesModel",
+      "model": {
+        "image": "imageBase64",
+        "description":
+        "thisfdqfewwef wqef qwef qwe fwq ef qwe f ewewqewfewgr eytj yu sdv a dae wfe e c'"
+      }
+    }
+    {
+      "name": "userImageModel",
+      "model": {
+        "image": "imageBase64",
+        "description":
+        "thisfdqfewwef wqef qwef qwe fwq ef qwe f ewewqewfewgr eytj yu sdv a dae wfe e c'"
+      }
+    }
+    {
+      "name": "barberModel",
+      "model": {
         "barberName": "Tomer sultinian", // string
         "location": "Netanya", // string
         "grade": 5, // 1 -5 number
@@ -32,31 +113,39 @@
           "sentence": " i do barber" // string
           "headline": "headline" // string
         }
+      }
     }
-    },
     {
-      "name": "aboutModel",
+      "name": "barberModel",
       "model": {
-        "headline": "about", // string
-        "summary": "the app is...."// string
+        "barberName": "Tomer sultinian", // string
+        "location": "Netanya", // string
+        "grade": 5, // 1 -5 number
+        "followers": 100, // number
+        "picture": 2 // svg
+        "favorite": true,
+        "summary": {
+          "time": "2021-05-11" // current time
+          "sentence": " i do barber" // string
+          "headline": "headline" // string
+        }
       }
-    },
-    {
-      "name": "notificationModel",
-      "model": {
-        "notification":{
-          "summary": "eeee", // string
-          "nameOfTheBarber": "TomerSultinian", // string
-          "messege": "fbla bla" //string
-        }, "the app is...."// string
-      }
-    },
+    }
   ],
   "apis": [
     {
       "name": "userLogin",
       "type": "POST",
       "url": "../userLogin",
+      "response": {
+        "userName": true,
+        "userId": "2348324232sc"
+      }
+    },
+    {
+      "name": "makeFollowOrUnfollow",
+      "type": "POST",
+      "url": "../follow",
       "response": {
         "userName": true,
         "userId": "2348324232sc"
