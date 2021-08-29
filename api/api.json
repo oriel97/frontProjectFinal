@@ -5,6 +5,14 @@
       "model": {
         "userName": "tomer111",
         "password": "12345678"
+      },
+      "api": {
+        "type": "POST",
+        "url": "../userLogin",
+        "response": {
+          "userName": true,
+          "userId": "2348324232sc"
+        }
       }
     },
     {
@@ -16,6 +24,14 @@
         "location": "Rishon-Letzion",
         "gender": "Male",
         "dateOfBirth": "1995-05-04"
+      },
+      "api": {
+        "url": "../createUser",
+        "type": "POST",
+        "response": {
+          "isComplete": true,
+          "token": "2348324232sc"
+        }
       }
     },
     {
@@ -36,7 +52,14 @@
           "sentence": " i do barber" ,
           "headline": "headline"
         }
-    }
+    },
+      "api": {
+        "name": "barberList",
+        "type": "GET",
+        "url": "../{parameters}/barber",
+        "response": "barberModel[]",
+        "parameters": {userId}
+      }
     },
     {
       "name": "userInfo",
@@ -45,13 +68,27 @@
         "email": "oriel97@gmail.com",
         "city": "Netanya",
         "gender": "Male"
+      },
+      "api": {
+        "name": "userInfo",
+        "url": "../userInfo",
+        "response": {
+         "model"
+        }
       }
     },
     {
       "name": "followOrUnfollow",
       "model": {
         "follow": true
+      },"api": {
+      "name": "followOrUnfollow",
+      "type": "POST",
+      "url": "../userInfo",
+      "response": {
+        "model"
       }
+    }
     },
     {
       "name": "barberInformationModel",
@@ -81,7 +118,16 @@
           "headline": 'Oriel barber shop',
         },
         "location": 'Nahal amud 13,Modeiin'
+      },
+      "api": {
+      "name": "barberInformationModel",
+      "type": "GET",
+      "url": "../barberInformation",
+      "parameters": {"barberId"},
+      "response": {
+        "model"
       }
+    }
     }
     {
       "name": "barberImagesModel",
@@ -89,7 +135,15 @@
         "image": "imageBase64",
         "description":
         "thisfdqfewwef wqef qwef qwe fwq ef qwe f ewewqewfewgr eytj yu sdv a dae wfe e c'"
+      },"api": {
+      "name": "barberImagesModel",
+      "type": "GET",
+      "url": "../barberImages"
+      "parameters": {"barberId"},
+      "response": {
+        "model[]"
       }
+    }
     }
     {
       "name": "userImageModel",
@@ -97,51 +151,43 @@
         "image": "imageBase64",
         "description":
         "thisfdqfewwef wqef qwef qwe fwq ef qwe f ewewqewfewgr eytj yu sdv a dae wfe e c'"
+      },"api": {
+      "name": "userImageModel",
+      "type": "GET",
+      "url": "../userImages"
+      "parameters": {"userId"},
+      "response": {
+        "model[]"
       }
+    }
     }
     {
-      "name": "barberModel",
+      "name": "addUserImage",
       "model": {
-        "barberName": "Tomer sultinian", // string
-        "location": "Netanya", // string
-        "grade": 5, // 1 -5 number
-        "followers": 100, // number
-        "picture": 2 // svg
-        "favorite": true,
-        "summary": {
-          "time": "2021-05-11" // current time
-          "sentence": " i do barber" // string
-          "headline": "headline" // string
-        }
+        "image": "imageBase64",
+        "description":
+        "thisfdqfewwef wqef qwef qwe fwq ef qwe f ewewqewfewgr eytj yu sdv a dae wfe e c'"
+      },"api": {
+      "name": "addUserImage",
+      "type": "POST",
+      "url": "../userImages"
+      "parameters": {"userId"},
+      "response": {
+        "isComplete": true
       }
-    }
-    {
-      "name": "barberModel",
-      "model": {
-        "barberName": "Tomer sultinian", // string
-        "location": "Netanya", // string
-        "grade": 5, // 1 -5 number
-        "followers": 100, // number
-        "picture": 2 // svg
-        "favorite": true,
-        "summary": {
-          "time": "2021-05-11" // current time
-          "sentence": " i do barber" // string
-          "headline": "headline" // string
-        }
-      }
-    }
+    },
   ],
   "apis": [
     {
-      "name": "userLogin",
+      "name": "addUserImage",
       "type": "POST",
-      "url": "../userLogin",
+      "url": "../userImage",
       "response": {
         "userName": true,
         "userId": "2348324232sc"
       }
     },
+
     {
       "name": "makeFollowOrUnfollow",
       "type": "POST",
@@ -159,18 +205,7 @@
         "token": "2348324232sc"
       }
     },
-    {
-      "name": "barberList",
-      "url": "../{parameters}/barber",
-      "response": "barberModel[]",
-      "parameters": [
-        {
-          "name": "favorits",
-          "type": "string",
-          "optional": true
-        }
-      ]
-    },
+
     {
       "name": "about",
       "url": "../about",
@@ -183,3 +218,158 @@
     }
   ]
 }
+    {
+      "name": "addBarberImage",
+      "model": {
+        "image": "imageBase64",
+        "description":
+        "thisfdqfewwef wqef qwef qwe fwq ef qwe f ewewqewfewgr eytj yu sdv a dae wfe e c'"
+      },"api": {
+      "name": "addBarberImage",
+      "type": "POST",
+      "url": "../userImages"
+      "parameters": {"userId","model"},
+      "response": {
+        "isComplete": true
+      }
+    },
+  ],
+  "apis": [
+    {
+      "name": "addUserImage",
+      "type": "POST",
+      "url": "../userImage",
+      "response": {
+        "userName": true,
+        "userId": "2348324232sc"
+      }
+    },
+
+    {
+      "name": "makeFollowOrUnfollow",
+      "type": "POST",
+      "url": "../follow",
+      "response": {
+        "userName": true,
+        "userId": "2348324232sc"
+      }
+    },
+    {
+      "name": "createUser",
+      "url": "../createUser",
+      "response": {
+        "isConnect": true,
+        "token": "2348324232sc"
+      }
+    },
+
+    {
+      "name": "about",
+      "url": "../about",
+      "response": "aboutModel"
+    },
+    {
+      "name": "notification",
+      "url": "../notification",
+      "response": "notificationModel"
+    }
+  ]
+}
+    {
+      "name": "BarberHairStyleModal",
+      "model": {
+        male: [
+          {name: 'Hair cut', time: 30, price: 50, id: 1},
+          {name: 'Hair cut + Regular beard', time: 30, price: 50, id: 2},
+          {name: 'Hair cut + Long beard', time: 45, price: 60, id: 3},
+          {name: 'Beard - Long or small', time: 15, price: 20, id: 4},
+        ],
+        female: [
+          {name: 'Fan', time: 15, price: 70, id: 1},
+          {name: 'Hair cut', time: 45, price: 150, id: 2},
+          {name: 'Colors', time: 30, price: 300, id: 3},
+          {name: 'Hair style', time: 45, price: 100, id: 4},
+          {name: 'Hair straiting', time: 30, price: 700, id: 5},
+        ],
+      },"api": {
+      "name": "getBarberHairStyle",
+      "type": "GET",
+      "url": "../userImages"
+      "parameters": {"barberId"},
+      "response": {
+        "model"
+      }
+    },
+  ]
+    {
+      "name": "ScheduleAppointmentModal",
+      "model": {"appointmentId": 1,
+        "date": {"day": 1, "month": 8, "year": 2021},
+        "time": '9:30-10:00',
+        "type": ['fan', 'ddd', 'dddddddd'],
+        "price": 70,
+        "amountOfTime": 30,
+        "gender": 'female',
+        "barberName": 'A sultinian',
+        "barberId": 1,
+      },"api": {
+      "name": "GetScheduleAppointment",
+      "type": "GET",
+      "url": "../scheduleAppointment",
+      "parameters": {"userId"},
+      "response": {
+        "past": ["model"],
+        "future": ["model"]
+      }
+    },
+  ]
+    {
+      "name": "createAppointment",
+     "api": {
+      "name": "addUserImage",
+      "type": "POST",
+      "url": "../userImages",
+      "parameters": {"ScheduleAppointmentModal","userId"},
+      "response": {
+        "isComplete": true
+      }
+    },
+  ]
+    {
+      "name": "deleteAppointment",
+     "api": {
+      "name": "addUserImage",
+      "type": "POST",
+      "url": "../userImages",
+      "parameters": {"appointmentId","userId"},
+      "response": {
+        "isComplete": true
+      }
+    },
+  ]
+    {
+      "name": "AppointmentTimeAccordingToDateModel",
+      "model": [
+        '9:00-9:30',
+        '9:30-10:00',
+        '10:30-11:00',
+        '11:00-11:30',
+        '11:30-12:00',
+        '12:00-12:30',
+        '12:30-13:00',
+        '13:00-13:30',
+        '13:30-14:00',
+        '14:00-14:30',
+        '14:30-15:00',
+        '17:00-17:30',
+        '17:30-18:00',
+      ],"api": {
+      "name": "getAppointmentTimeAccordingToDate",
+      "type": "POST",
+      "url": "../appointmentTimeAccordingToDate",
+      "parameters": {"barberId"},
+      "response": {
+        "model"
+      }
+    },
+  ]

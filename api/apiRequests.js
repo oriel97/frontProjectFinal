@@ -105,9 +105,6 @@ export default class Api extends React.Component {
   static async getBarberHairStyleList(BarberId: number) {
     return BarberHairCutTypes[BarberId];
   }
-  static async getMaxAndMinDates(BarberId: number) {
-    return BarberHairAppointmentPossibleDates[BarberId];
-  }
 
   static async getScheduleAppointment(customerId: number) {
     return Appointments;
