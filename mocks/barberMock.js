@@ -30,7 +30,7 @@ export const barberList = [
     },
     grade: 4,
     followers: 200,
-    picture: 2,
+    picture: imageBase64,
     favorite: true,
     id: 2,
     summary: {
@@ -48,7 +48,7 @@ export const barberList = [
     },
     grade: 5,
     followers: 100,
-    picture: 2,
+    picture: imageBase64,
     favorite: true,
     id: 3,
     summary: {
@@ -66,7 +66,7 @@ export const barberList = [
     },
     grade: 5,
     followers: 100,
-    picture: 2,
+    picture: imageBase64,
     favorite: false,
     id: 4,
     summary: {
@@ -84,7 +84,7 @@ export const barberList = [
     },
     grade: 5,
     followers: 100,
-    picture: 2,
+    picture: imageBase64,
     favorite: true,
     id: 5,
 
@@ -103,7 +103,7 @@ export const barberList = [
     },
     grade: 5,
     followers: 100,
-    picture: 2,
+    picture: imageBase64,
     favorite: true,
     id: 6,
 
@@ -119,7 +119,7 @@ export const barberList = [
     exactLocation: 'nahal amud 13, modeiin',
     grade: 5,
     followers: 200,
-    picture: 2,
+    picture: imageBase64,
     favorite: true,
     id: 7,
 
@@ -138,7 +138,7 @@ export const barberList = [
     },
     grade: 5,
     followers: 600,
-    picture: 2,
+    picture: imageBase64,
     favorite: false,
     id: 8,
 
@@ -157,7 +157,7 @@ export const barberList = [
     },
     grade: 5,
     followers: 20,
-    picture: 2,
+    picture: imageBase64,
     favorite: false,
     id: 9,
 
@@ -176,7 +176,7 @@ export const barberList = [
     },
     grade: 5,
     followers: 200,
-    picture: 2,
+    picture: imageBase64,
     favorite: false,
     id: 10,
 

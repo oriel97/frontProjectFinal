@@ -11,7 +11,7 @@ import {Avatar} from 'react-native-elements';
 
 interface IProps {
   image: base64;
-  avatar?: base64;
+  avatar?: any;
   barberName: string;
   description: string;
   navigation: any;

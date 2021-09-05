@@ -7,8 +7,6 @@ import {
   ScrollView,
   ActivityIndicator,
   Dimensions,
-  useWindowDimensions,
-  SafeAreaView,
 } from 'react-native';
 import {Colors} from '../utils/color';
 import Input from '../components/input';
@@ -22,6 +20,7 @@ interface IProps {
 }
 
 const CreateNewUser: FunctionComponent<IProps> = ({navigation}) => {
+  const [response, setResponse] = useState("can't submit - try again later");
   const [backColor, setBackColor] = useState(Colors.lightGrey);
   const [openPopUp, setOpenPopUp] = useState(true);
   const [isCreated, setIsCreated] = useState(false);
@@ -164,6 +163,9 @@ const CreateNewUser: FunctionComponent<IProps> = ({navigation}) => {
         setIsLoading(false);
         if (response.message === 'New user created!') {
           setIsCreated(true);
+        } else if (response.message === 'try other user name') {
+          serverProblem(true);
+          setResponse('try other user name');
         }
       } catch (error) {
         setIsLoading(false);
@@ -355,7 +357,7 @@ const CreateNewUser: FunctionComponent<IProps> = ({navigation}) => {
       />
       {serverProblem && (
         <View style={[styles.problem, {top: 785, left: 70}]}>
-          <Text style={styles.problemText}>can't submit - try again later</Text>
+          <Text style={styles.problemText}>{response}</Text>
         </View>
       )}
       <View style={{alignItems: 'center', paddingTop: 30}}>

@@ -20,6 +20,7 @@ import ImageModal from '../components/imageModal';
 import {Colors} from '../utils/color';
 import Api from '../api/apiRequests';
 import {IUserStore} from '../Interfaces/view-store.types';
+import {manImage, womenImage} from '../utils/imageUtils';
 
 interface IProps {
   navigation: any;
@@ -112,7 +113,7 @@ const UserImageScreen: FunctionComponent<IProps> = ({
 
   return (
     <View style={{backgroundColor: Colors.white, height: '100%'}}>
-      <Header headerName={'Barber images'} openDrawerFunc={openDrawer} />
+      <Header headerName={' images'} openDrawerFunc={openDrawer} />
       <TouchableOpacity onPress={onPressOnBackArrow} style={styles.backIcon}>
         <Icon name="chevron-left" color={Colors.black} size={36} />
       </TouchableOpacity>
@@ -126,6 +127,7 @@ const UserImageScreen: FunctionComponent<IProps> = ({
             <ImageModal
               topName={userStore.userName + ' - ' + userStore.userEmail}
               navigation={navigation}
+              avatar={userStore.userGender === 'Male' ? manImage : womenImage}
               image={item.item.image}
               barberName={userStore.userName}
               description={item.item.description}

@@ -80,7 +80,7 @@ export default class Api extends React.Component {
       name: 'oriel',
       email: 'oriel97@gmail.com',
       city: 'Netanya',
-      gender: 'Male',
+      gender: 'Female',
     };
   }
 
