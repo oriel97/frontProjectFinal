@@ -1,6 +1,6 @@
 import type {IAboutBarber} from '../utils/utils';
 import type {IBarber} from '../Interfaces/user';
-import type {IImage} from '../utils/utils';
+import type {IImage, INotifications} from '../utils/utils';
 
 export interface IBarberPageViewStore {
   barberId: string;
@@ -19,6 +19,7 @@ export interface IBarberPageViewStore {
   barberImageList: IImage[];
 }
 export interface IUserStore {
+  notifications: INotifications;
   userGender: string;
   userEmail: string;
   userCity: string;
@@ -30,4 +31,8 @@ export interface IUserStore {
   setLogin: any;
   setUserImages: any;
   addImageToImageList: any;
+  setNotifications: any;
+  setNotificationSeen: any;
+  unseenNotification: number;
+  setNotificationPressed: any;
 }

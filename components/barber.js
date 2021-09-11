@@ -3,7 +3,6 @@ import {View, StyleSheet, Text} from 'react-native';
 import {Avatar} from 'react-native-elements';
 import Card from './card';
 import {IBarber} from '../Interfaces/user';
-import {imageBase64} from '../utils/imageUtils';
 
 interface IProps {
   barber: IBarber;

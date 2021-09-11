@@ -8,6 +8,7 @@ import {
   barberImages,
   barberList,
   BarbersInformation,
+  notifications,
   userImages,
 } from '../mocks/barberMock';
 import type {IAppointment} from '../utils/utils';
@@ -87,6 +88,13 @@ export default class Api extends React.Component {
   static async getBarbersList() {
     return barberList;
   }
+  static async getNotification(token: string) {
+    return notifications;
+  }
+
+  static seenNotification(token: string, notificationId) {}
+
+  static pressOnNotificationButton(token: string) {}
 
   static async makeFollowOrUnfollow(follow: boolean) {}
 

@@ -114,3 +114,16 @@ export interface IImage {
   image: Image;
   description: string;
 }
+
+export interface INotifications {
+  id: number;
+  shortHeader: string;
+  header: string;
+  shortMessage: string;
+  barberName: string;
+  message: string;
+  date: string;
+  time: string;
+  wasRead: boolean;
+  barberAvatar: any;
+}

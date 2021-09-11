@@ -3,6 +3,7 @@ import {action, makeObservable, observable} from 'mobx';
 import React from 'react';
 import type {IAboutBarber, IImage} from '../utils/utils';
 import type {IBarber} from '../Interfaces/user';
+import Api from '../api/apiRequests';
 
 const initialData = {
   barberList: [],

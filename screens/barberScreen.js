@@ -17,25 +17,39 @@ import OptionsModal from '../components/barberScreenComponents/optionsModal';
 import Api from '../api/apiRequests';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import type {IBarber} from '../Interfaces/user';
+import NotificationsModal from '../components/notificationsModal';
+import {IUserStore} from '../Interfaces/view-store.types';
 
 interface IProps {
   barberPageViewStores?: IBarberPageViewStore;
   navigation: any;
+  userStore?: IUserStore;
 }
 
 const BarberScreen: FunctionComponent<IProps> = ({
   barberPageViewStores,
   navigation,
+  userStore,
 }) => {
   const [openOption, setOpenOption] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [thereIsBarbers, setThereIsBarbers] = useState(false);
+  const [pressedNotification, setPressedNotification] = useState(false);
+
+  const onNotificationPress = () => {
+    setPressedNotification(!pressedNotification);
+    userStore.setNotificationPressed(0);
+    Api.pressOnNotificationButton(userStore.userId);
+  };
+  const onPressXNotifications = () => {
+    setPressedNotification(false);
+  };
 
   const openDrawer = () => {
     navigation.openDrawer();
   };
   const sortOption = () => {
-    if (barberPageViewStores?.barberList?.length > 0) {
+    if (barberPageViewStores?.barberList?.length > 0 && !pressedNotification) {
       setOpenOption(!openOption);
     }
   };
@@ -63,15 +77,28 @@ const BarberScreen: FunctionComponent<IProps> = ({
     });
   }, [navigation, barberPageViewStores]);
 
+  useEffect(() => {
+    return navigation.addListener('focus', () => {
+      const starter = async () => {
+        await userStore.setNotifications(userStore.userId);
+      };
+      starter().catch(e => {
+        console.log(e);
+      });
+    });
+  });
+
   const pressOnFavorite = () => {
-    const retList = [];
-    let list = barberPageViewStores.barberList;
-    for (let i = 0; i < list?.length; i++) {
-      if (list[i].favorite === true) {
-        retList.push(list[i]);
+    if (!pressedNotification) {
+      const retList = [];
+      let list = barberPageViewStores.barberList;
+      for (let i = 0; i < list?.length; i++) {
+        if (list[i].favorite === true) {
+          retList.push(list[i]);
+        }
       }
+      barberPageViewStores.setList(retList);
     }
-    barberPageViewStores.setList(retList);
   };
 
   const onBarberPress = (item: IBarber) => {
@@ -117,10 +144,37 @@ const BarberScreen: FunctionComponent<IProps> = ({
           )}
         </View>
       )}
+      {pressedNotification && <View style={styles.disabled} />}
+      {pressedNotification && (
+        <NotificationsModal onPressedX={onPressXNotifications} />
+      )}
       <OptionsModal sortOption={sortOption} openOption={openOption} />
       <View style={styles.navBar}>
         <View style={styles.bell}>
-          <TouchableOpacity>
+          <TouchableOpacity onPress={onNotificationPress}>
+            {!!userStore.unseenNotification &&
+              userStore.unseenNotification > 0 && (
+                <View
+                  style={{
+                    position: 'absolute',
+                    backgroundColor: Colors.red,
+                    width: 18,
+                    height: 18,
+                    borderRadius: 18,
+                    left: 20,
+                    zIndex: 1,
+                  }}>
+                  {userStore.unseenNotification < 9 ? (
+                    <Text style={{left: 5, bottom: 1, color: Colors.white}}>
+                      {userStore.unseenNotification}
+                    </Text>
+                  ) : (
+                    <Text style={{color: Colors.white, left: 1, bottom: 1}}>
+                      9+
+                    </Text>
+                  )}
+                </View>
+              )}
             <Icon name="bell" color={Colors.black} size={40} />
           </TouchableOpacity>
         </View>
@@ -167,5 +221,20 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     top: 220,
   },
+  disabled: {
+    position: 'absolute',
+    top: 0,
+    right: 0,
+    left: 0,
+    bottom: 0,
+    zIndex: 999,
+    width: '100%',
+    height: '100%',
+    backgroundColor: 'black',
+    opacity: 0.4,
+  },
 });
-export default inject('barberPageViewStores')(observer(BarberScreen));
+export default inject(
+  'barberPageViewStores',
+  'userStore',
+)(observer(BarberScreen));
