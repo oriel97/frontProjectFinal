@@ -156,7 +156,7 @@ const UserImageScreen: FunctionComponent<IProps> = ({
               <TouchableOpacity
                 onPress={launchImageLibrary}
                 style={styles.button}>
-                <Text style={{fontWeight: 'bold'}}>Choose from libary</Text>
+                <Text style={{fontWeight: 'bold'}}>Choose from library</Text>
               </TouchableOpacity>
               <TouchableOpacity onPress={launchCamera} style={styles.button}>
                 <Text style={{fontWeight: 'bold'}}>Take a picture</Text>

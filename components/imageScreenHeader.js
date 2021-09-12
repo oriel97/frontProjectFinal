@@ -9,11 +9,13 @@ import Api from '../api/apiRequests';
 interface IProps {
   imageListLength: number;
   barberPageViewStores?: IBarberPageViewStore;
+  openGradeBox: any;
 }
 
 const ImageScreenHeader: FunctionComponent<IProps> = ({
   imageListLength,
   barberPageViewStores,
+  openGradeBox,
 }) => {
   const [follow, setFollow] = useState(barberPageViewStores.barber.favorite);
   const onPressFollow = async () => {
@@ -22,6 +24,7 @@ const ImageScreenHeader: FunctionComponent<IProps> = ({
       .then()
       .catch(error => error);
   };
+
   return (
     <View>
       <View style={{flexDirection: 'row'}}>
@@ -52,6 +55,9 @@ const ImageScreenHeader: FunctionComponent<IProps> = ({
           </View>
           <TouchableOpacity onPress={onPressFollow} style={styles.follow}>
             <Text>{follow ? 'follow' : 'unfollow '}</Text>
+          </TouchableOpacity>
+          <TouchableOpacity onPress={openGradeBox} style={styles.follow}>
+            <Text>Grade the barber</Text>
           </TouchableOpacity>
         </View>
       </View>

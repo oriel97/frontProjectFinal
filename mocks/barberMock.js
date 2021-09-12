@@ -990,7 +990,7 @@ export const notifications = {
     {
       id: 1,
       shortHeader: 'choose appointment',
-      header: 'last appointment are here',
+      header: 'last appointment are here - come soon!!',
       barberName: 'oriel asraf',
       message:
         'there is last available appointments for today - go get one! wefjwoiefjw fwejfweibfwehifwe wefdbqwidbq qwidbqiwudiqhwdhiqwd iwefhqiwefihwihf weihfwie ewifhwif wfiuwef wfiwefw fiwf wfiwefdhiwebifweihf',

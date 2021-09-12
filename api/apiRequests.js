@@ -91,6 +91,9 @@ export default class Api extends React.Component {
   static async getNotification(token: string) {
     return notifications;
   }
+  static async giveGrade(token: string, grade: number) {
+    await sleep(3000);
+  }
 
   static seenNotification(token: string, notificationId) {}
 

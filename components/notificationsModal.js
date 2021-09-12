@@ -1,10 +1,9 @@
-import React, {FunctionComponent, useEffect, useState} from 'react';
+import React, {FunctionComponent, useState} from 'react';
 import {
   View,
   Text,
   StyleSheet,
   TouchableOpacity,
-  ActivityIndicator,
   FlatList,
   ScrollView,
 } from 'react-native';
@@ -14,7 +13,7 @@ import {Colors} from '../utils/color';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import type {INotifications} from '../utils/utils';
 import {Avatar} from 'react-native-elements';
-import Api, {seenNotification} from '../api/apiRequests';
+import Api from '../api/apiRequests';
 
 interface IProps {
   userStore?: IUserStore;
@@ -25,7 +24,6 @@ const NotificationsModal: FunctionComponent<IProps> = ({
   userStore,
   onPressedX,
 }) => {
-  const [loading, setLoading] = useState(false);
   const [notificationsSide, setNotificationsSide] = useState(false);
   const [chosenNotification, setChosenNotification] = useState();
 
@@ -72,14 +70,14 @@ const NotificationsModal: FunctionComponent<IProps> = ({
     return (
       <TouchableOpacity onPress={() => onPressOnNotification(notification)}>
         <View
-          style={{
-            height: 100,
-            width: '100%',
-            flexDirection: 'row',
-            backgroundColor: notification.wasRead
-              ? Colors.white
-              : Colors.facebookBlue,
-          }}>
+          style={[
+            styles.notificationContainer,
+            {
+              backgroundColor: notification.wasRead
+                ? Colors.white
+                : Colors.facebookBlue,
+            },
+          ]}>
           <Avatar
             rounded
             source={{uri: notification.barberAvatar}}
@@ -158,7 +156,7 @@ const NotificationsModal: FunctionComponent<IProps> = ({
               fontSize: 24,
               fontWeight: 'bold',
               color: Colors.lightBlue,
-              alignSelf: 'center',
+              textAlign: 'center',
             }}>
             {chosenNotification.header}
           </Text>
@@ -177,6 +175,11 @@ const NotificationsModal: FunctionComponent<IProps> = ({
   );
 };
 const styles = StyleSheet.create({
+  notificationContainer: {
+    height: 100,
+    width: '100%',
+    flexDirection: 'row',
+  },
   container: {
     backgroundColor: 'white',
     width: 350,
