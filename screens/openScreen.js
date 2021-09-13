@@ -1,12 +1,13 @@
 import React from 'react';
 
-import {View, StyleSheet, Text} from 'react-native';
+import {View, StyleSheet, Text, Image} from 'react-native';
 import {FunctionComponent} from 'react';
 import {Colors} from '../utils/color';
 import {IBarberPageViewStore} from '../Interfaces/view-store.types';
 import {initFromLocalStorage} from '../api/phoneStorage';
 import {inject, observer} from 'mobx-react';
 import Api from '../api/apiRequests';
+import {wallpaper} from '../utils/imageUtils';
 
 interface IProps {
   barberPageViewStores?: IBarberPageViewStore;
@@ -44,23 +45,36 @@ const OpenScreen: FunctionComponent<IProps> = ({
     } else {
       navigation.navigate('DrawerNav');
     }
-  }, 2000);
+  }, 4000);
 
   return (
     <View style={{backgroundColor: Colors.lightGrey}}>
-      <View style={{justifyContent: 'center', alignItems: 'center'}}>
-        <Text
-          style={{
-            color: 'red',
-            fontStyle: 'italic',
-            fontSize: 40,
-            justifyContent: 'center',
-            textAlign: 'center',
-            alignItems: 'center',
-          }}>
-          Welcome!
-        </Text>
-      </View>
+      <Image
+        source={{uri: wallpaper}}
+        style={{
+          width: '100%',
+          height: '100%',
+          justifyContent: 'center',
+          alignSelf: 'center',
+        }}
+      />
+
+      <Text
+        style={{
+          top: 200,
+          right: 60,
+          elevation: 10,
+          position: 'absolute',
+          color: 'red',
+          fontStyle: 'italic',
+          fontSize: 80,
+          justifyContent: 'center',
+          textAlign: 'center',
+          alignItems: 'center',
+          transform: [{rotate: '20deg'}],
+        }}>
+        Lets Get Cut!
+      </Text>
     </View>
   );
 };
