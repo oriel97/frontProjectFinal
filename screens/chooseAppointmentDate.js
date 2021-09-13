@@ -132,7 +132,6 @@ const ChooseAppointmentScreen: FunctionComponent<IProps> = ({
 
   useEffect(() => {
     return navigation.addListener('focus', () => {
-      console.log(new Date().getDate() + 14);
       const starter = () => {};
       setDate(new Date(2021, 7, 1));
       setShow(true);

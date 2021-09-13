@@ -152,7 +152,6 @@ const AppointmentScreen: FunctionComponent<IProps> = ({
     setLoading(true);
     await Api.deleteAppointment(appointment.appointmentId);
     let futureList = appointmentViewStore.futureAppointmentList;
-    console.log(appointment);
     futureList = filter(futureList, appointment1 => {
       return appointment1.appointmentId !== appointment.appointmentId;
     });

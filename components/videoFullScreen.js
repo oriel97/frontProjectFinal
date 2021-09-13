@@ -115,7 +115,6 @@ const VideoFullScreen: React.FunctionComponent<IProps> = ({videoViewStore}) => {
     <View
       onResponderGrant={TouchTheScreen}
       onStartShouldSetResponder={() => {
-        console.log('here');
         return true;
       }}
       style={styles.container}>
@@ -128,7 +127,6 @@ const VideoFullScreen: React.FunctionComponent<IProps> = ({videoViewStore}) => {
         resizeMode={'contain'}
         onLoad={onLoad}
         onProgress={data => {
-          console.log(data);
           if (!onStart) {
             start();
           }

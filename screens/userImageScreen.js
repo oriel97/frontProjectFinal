@@ -53,9 +53,7 @@ const UserImageScreen: FunctionComponent<IProps> = ({
     };
     ImagePicker.launchCamera(options, response => {
       if (response.didCancel) {
-        console.log('User cancelled image picker');
       } else if (response.errorCode) {
-        console.log('ImagePicker Error: ', response.error);
       } else {
         setImage('data:image/png;base64,' + response.assets[0].base64);
         setAddImage(false);
@@ -76,10 +74,8 @@ const UserImageScreen: FunctionComponent<IProps> = ({
     };
     ImagePicker.launchImageLibrary(options, response => {
       if (response.didCancel) {
-        console.log('User cancelled image picker');
         setAddImage(false);
       } else if (response.error) {
-        console.log('ImagePicker Error: ', response.error);
         setAddImage(false);
       } else {
         setImage('data:image/png;base64,' + response.assets[0].base64);

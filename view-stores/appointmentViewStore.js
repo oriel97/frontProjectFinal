@@ -62,7 +62,6 @@ class AppointmentViewStore implements IAppointmentViewStore {
   }
 
   setAppointmentList(list: IAppointment[]) {
-    console.log(list);
     this.pastAppointmentList = list.past;
     this.futureAppointmentList = list.future;
   }
