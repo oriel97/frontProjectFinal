@@ -140,7 +140,7 @@ const VideoFullScreen: React.FunctionComponent<IProps> = ({videoViewStore}) => {
           setDoesSeek(false);
         }}
       />
-      {showButtons && (
+      {showButtons && timeOfTheMovie > 0 && (
         <View>
           <TouchableOpacity onPress={pressOnX} style={styles.x}>
             <Icon name="times" color={'white'} size={24} />
