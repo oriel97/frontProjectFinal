@@ -3,6 +3,7 @@ import {inject, observer} from 'mobx-react';
 
 import {
   ActivityIndicator,
+  BackHandler,
   FlatList,
   StyleSheet,
   Text,
@@ -44,6 +45,17 @@ const BarberScreen: FunctionComponent<IProps> = ({
   const onPressXNotifications = () => {
     setPressedNotification(false);
   };
+
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  const backAction = () => {
+    navigation.navigate('BarberScreen');
+    return true;
+  };
+  useEffect(() => {
+    BackHandler.addEventListener('hardwareBackPress', backAction);
+    return () =>
+      BackHandler.removeEventListener('hardwareBackPress', backAction);
+  }, [backAction]);
 
   const openDrawer = () => {
     navigation.openDrawer();

@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {inject, observer} from 'mobx-react';
 
 import {
@@ -7,6 +7,7 @@ import {
   Text,
   TouchableOpacity,
   ActivityIndicator,
+  BackHandler,
 } from 'react-native';
 import {FunctionComponent} from 'react';
 import {Colors} from '../utils/color';
@@ -28,6 +29,17 @@ const LoginWindow: FunctionComponent<IProps> = ({navigation, userStore}) => {
   const [loginProblem, setLoginProblem] = useState(false);
   const [name, setName] = useState('');
   const [password, setPassword] = useState('');
+
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  const backAction = () => {
+    BackHandler.exitApp();
+    return true;
+  };
+  useEffect(() => {
+    BackHandler.addEventListener('hardwareBackPress', backAction);
+    return () =>
+      BackHandler.removeEventListener('hardwareBackPress', backAction);
+  }, [backAction]);
 
   const nameInputHandler = enteredText => {
     setName(enteredText);

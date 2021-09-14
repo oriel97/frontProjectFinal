@@ -1,13 +1,12 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {
   View,
   StyleSheet,
   Text,
-  SafeAreaView,
   TouchableOpacity,
+  BackHandler,
 } from 'react-native';
 import {FunctionComponent} from 'react';
-import {IBarberPageViewStore} from '../Interfaces/view-store.types';
 import Header from '../components/header';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import {Colors} from '../utils/color';
@@ -29,8 +28,24 @@ const VideoScreen: FunctionComponent<IProps> = ({
     navigation.openDrawer();
   };
   const onPressOnBackArrow = () => {
-    navigation.goBack();
+    navigation.navigate('BarberScreen');
   };
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  const backAction = () => {
+    if (videoViewStore.openVideoPlayer) {
+      videoViewStore.setOpenVideoPlayer();
+      videoViewStore.setFullScreenMode();
+      videoViewStore?.setTimeOfTheMovie(0);
+      videoViewStore?.setMovieOnPlay(false);
+    }
+    navigation.navigate('BarberScreen');
+    return true;
+  };
+  useEffect(() => {
+    BackHandler.addEventListener('hardwareBackPress', backAction);
+    return () =>
+      BackHandler.removeEventListener('hardwareBackPress', backAction);
+  }, [backAction]);
   const introductionPress = () => {
     videoViewStore.setOpenVideoPlayer();
     videoViewStore.setFullScreenMode();

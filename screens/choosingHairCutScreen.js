@@ -2,6 +2,7 @@ import React, {FunctionComponent, useEffect, useRef, useState} from 'react';
 import {inject, observer} from 'mobx-react';
 
 import {
+  BackHandler,
   ScrollView,
   StyleSheet,
   Text,
@@ -30,6 +31,17 @@ const ChoosingHairCutScreen: FunctionComponent<IProps> = ({
   const [selectedGender, setSelectedGender] = useState('Pick gender');
   const [selectedSingle, setSelectedSingle] = useState([]);
   const [selectedHairStyle, setSelectedHairStyle] = useState([]);
+
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  const backAction = () => {
+    navigation.goBack();
+    return true;
+  };
+  useEffect(() => {
+    BackHandler.addEventListener('hardwareBackPress', backAction);
+    return () =>
+      BackHandler.removeEventListener('hardwareBackPress', backAction);
+  }, [backAction]);
 
   useEffect(() => {
     return navigation.addListener('focus', () => {

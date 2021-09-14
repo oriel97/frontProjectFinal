@@ -3,6 +3,7 @@ import {inject, observer} from 'mobx-react';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import {
   ActivityIndicator,
+  BackHandler,
   ScrollView,
   StyleSheet,
   Text,
@@ -37,6 +38,17 @@ const ChooseAppointmentScreen: FunctionComponent<IProps> = ({
   const [chosenTime, setChosenTime] = useState('');
   const [madeAppointment, setMadeAppointment] = useState(false);
   const [loading, setLoading] = useState(false);
+
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  const backAction = () => {
+    navigation.goBack();
+    return true;
+  };
+  useEffect(() => {
+    BackHandler.addEventListener('hardwareBackPress', backAction);
+    return () =>
+      BackHandler.removeEventListener('hardwareBackPress', backAction);
+  }, [backAction]);
 
   const onChange = async (event, selectedDate: Date) => {
     if (selectedDate) {

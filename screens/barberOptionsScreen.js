@@ -1,5 +1,12 @@
-import React from 'react';
-import {View, StyleSheet, Text, TouchableOpacity, Linking} from 'react-native';
+import React, {useEffect} from 'react';
+import {
+  View,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  Linking,
+  BackHandler,
+} from 'react-native';
 import {FunctionComponent} from 'react';
 import {IBarberPageViewStore} from '../Interfaces/view-store.types';
 import Header from '../components/header';
@@ -20,8 +27,20 @@ const BarberOptionsScreen: FunctionComponent<IProps> = ({
     navigation.openDrawer();
   };
   const onPressOnBackArrow = () => {
-    navigation.goBack();
+    navigation.navigate('BarberScreen');
   };
+
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  const backAction = () => {
+    navigation.navigate('BarberScreen');
+    return true;
+  };
+  useEffect(() => {
+    BackHandler.addEventListener('hardwareBackPress', backAction);
+    return () =>
+      BackHandler.removeEventListener('hardwareBackPress', backAction);
+  }, [backAction]);
+
   const onPressMakeAppointment = () => {
     navigation.navigate('ChoosingHairCutScreen');
   };

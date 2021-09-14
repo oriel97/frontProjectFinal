@@ -6,6 +6,7 @@ import {
   FlatList,
   Text,
   ActivityIndicator,
+  BackHandler,
 } from 'react-native';
 import {FunctionComponent} from 'react';
 
@@ -44,6 +45,18 @@ const BarberImageScreen: FunctionComponent<IProps> = ({
     setGrade(0);
     navigation.goBack();
   };
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  const backAction = () => {
+    setOpenGradeBox(false);
+    setGrade(0);
+    navigation.navigate('BarberOptionsScreen');
+    return true;
+  };
+  useEffect(() => {
+    BackHandler.addEventListener('hardwareBackPress', backAction);
+    return () =>
+      BackHandler.removeEventListener('hardwareBackPress', backAction);
+  }, [backAction]);
 
   useEffect(() => {
     return navigation.addListener('focus', () => {

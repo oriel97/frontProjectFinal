@@ -1,32 +1,38 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {
   View,
   StyleSheet,
   Text,
   SafeAreaView,
   TouchableOpacity,
+  BackHandler,
 } from 'react-native';
 import {FunctionComponent} from 'react';
-import {IBarberPageViewStore} from '../Interfaces/view-store.types';
 import Header from '../components/header';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import {Colors} from '../utils/color';
-import {fonts} from 'react-native-elements/dist/config';
 
 interface IProps {
-  barberPageViewStores?: IBarberPageViewStore;
   navigation: any;
 }
-const AboutScreen: FunctionComponent<IProps> = ({
-  barberPageViewStores,
-  navigation,
-}) => {
+const AboutScreen: FunctionComponent<IProps> = ({navigation}) => {
   const openDrawer = () => {
     navigation.openDrawer();
   };
   const onPressOnBackArrow = () => {
-    navigation.goBack();
+    navigation.navigate('BarberScreen');
   };
+
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  const backAction = () => {
+    navigation.navigate('BarberScreen');
+    return true;
+  };
+  useEffect(() => {
+    BackHandler.addEventListener('hardwareBackPress', backAction);
+    return () =>
+      BackHandler.removeEventListener('hardwareBackPress', backAction);
+  }, [backAction]);
   return (
     <SafeAreaView>
       <Header headerName={'About page'} openDrawerFunc={openDrawer} />

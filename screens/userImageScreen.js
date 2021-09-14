@@ -6,6 +6,7 @@ import {
   TouchableOpacity,
   FlatList,
   Image,
+  BackHandler,
 } from 'react-native';
 import {FunctionComponent} from 'react';
 
@@ -39,8 +40,22 @@ const UserImageScreen: FunctionComponent<IProps> = ({
     navigation.openDrawer();
   };
   const onPressOnBackArrow = () => {
-    navigation.goBack();
+    navigation.navigate('BarberScreen');
   };
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  const backAction = () => {
+    navigation.navigate('BarberScreen');
+    setImage();
+    setDescription('');
+    setAddImage(false);
+    setAddDescription(false);
+    return true;
+  };
+  useEffect(() => {
+    BackHandler.addEventListener('hardwareBackPress', backAction);
+    return () =>
+      BackHandler.removeEventListener('hardwareBackPress', backAction);
+  }, [backAction]);
 
   const launchCamera = () => {
     let options = {

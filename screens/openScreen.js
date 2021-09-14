@@ -45,38 +45,34 @@ const OpenScreen: FunctionComponent<IProps> = ({
     } else {
       navigation.navigate('DrawerNav');
     }
-  }, 4000);
+  }, 3000);
 
   return (
     <View style={{backgroundColor: Colors.lightGrey}}>
-      <Image
-        source={{uri: wallpaper}}
-        style={{
-          width: '100%',
-          height: '100%',
-          justifyContent: 'center',
-          alignSelf: 'center',
-        }}
-      />
-
-      <Text
-        style={{
-          top: 200,
-          right: 60,
-          elevation: 10,
-          position: 'absolute',
-          color: 'red',
-          fontStyle: 'italic',
-          fontSize: 80,
-          justifyContent: 'center',
-          textAlign: 'center',
-          alignItems: 'center',
-          transform: [{rotate: '20deg'}],
-        }}>
-        Lets Get Cut!
-      </Text>
+      <Image source={{uri: wallpaper}} style={styles.imageStyle} />
+      <Text style={styles.textStyle}>Lets Get Cut!</Text>
     </View>
   );
 };
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  imageStyle: {
+    width: '100%',
+    height: '100%',
+    justifyContent: 'center',
+    alignSelf: 'center',
+  },
+  textStyle: {
+    top: 200,
+    right: 60,
+    elevation: 10,
+    position: 'absolute',
+    color: 'red',
+    fontStyle: 'italic',
+    fontSize: 80,
+    justifyContent: 'center',
+    textAlign: 'center',
+    alignItems: 'center',
+    transform: [{rotate: '20deg'}],
+  },
+});
 export default inject('barberPageViewStores')(observer(OpenScreen));

@@ -6,6 +6,7 @@ import {
   SafeAreaView,
   TouchableOpacity,
   ScrollView,
+  BackHandler,
 } from 'react-native';
 import {FunctionComponent} from 'react';
 import {IBarberPageViewStore} from '../Interfaces/view-store.types';
@@ -31,13 +32,32 @@ const AboutBarberScreen: FunctionComponent<IProps> = ({
     navigation.openDrawer();
   };
   const onPressOnBackArrow = () => {
-    navigation.goBack();
+    setIsOpenSummary(false);
+    setIsOpenPhone(false);
+    setIsOpenLocation(false);
+    setIsOpenOpenHours(false);
+    navigation.navigate('BarberOptionsScreen');
   };
 
   const [isOpenSummary, setIsOpenSummary] = useState(false);
   const [isOpenPhone, setIsOpenPhone] = useState(false);
   const [isOpenLocation, setIsOpenLocation] = useState(false);
   const [isOpenOpenHours, setIsOpenOpenHours] = useState(false);
+
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  const backAction = () => {
+    setIsOpenSummary(false);
+    setIsOpenPhone(false);
+    setIsOpenLocation(false);
+    setIsOpenOpenHours(false);
+    navigation.navigate('BarberOptionsScreen');
+    return true;
+  };
+  useEffect(() => {
+    BackHandler.addEventListener('hardwareBackPress', backAction);
+    return () =>
+      BackHandler.removeEventListener('hardwareBackPress', backAction);
+  }, [backAction]);
 
   useEffect(() => {
     return navigation.addListener('focus', () => {
@@ -50,10 +70,6 @@ const AboutBarberScreen: FunctionComponent<IProps> = ({
       starter().catch(e => {
         console.log(e);
       });
-      setIsOpenSummary(false);
-      setIsOpenPhone(false);
-      setIsOpenLocation(false);
-      setIsOpenOpenHours(false);
     });
   }, [navigation, barberPageViewStores]);
 
