@@ -159,11 +159,11 @@ const CreateNewUser: FunctionComponent<IProps> = ({navigation}) => {
           email: newEmail,
           dateOfBirth: date,
         });
-        const response = await Api.createNewUser(body);
+        const res = await Api.createNewUser(body);
         setIsLoading(false);
-        if (response.message === 'New user created!') {
+        if (res.message === 'New user created!') {
           setIsCreated(true);
-        } else if (response.message === 'try other user name') {
+        } else if (res.message === 'try other user name') {
           serverProblem(true);
           setResponse('try other user name');
         }

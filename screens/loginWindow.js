@@ -57,7 +57,7 @@ const LoginWindow: FunctionComponent<IProps> = ({navigation, userStore}) => {
       setIsLoading(true);
       const response = await Api.Login(name, password);
       const token = response.token;
-      const userInfo = await Api.getUserInfo();
+      const userInfo = await Api.getUserInfo(token);
       await signedIn(token.toString(), name);
       userStore.setLogin(
         name,

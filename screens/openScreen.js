@@ -23,7 +23,7 @@ const OpenScreen: FunctionComponent<IProps> = ({
     try {
       returnObj = await initFromLocalStorage().then(value => value);
       if (Object.keys(returnObj).length > 0) {
-        const userInfo = await Api.getUserInfo();
+        const userInfo = await Api.getUserInfo(returnObj.userId);
         barberPageViewStores.setLogin(
           returnObj.userName,
           returnObj.userId,

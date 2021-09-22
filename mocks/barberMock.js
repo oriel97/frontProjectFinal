@@ -989,16 +989,16 @@ export const notifications = {
   notifications: [
     {
       id: 1,
-      shortHeader: 'choose appointment',
-      header: 'last appointment are here - come soon!!',
-      barberName: 'oriel asraf',
+      shortHeader: 'choose appointment - 20',
+      header: 'last appointment are here - come soon!! - 50',
+      barberName: 'oriel asraf - 11',
       message:
-        'there is last available appointments for today - go get one! wefjwoiefjw fwejfweibfwehifwe wefdbqwidbq qwidbqiwudiqhwdhiqwd iwefhqiwefihwihf weihfwie ewifhwif wfiuwef wfiwefw fiwf wfiwefdhiwebifweihf',
+        '200 - there is last available appointments for today - go get one! wefjwoiefjw fwejfweibfwehifwe wefdbqwidbq qwidbqiwudiqhwdhiqwd iwefhqiwefihwihf weihfwie ewifhwif wfiuwef wfiwefw fiwf wfiwefdhiwebifweihf',
       date: '2021-09-07',
       time: '19:00:00',
       wasRead: false,
       barberAvatar: imageBase64,
-      shortMessage: 'last appointmens are here!',
+      shortMessage: 'last appointmens are here! - 30',
     },
     {
       id: 2,

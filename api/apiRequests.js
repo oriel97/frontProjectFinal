@@ -142,17 +142,17 @@ export default class Api extends React.Component {
    * try to Create new user
    */
   static async createNewUser(body) {
-    const method = HTTP.put;
+    const method = HTTP.post;
     const headers = {
       Accept: 'application/json',
       'Content-Type': 'application/json',
     };
-
     const requestObject = {method, headers, body};
     const returnPromise = new Promise(async (resolve, reject) => {
       try {
-        const response = await fetch(HTTP.createNewUser, requestObject);
+        console.log('response');
 
+        const response = await fetch(HTTP.createNewUser, requestObject);
         if (response.status === 200) {
           let user = response.json();
           resolve(user);
