@@ -45,48 +45,94 @@ export default class Api extends React.Component {
    * @param {*} password
    */
   static async Login(username, password) {
-    return {
-      token: 100,
+    let base64 = require('base-64');
+    const url = HTTP.login;
+    const method = HTTP.post;
+    const headers = {
+      Authorization: 'Basic ' + base64.encode(username + ':' + password),
+      Accept: HTTP.accept,
     };
-    // let base64 = require('base-64');
-    // const url = HTTP.login;
-    // const method = HTTP.post;
-    // const headers = {
-    //   Authorization: 'Basic ' + base64.encode(username + ':' + password),
-    //   Accept: HTTP.accept,
-    // };
-    //
-    // const requestObject = {method, headers};
-    // const returnPromise = new Promise(async (resolve, reject) => {
-    //   try {
-    //     const response = await fetch(url, requestObject);
-    //
-    //     if (response.status === 200) {
-    //       let user = response.json();
-    //       resolve(user);
-    //     } else if (response.status === 401) {
-    //       reject(HTTP.loginProblemMessage);
-    //     } else {
-    //       reject(HTTP.serverProblemMessage);
-    //     }
-    //   } catch (e) {
-    //     reject(e);
-    //   }
-    // });
-    // return this.functionWithTimeOut(3000, returnPromise);
+
+    const requestObject = {method, headers};
+    const returnPromise = new Promise(async (resolve, reject) => {
+      try {
+        const response = await fetch(url, requestObject);
+
+        if (response.status === 200) {
+          let user = response.json();
+          resolve(user);
+        } else if (response.status === 401) {
+          reject(HTTP.loginProblemMessage);
+        } else {
+          reject(HTTP.serverProblemMessage);
+        }
+      } catch (e) {
+        reject(e);
+      }
+    });
+    return this.functionWithTimeOut(3000, returnPromise);
   }
 
-  static async getUserInfo() {
-    return {
-      name: 'oriel',
-      email: 'oriel97@gmail.com',
-      city: 'Netanya',
-      gender: 'Female',
+  static async getUserInfo(token: string) {
+    const method = HTTP.get;
+    const headers = {
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+      'x-access-token': token,
     };
+    const requestObject = {method, headers};
+    const returnPromise = new Promise(async (resolve, reject) => {
+      try {
+        console.log('response');
+
+        const response = await fetch(
+          HTTP.serverAddress + '/userInfo/' + token,
+          requestObject,
+        );
+        if (response.status === 200) {
+          let user = response.json();
+          resolve(user);
+        } else if (response.status === 401) {
+          reject(HTTP.loginProblemMessage);
+        } else {
+          reject(HTTP.serverProblemMessage);
+        }
+      } catch (e) {
+        reject(e);
+      }
+    });
+    return this.functionWithTimeOut(3000, returnPromise);
   }
 
-  static async getBarbersList() {
-    return barberList;
+  static async getBarbersList(token: string) {
+    const method = HTTP.get;
+    const headers = {
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+      'x-access-token': token,
+    };
+    const requestObject = {method, headers};
+    const returnPromise = new Promise(async (resolve, reject) => {
+      try {
+        console.log('response');
+
+        const response = await fetch(
+          HTTP.serverAddress + '/getCityBarbers',
+          requestObject,
+        );
+        if (response.status === 200) {
+          let user = response.json();
+          resolve(user);
+        } else if (response.status === 401) {
+          reject(HTTP.loginProblemMessage);
+        } else {
+          reject(HTTP.serverProblemMessage);
+        }
+      } catch (e) {
+        reject(e);
+      }
+    });
+    return this.functionWithTimeOut(3000, returnPromise);
   }
   static async getNotification(token: string) {
     return notifications;

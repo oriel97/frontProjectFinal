@@ -13,6 +13,7 @@ export const ROUTES = {
 export const HTTP = {
   login: 'http://192.168.1.14:5000/login',
   createNewUser: 'http://192.168.1.14:5000/createUser',
+  serverAddress: 'http://192.168.1.14:5000',
   post: 'POST',
   get: 'GET',
   put: 'PUT',

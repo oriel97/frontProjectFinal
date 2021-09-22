@@ -76,7 +76,8 @@ const BarberScreen: FunctionComponent<IProps> = ({
     return navigation.addListener('focus', () => {
       navigation.closeDrawer();
       const starter = async () => {
-        const list = await Api.getBarbersList();
+        const list = await Api.getBarbersList(userStore.userId);
+        console.log(list);
         barberPageViewStores.setList(list);
         if (barberPageViewStores?.barberList?.length > 0) {
           setThereIsBarbers(true);

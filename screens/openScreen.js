@@ -8,13 +8,16 @@ import {initFromLocalStorage} from '../api/phoneStorage';
 import {inject, observer} from 'mobx-react';
 import Api from '../api/apiRequests';
 import {wallpaper} from '../utils/imageUtils';
+import {IUserStore} from '../Interfaces/view-store.types';
 
 interface IProps {
   barberPageViewStores?: IBarberPageViewStore;
+  userStore: ?IUserStore;
   navigation: any;
 }
 
 const OpenScreen: FunctionComponent<IProps> = ({
+  userStore,
   barberPageViewStores,
   navigation,
 }) => {
@@ -24,7 +27,7 @@ const OpenScreen: FunctionComponent<IProps> = ({
       returnObj = await initFromLocalStorage().then(value => value);
       if (Object.keys(returnObj).length > 0) {
         const userInfo = await Api.getUserInfo(returnObj.userId);
-        barberPageViewStores.setLogin(
+        userStore.setLogin(
           returnObj.userName,
           returnObj.userId,
           userInfo.gender,
@@ -75,4 +78,7 @@ const styles = StyleSheet.create({
     transform: [{rotate: '20deg'}],
   },
 });
-export default inject('barberPageViewStores')(observer(OpenScreen));
+export default inject(
+  'barberPageViewStores',
+  'userStore',
+)(observer(OpenScreen));

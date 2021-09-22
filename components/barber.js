@@ -13,7 +13,15 @@ const Barber: FunctionComponent<IProps> = ({barber}) => {
     <View style={styles.barberCardGeneral}>
       <Card style={styles.barberCardSize}>
         <View>
-          <Avatar rounded source={{uri: barber.picture}} size="xlarge" />
+          <Avatar
+            rounded
+            source={{
+              uri:
+                'data:image/png;base64,' +
+                barber.picture.substring(2, barber.picture.length - 1),
+            }}
+            size="xlarge"
+          />
           <View style={styles.barberName}>
             <Text style={styles.barberNameText}>{barber.barberName}</Text>
           </View>
