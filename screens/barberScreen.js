@@ -115,6 +115,7 @@ const BarberScreen: FunctionComponent<IProps> = ({
   };
 
   const onBarberPress = (item: IBarber) => {
+    console.log(item);
     barberPageViewStores.setBarberId(item.id);
     barberPageViewStores.setBarberName(item.barberName);
     barberPageViewStores.setBarberLocation(item.exactLocation);

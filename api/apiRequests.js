@@ -148,7 +148,34 @@ export default class Api extends React.Component {
   static async makeFollowOrUnfollow(follow: boolean) {}
 
   static async getBarberInformation(BarberId: number) {
-    return BarbersInformation[BarberId];
+    const method = HTTP.get;
+    const headers = {
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+      'x-access-token': BarberId,
+    };
+    const requestObject = {method, headers};
+    const returnPromise = new Promise(async (resolve, reject) => {
+      try {
+        console.log('response');
+
+        const response = await fetch(
+          HTTP.serverAddress + '/getBarberInfo',
+          requestObject,
+        );
+        if (response.status === 200) {
+          let user = response.json();
+          resolve(user);
+        } else if (response.status === 401) {
+          reject(HTTP.loginProblemMessage);
+        } else {
+          reject(HTTP.serverProblemMessage);
+        }
+      } catch (e) {
+        reject(e);
+      }
+    });
+    return this.functionWithTimeOut(3000, returnPromise);
   }
 
   static async getBarberImages(BarberId: number) {

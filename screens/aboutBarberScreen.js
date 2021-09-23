@@ -65,7 +65,10 @@ const AboutBarberScreen: FunctionComponent<IProps> = ({
         const barberInfo = await Api.getBarberInformation(
           barberPageViewStores.barberId,
         );
-        barberPageViewStores.setBarberInfo(barberInfo);
+        console.log(barberInfo);
+        if (!!barberInfo) {
+          barberPageViewStores.setBarberInfo(barberInfo);
+        }
       };
       starter().catch(e => {
         console.log(e);
