@@ -20,9 +20,8 @@ const ImageScreenHeader: FunctionComponent<IProps> = ({
   barberPageViewStores,
   openGradeBox,
 }) => {
-  const [follow, setFollow] = useState(barberPageViewStores.barber.favorite);
   const onPressFollow = async () => {
-    setFollow(!follow);
+    barberPageViewStores.setFavorite(!barberPageViewStores.barber.favorite);
     await Api.makeFollowOrUnfollow(
       userStore.userId,
       barberPageViewStores.barberId,
@@ -67,7 +66,9 @@ const ImageScreenHeader: FunctionComponent<IProps> = ({
             </View>
           </View>
           <TouchableOpacity onPress={onPressFollow} style={styles.follow}>
-            <Text>{follow ? 'follow' : 'unfollow '}</Text>
+            <Text>
+              {barberPageViewStores.barber.favorite ? 'unfollow' : 'follow '}
+            </Text>
           </TouchableOpacity>
           <TouchableOpacity onPress={openGradeBox} style={styles.follow}>
             <Text>Grade the barber</Text>

@@ -17,6 +17,7 @@ export interface IBarberPageViewStore {
   setBarber: any;
   setBarberImageList: any;
   barberImageList: IImage[];
+  setFavorite: any;
 }
 export interface IUserStore {
   notifications: INotifications;

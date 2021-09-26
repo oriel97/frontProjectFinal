@@ -39,6 +39,7 @@ class BarberPageViewStores implements IBarberPageViewStore {
       setBarberInfo: action.bound,
       setBarber: action.bound,
       setBarberImageList: action.bound,
+      setFavorite: action.bound,
     });
   }
 
@@ -64,6 +65,9 @@ class BarberPageViewStores implements IBarberPageViewStore {
   }
   setList(list: any) {
     this.barberList = list;
+  }
+  setFavorite(favorit: boolean) {
+    this.barber.favorite = favorit;
   }
 }
 
