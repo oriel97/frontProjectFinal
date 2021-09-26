@@ -40,7 +40,9 @@ const BarberScreen: FunctionComponent<IProps> = ({
   const onNotificationPress = () => {
     setPressedNotification(!pressedNotification);
     userStore.setNotificationPressed(0);
-    Api.pressOnNotificationButton(userStore.userId);
+    Api.pressOnNotificationButton(userStore.userId)
+      .then()
+      .catch(e => e);
   };
   const onPressXNotifications = () => {
     setPressedNotification(false);
@@ -77,7 +79,6 @@ const BarberScreen: FunctionComponent<IProps> = ({
       navigation.closeDrawer();
       const starter = async () => {
         const list = await Api.getBarbersList(userStore.userId);
-        console.log(list);
         barberPageViewStores.setList(list);
         if (barberPageViewStores?.barberList?.length > 0) {
           setThereIsBarbers(true);
@@ -115,7 +116,6 @@ const BarberScreen: FunctionComponent<IProps> = ({
   };
 
   const onBarberPress = (item: IBarber) => {
-    console.log(item);
     barberPageViewStores.setBarberId(item.id);
     barberPageViewStores.setBarberName(item.barberName);
     barberPageViewStores.setBarberLocation(item.exactLocation);

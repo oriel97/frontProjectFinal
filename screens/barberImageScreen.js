@@ -84,7 +84,7 @@ const BarberImageScreen: FunctionComponent<IProps> = ({
 
   const onPressOnSubmit = async () => {
     setLoading(true);
-    await Api.giveGrade(userStore.userId, grade);
+    await Api.giveGrade(userStore.userId, barberPageViewStores.barberId, grade);
     setLoading(false);
     setGrade(0);
     setOpenGradeBox(false);
@@ -110,7 +110,13 @@ const BarberImageScreen: FunctionComponent<IProps> = ({
             <ImageModal
               navigation={navigation}
               image={item.item.image}
-              avatar={barberPageViewStores?.barber.picture}
+              avatar={
+                'data:image/png;base64,' +
+                barberPageViewStores?.barber.picture.substring(
+                  2,
+                  barberPageViewStores?.barber.picture.length - 1,
+                )
+              }
               barberName={barberPageViewStores?.barberName}
               description={item.item.description}
             />

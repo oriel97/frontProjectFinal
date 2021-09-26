@@ -103,8 +103,18 @@ const UserImageScreen: FunctionComponent<IProps> = ({
 
   const onPressAddImage = () => {
     setAddDescription(false);
-    userStore.addImageToImageList({image: image, description: description});
-    Api.addUserImage(userStore.userId);
+    userStore.addImageToImageList({
+      image:
+        "b' " + image.substring('data:image/png;base64,'.length, image.length),
+      description: description,
+    });
+    Api.addUserImage(
+      userStore.userId,
+      image.substring('data:image/png;base64,'.length, image.length),
+      description,
+    )
+      .then()
+      .catch(e => e);
   };
 
   useEffect(() => {

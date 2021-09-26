@@ -5,14 +5,17 @@ import {inject, observer} from 'mobx-react';
 import {IBarberPageViewStore} from '../Interfaces/view-store.types';
 import {Colors} from '../utils/color';
 import Api from '../api/apiRequests';
+import {IUserStore} from '../Interfaces/view-store.types';
 
 interface IProps {
   imageListLength: number;
   barberPageViewStores?: IBarberPageViewStore;
   openGradeBox: any;
+  userStore?: IUserStore;
 }
 
 const ImageScreenHeader: FunctionComponent<IProps> = ({
+  userStore,
   imageListLength,
   barberPageViewStores,
   openGradeBox,
@@ -20,7 +23,10 @@ const ImageScreenHeader: FunctionComponent<IProps> = ({
   const [follow, setFollow] = useState(barberPageViewStores.barber.favorite);
   const onPressFollow = async () => {
     setFollow(!follow);
-    await Api.makeFollowOrUnfollow(follow)
+    await Api.makeFollowOrUnfollow(
+      userStore.userId,
+      barberPageViewStores.barberId,
+    )
       .then()
       .catch(error => error);
   };
@@ -30,7 +36,14 @@ const ImageScreenHeader: FunctionComponent<IProps> = ({
       <View style={{flexDirection: 'row'}}>
         <Avatar
           containerStyle={{margin: 10, flex: 3.5}}
-          source={{uri: barberPageViewStores?.barber.picture}}
+          source={{
+            uri:
+              'data:image/png;base64,' +
+              barberPageViewStores?.barber.picture.substring(
+                2,
+                barberPageViewStores?.barber.picture.length - 1,
+              ),
+          }}
           size={130}
           rounded={true}
         />
@@ -87,4 +100,7 @@ const styles = StyleSheet.create({
     borderColor: Colors.black,
   },
 });
-export default inject('barberPageViewStores')(observer(ImageScreenHeader));
+export default inject(
+  'barberPageViewStores',
+  'userStore',
+)(observer(ImageScreenHeader));

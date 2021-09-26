@@ -60,10 +60,12 @@ const NotificationsModal: FunctionComponent<IProps> = ({
   }
 
   const onPressOnNotification = (notification: INotifications) => {
-    userStore.setNotificationSeen(notification.id);
-    Api.seenNotification(userStore.userId, notification.id);
-    setNotificationsSide(true);
     setChosenNotification(notification);
+    userStore.setNotificationSeen(notification.id);
+    Api.seenNotification(userStore.userId, notification.id)
+      .then()
+      .catch(e => e);
+    setNotificationsSide(true);
   };
 
   const notification = (notification: INotifications) => {
@@ -80,7 +82,14 @@ const NotificationsModal: FunctionComponent<IProps> = ({
           ]}>
           <Avatar
             rounded
-            source={{uri: notification.barberAvatar}}
+            source={{
+              uri:
+                'data:image/png;base64,' +
+                notification.barberAvatar.substring(
+                  2,
+                  notification.barberAvatar.length - 1,
+                ),
+            }}
             size={100}
             avatarStyle={{margin: 10}}
           />

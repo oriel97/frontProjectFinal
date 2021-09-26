@@ -55,6 +55,7 @@ const ChoosingHairCutScreen: FunctionComponent<IProps> = ({
         const hairStyleMaleAndFemaleList = await Api.getBarberHairStyleList(
           barberPageViewStores.barberId,
         );
+        console.log(hairStyleMaleAndFemaleList);
         appointmentViewStore.setMaleHairStyleList(
           hairStyleMaleAndFemaleList.male,
         );

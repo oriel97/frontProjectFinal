@@ -11,7 +11,6 @@ import {
 import {FunctionComponent} from 'react';
 
 import type {IAppointment, IAppointmentViewStore, IDate} from '../utils/utils';
-import {IBarberPageViewStore} from '../Interfaces/view-store.types';
 
 import Header from '../components/header';
 import Api from '../api/apiRequests';
@@ -21,15 +20,16 @@ import Icon from 'react-native-vector-icons/FontAwesome5';
 import {inject, observer} from 'mobx-react';
 import map from 'lodash/map';
 import filter from 'lodash/filter';
+import {IUserStore} from '../Interfaces/view-store.types';
 
 interface IProps {
-  barberPageViewStores?: IBarberPageViewStore;
   appointmentViewStore?: IAppointmentViewStore;
   navigation: any;
+  userStore: IUserStore;
 }
 
 const AppointmentScreen: FunctionComponent<IProps> = ({
-  barberPageViewStores,
+  userStore,
   appointmentViewStore,
   navigation,
 }) => {
@@ -71,7 +71,7 @@ const AppointmentScreen: FunctionComponent<IProps> = ({
     return navigation.addListener('focus', () => {
       const starter = async () => {
         try {
-          const lists = await Api.getScheduleAppointment();
+          const lists = await Api.getScheduleAppointment(userStore.userId);
           appointmentViewStore.setAppointmentList(lists);
           if (lists?.past?.length === 0 && lists?.future?.length === 0) {
             setHaveAppointments(false);
@@ -150,7 +150,9 @@ const AppointmentScreen: FunctionComponent<IProps> = ({
 
   const deleteAppointment = async () => {
     setLoading(true);
-    await Api.deleteAppointment(appointment.appointmentId);
+    await Api.deleteAppointment(appointment.appointmentId)
+      .then()
+      .catch(e => e);
     let futureList = appointmentViewStore.futureAppointmentList;
     futureList = filter(futureList, appointment1 => {
       return appointment1.appointmentId !== appointment.appointmentId;
@@ -415,6 +417,6 @@ const styles = StyleSheet.create({
   },
 });
 export default inject(
-  'barberPageViewStores',
+  'userStore',
   'appointmentViewStore',
 )(observer(AppointmentScreen));

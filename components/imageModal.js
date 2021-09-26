@@ -47,7 +47,12 @@ const ImageModal: FunctionComponent<IProps> = ({
           {!!topName ? topName : barberName || ''}
         </Text>
       </View>
-      <Image source={{uri: image}} style={styles.image} />
+      <Image
+        source={{
+          uri: 'data:image/png;base64,' + image.substring(2, image.length - 1),
+        }}
+        style={styles.image}
+      />
       <View style={styles.nameAndDescription}>
         <Text style={styles.nameDown}>{barberName || ''}</Text>
         <TouchableWithoutFeedback onPress={onPressForMore}>

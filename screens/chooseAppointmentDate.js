@@ -17,13 +17,16 @@ import {Colors} from '../utils/color';
 import map from 'lodash/map';
 import Api from '../api/apiRequests';
 import type {IAppointmentViewStore} from '../utils/utils';
+import {IUserStore} from '../Interfaces/view-store.types';
 
 interface IProps {
   barberPageViewStores?: IBarberPageViewStore;
+  userStore?: IUserStore;
   appointmentViewStore?: IAppointmentViewStore;
   navigation: any;
 }
 const ChooseAppointmentScreen: FunctionComponent<IProps> = ({
+  userStore,
   barberPageViewStores,
   navigation,
   appointmentViewStore,
@@ -83,10 +86,13 @@ const ChooseAppointmentScreen: FunctionComponent<IProps> = ({
       });
       setMadeAppointment(true);
       setLoading(true);
+      console.log(appointmentViewStore.appointment);
       await Api.createAppointment(
-        barberPageViewStores.barberId,
+        userStore.userId,
         appointmentViewStore.appointment,
-      );
+      )
+        .then()
+        .catch(e => e);
       setLoading(false);
     }
   };
@@ -133,7 +139,6 @@ const ChooseAppointmentScreen: FunctionComponent<IProps> = ({
         str = str + ', ';
       }
     }
-    console.log(str);
     return str;
   };
   Date.prototype.addDays = function (days) {
@@ -373,5 +378,6 @@ const styles = StyleSheet.create({
 });
 export default inject(
   'barberPageViewStores',
+  'userStore',
   'appointmentViewStore',
 )(observer(ChooseAppointmentScreen));
