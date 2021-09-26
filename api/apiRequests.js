@@ -519,11 +519,40 @@ export default class Api extends React.Component {
   }
 
   static async getAppointmentTimeAccordingToDate(
-    BarberId: number,
+    barberId: number,
     date: string,
-    amountOdTime: number,
+    amountOfTime: number,
   ) {
-    return BarberHairAppointmentPossibleHoursForSpecificDate[BarberId];
+    const method = HTTP.get;
+    const headers = {
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+      'x-access-token': barberId,
+    };
+    const requestObject = {method, headers};
+    const returnPromise = new Promise(async (resolve, reject) => {
+      try {
+        const response = await fetch(
+          HTTP.serverAddress +
+            'getDayHours?date=' +
+            date +
+            '&amountOdTime=' +
+            amountOfTime,
+          requestObject,
+        );
+        if (response.status === 200) {
+          let user = response.json();
+          resolve(user);
+        } else if (response.status === 401) {
+          reject(HTTP.loginProblemMessage);
+        } else {
+          reject(HTTP.serverProblemMessage);
+        }
+      } catch (e) {
+        reject(e);
+      }
+    });
+    return this.functionWithTimeOut(3000, returnPromise);
   }
   /**
    * try to Create new user
