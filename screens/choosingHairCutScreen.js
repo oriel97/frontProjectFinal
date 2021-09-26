@@ -55,7 +55,6 @@ const ChoosingHairCutScreen: FunctionComponent<IProps> = ({
         const hairStyleMaleAndFemaleList = await Api.getBarberHairStyleList(
           barberPageViewStores.barberId,
         );
-        console.log(hairStyleMaleAndFemaleList);
         appointmentViewStore.setMaleHairStyleList(
           hairStyleMaleAndFemaleList.male,
         );
@@ -145,9 +144,10 @@ const ChoosingHairCutScreen: FunctionComponent<IProps> = ({
 
   const onPressOnMakeTheAppointmentButton = () => {
     if (appointmentViewStore.price !== 0 && appointmentViewStore !== 0) {
+      console.log(selectedGender);
       appointmentViewStore.setTypeOfHairAppointment({
         type: appointmentViewStore.selectedHairStyleList,
-        selectedGender,
+        gender: selectedGender,
       });
       navigation.navigate('ChooseAppointmentScreen');
     }

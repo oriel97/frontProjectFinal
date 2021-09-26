@@ -64,7 +64,7 @@ const ChooseAppointmentScreen: FunctionComponent<IProps> = ({
           appointmentViewStore.amountOfTime,
         )
           .then()
-          .catch(e => {});
+          .catch(e => e);
         if (tempList !== null) {
           setTimeList(tempList);
         }
@@ -86,7 +86,6 @@ const ChooseAppointmentScreen: FunctionComponent<IProps> = ({
       });
       setMadeAppointment(true);
       setLoading(true);
-      console.log(appointmentViewStore.appointment);
       await Api.createAppointment(
         userStore.userId,
         appointmentViewStore.appointment,

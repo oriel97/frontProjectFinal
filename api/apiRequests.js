@@ -453,12 +453,16 @@ export default class Api extends React.Component {
       Accept: 'application/json',
       'Content-Type': 'application/json',
     };
+    let d = new Date(appointment.date);
+    const year = d.getFullYear();
+    let month = Number(d.getMonth()) + 1;
+    let day = d.getDate();
     const body = JSON.stringify({
       user_public_id: userId,
       barberId: appointment.barberId,
-      day: appointment.date.day,
-      month: appointment.date.month,
-      year: appointment.date.year,
+      day: day,
+      month: month,
+      year: year,
       time: appointment.time,
       amountOfTime: appointment.amountOfTime,
       type: appointment.type,
@@ -522,6 +526,14 @@ export default class Api extends React.Component {
     date: string,
     amountOfTime: number,
   ) {
+    let d = new Date(date);
+    const year = d.getFullYear();
+    let month = Number(d.getMonth()) + 1;
+    if (month.length > 1) {
+      month = month[1];
+    }
+    let day = d.getDate();
+
     const method = HTTP.get;
     const headers = {
       Accept: 'application/json',
@@ -533,9 +545,13 @@ export default class Api extends React.Component {
       try {
         const response = await fetch(
           HTTP.serverAddress +
-            'getDayHours?date=' +
-            date +
-            '&amountOdTime=' +
+            '/getDayHours?year=' +
+            year +
+            '&month=' +
+            month +
+            '&day=' +
+            day +
+            '&amountOfTime=' +
             amountOfTime,
           requestObject,
         );
