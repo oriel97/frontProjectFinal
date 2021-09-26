@@ -1,6 +1,5 @@
 import React from 'react';
 import {HTTP} from '../utils/utils';
-import {BarberHairAppointmentPossibleHoursForSpecificDate} from '../mocks/barberMock';
 import type {IAppointment} from '../utils/utils';
 
 function sleep(ms) {
