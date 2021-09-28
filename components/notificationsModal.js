@@ -36,7 +36,9 @@ const NotificationsModal: FunctionComponent<IProps> = ({
       ? differentOfTime['days'] + ' days ago'
       : differentOfTime['hours'] !== null
       ? differentOfTime['hours'] + ' hours ago'
-      : differentOfTime['minutes'] + ' minutes ago';
+      : differentOfTime['minutes'] !== null
+      ? differentOfTime['minutes'] + ' minutes ago'
+      : 'now';
   };
 
   function timeDiffCalc(dateFuture, dateNow) {
