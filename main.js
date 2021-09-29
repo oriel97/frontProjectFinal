@@ -6,9 +6,7 @@ import 'react-native-gesture-handler';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 
-import BarberScreen from './screens/barberScreen';
 import OpenScreen from './screens/openScreen';
-import {Colors} from './utils/color';
 import DrawerNav from './routs/drawerNav';
 
 const Stack = createStackNavigator();

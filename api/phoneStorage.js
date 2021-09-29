@@ -13,7 +13,6 @@ export const initFromLocalStorage = async () => {
         userInformation = JSON.parse(userInfo);
       }
     } catch (error) {
-      console.log('there is no user');
       userInformation = {};
     }
   }
@@ -30,7 +29,6 @@ export async function singedOut() {
 
 export async function signedIn(userId: string, userName: string) {
   try {
-    await initFromLocalStorage();
     const jsonValue = JSON.stringify({
       userId: userId,
       userName: userName,

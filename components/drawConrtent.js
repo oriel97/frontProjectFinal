@@ -69,7 +69,7 @@ const DrawContent: FunctionComponent<IProps> = ({
               size={24}
               style={{paddingTop: 2}}
             />
-            <Text style={[styles.button, {paddingLeft: 10}]}>VIDEOS</Text>
+            <Text style={[styles.button, {paddingLeft: 10}]}>HELP</Text>
           </View>
           <Icon
             name="angle-right"
@@ -137,7 +137,9 @@ const DrawContent: FunctionComponent<IProps> = ({
               size={24}
               style={styles.icon}
             />
-            <Text style={[styles.button, {paddingLeft: 10}]}>IMAGES</Text>
+            <Text style={[styles.button, {paddingLeft: 10}]}>
+              HAIR CUT IDEAS
+            </Text>
           </View>
           <Icon
             name="angle-right"
