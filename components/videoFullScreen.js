@@ -120,9 +120,7 @@ const VideoFullScreen: React.FunctionComponent<IProps> = ({videoViewStore}) => {
       style={styles.container}>
       <Video
         paused={!videoViewStore?.movieOnPlay}
-        source={{
-          uri: videoViewStore.videoObject.videoLink,
-        }}
+        source={videoViewStore.videoObject.videoLink}
         style={[styles.video, styles.movie]}
         resizeMode={'contain'}
         onLoad={onLoad}

@@ -1,17 +1,18 @@
+const vision = require('../videos/vision.mp4');
+const features = require('../videos/features.mp4');
+const makeAnAppointment = require('../videos/makeAppointment.mp4');
+
 export const Videos: IVideosObject[] = [
   {
-    videoLink:
-      'http://mp44.dlmania.com/Hollywood/Space%20Jam%20-%20A%20New%20Legacy%20-%20BRRip/Space%20Jam%20-%20A%20New%20Legacy%20-%20BRRip%20(Mp4Mania).mp4',
+    videoLink: vision,
     title: 'Introduction',
   },
   {
-    videoLink:
-      'http://mp44.dlmania.com/Hollywood/Space%20Jam%20-%20A%20New%20Legacy%20-%20BRRip/Space%20Jam%20-%20A%20New%20Legacy%20-%20BRRip%20(Mp4Mania).mp4',
+    videoLink: features,
     title: 'Choose your barber',
   },
   {
-    videoLink:
-      'http://mp44.dlmania.com/Hollywood/Space%20Jam%20-%20A%20New%20Legacy%20-%20BRRip/Space%20Jam%20-%20A%20New%20Legacy%20-%20BRRip%20(Mp4Mania).mp4',
+    videoLink: makeAnAppointment,
     title: 'Make appointment',
   },
 ];
